@@ -121,6 +121,6 @@ python tools/build_pages.py --assets auto
 python -m http.server 8000 --directory dist/pages
 ```
 
-Pages uses a curated build, not a duplicate source tree. The manual deployment workflow requires redistribution-rights acknowledgement. Review the applicable license and third-party rights before redistribution; this showcase change does not grant a new license.
+Pages uses a curated build, not a duplicate source tree. The Pages workflow automatically deploys the lightweight curated site on pushes to `main` after the site and reference-example tests pass (`--assets none`). Manual runs can include optional asset groups only after redistribution-rights acknowledgement. Review the applicable license and third-party rights before merging publishable content; this showcase does not grant a new license.
 
 <div align="center"><sub>Vapor VFX · distribution 0.24 · Rust core 0.22.0 · research preview</sub></div>

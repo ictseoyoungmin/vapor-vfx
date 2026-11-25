@@ -31,8 +31,9 @@ python -m http.server 8000 --bind 127.0.0.1 --directory dist/pages
 
 1. GitHub에 권한이 있는 저장소를 만들고 정리한 소스를 push한다. 공개 전 라이선스/고지 검토 및 실제 CI를 권장한다.
 2. Repository → Settings → Pages → Build and deployment → Source: **GitHub Actions**.
-3. Actions → Pages preview → Run workflow에서 재배포 권리가 확인된 경우에만 `rights_confirmed`를 선택한다. `asset_mode`는 일반적으로 `auto`다.
-4. 빌드/경로 검사 및 `github-pages` 환경의 승인 후 배포한다. workflow는 push만으로 공개하지 않는다. 기본 브랜치 이외의 ref는 배포하지 않는다.
+3. `main`에 push(또는 PR 병합)하면 경량 사이트(`--assets none`)가 자동으로 빌드된다. 신규 공개 코드·미디어의 재배포 권리는 병합 전에 검토한다.
+4. 사이트 생성기 및 cloud/fog 참조 예제 검사가 통과한 뒤에만 `github-pages` 환경에 배포한다. 기본 브랜치 이외의 ref는 배포하지 않는다.
+5. 선택형 에셋을 포함한 배포는 Actions → Pages preview → Run workflow에서 재배포 권리가 확인된 경우에만 `rights_confirmed`를 선택하고 `asset_mode`를 `auto` 또는 `full`로 지정한다. 다음 자동 배포는 다시 경량 사이트로 갱신된다.
 
 별도 배포용 Pages ZIP을 사용할 경우에는 그 내용을 Pages용 브랜치의 루트로 옮겨도 된다. 이 경우 GitHub의 branch publishing을 선택한다. 둘 중 한 방식만 사용한다. 대용량 필드 전체를 source Git history에 넣을 필요는 없다. full 사이트 자체의 전송량은 클 수 있으므로 공개 범위 선택은 운영자가 한다.
 

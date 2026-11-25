@@ -1,5 +1,7 @@
 name: Pages preview
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       rights_confirmed:
@@ -19,24 +21,29 @@ concurrency:
   cancel-in-progress: false
 jobs:
   build:
-    if: inputs.rights_confirmed && github.ref_name == github.event.repository.default_branch
+    if: github.ref_name == github.event.repository.default_branch && (github.event_name == 'push' || inputs.rights_confirmed)
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
       - name: Verify site generator
         run: python -m unittest discover -s tests -p test_pages.py
+      - name: Verify cloud and fog reference examples
+        run: node --test tests/interactive-cloud.test.mjs tests/terrain-fog.test.mjs
       - name: Build curated website
         env:
-          ASSET_MODE: ${{ inputs.asset_mode }}
+          ASSET_MODE: ${{ github.event_name == 'push' && 'none' || inputs.asset_mode }}
         run: python tools/build_pages.py --assets "$ASSET_MODE"
       - uses: actions/upload-pages-artifact@v3
         with:
           path: dist/pages
   deploy:
-    if: inputs.rights_confirmed && github.ref_name == github.event.repository.default_branch
+    if: github.ref_name == github.event.repository.default_branch && (github.event_name == 'push' || inputs.rights_confirmed)
     needs: build
     runs-on: ubuntu-latest
     permissions:
