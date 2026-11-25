@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Interactive Volumetric Cloud | Vapor VFX</title>
+<link rel="stylesheet" href="viewer.css"></head><body><main>
+<header><a href="../index.html">VAPOR VFX / EXAMPLES</a><span class="tag">CPU REFERENCE</span></header>
+<div class="intro"><p class="eyebrow">01 / FEATURED EXAMPLE</p><h1>Interactive Volumetric Cloud</h1><p>Explore the actual three-dimensional Float32 density field. Every view is ray-marched from the selected camera, not a rotated image or a video.</p></div>
+<div class="workspace"><section class="viewport" id="viewport" aria-label="Cloud viewport">
+<div class="viewport-top"><span>FIDELITY LAB <b>·</b> CUMULUS</span><button id="fullscreen" title="Enter or exit fullscreen">Fullscreen</button></div>
+<canvas id="canvas" width="480" height="300" tabindex="0" aria-label="Drag to orbit the cloud, shift-drag or right-drag to pan, scroll to zoom. Arrow keys orbit; plus and minus zoom."></canvas>
+<div class="hint">Drag to orbit <b>·</b> Right / Shift-drag to pan <b>·</b> Scroll to zoom <b>·</b> Arrow keys to orbit</div>
+<div class="telemetry" id="status" role="status" aria-live="polite">Preparing the canonical cloud…</div>
+</section><aside class="controls"><h2>View settings</h2>
+<label>Quality<select id="quality"><option value="preview" selected>Interactive / 96 × 48 × 64</option><option value="hero">Hero / 176 × 88 × 120</option></select></label>
+<label>Lighting<select id="light"><option value="original">Canonical sunlight</option><option value="side">Side light</option><option value="back">Backlight</option></select></label>
+<label>Azimuth <output id="azimuthValue">0°</output><input id="azimuth" type="range" min="-180" max="180" step="1"></label>
+<label>Elevation <output id="elevationValue">0°</output><input id="elevation" type="range" min="-79" max="79" step="1"></label>
+<label>Distance <output id="distanceValue"></output><input id="distance" type="range" min="0.6" max="4" step="0.01"></label>
+<div class="buttons"><button id="reset">Reset camera</button><button id="save" disabled>Save PNG</button></div>
+<dl><dt>Density grid</dt><dd id="grid">—</dd><dt>Last render</dt><dd id="timing">—</dd><dt>Optical cache</dt><dd id="cache">—</dd></dl>
+<p class="note">The worker renders reduced-resolution frames while dragging and refines the view when you release. CPU rendering is on demand, not a real-time performance benchmark. Hero quality can take longer.</p></aside></div>
+<footer><p>Uses the canonical cloud scene and existing Fidelity Lab optics. No Rust build, external model, or downloaded volume required. <a href="../fidelity-cloud/index.html">Experimental WebGPU cloud</a> is a separate path.</p></footer>
+</main><script type="module" src="viewer.mjs"></script></body></html>

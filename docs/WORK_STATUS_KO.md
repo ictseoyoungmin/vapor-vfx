@@ -4,7 +4,7 @@ Distribution 0.24 · Rust core 0.22.0 · C ABI v1 · Lab core 0.22. 이번 revis
 
 | 목표 | 상태 | 다음 승인 조건 |
 | --- | --- | --- |
-| M1 | BLOCKED | 실제 Rust native/WASM 및 cloud parity |
+| M1 | IN_PROGRESS | native CPU CI 통과; 실제 WASM 및 hero cloud parity 필요 |
 | M2 | IN_PROGRESS | 기존 보존형 수송/CG 후보 실제 검증; full-plume 시각 품질 개선 |
 | M3 | IN_PROGRESS | 실제 GPU 고품질 광학 및 효과별 물리·광학 보정 |
 | M4 | IN_PROGRESS | 대표 게임 장면 성능·통합, 엔진/장치 실행 |
@@ -17,7 +17,7 @@ Distribution 0.24 · Rust core 0.22.0 · C ABI v1 · Lab core 0.22. 이번 revis
 - JS 구름/안개, VPF1/VPA1 JS/Python/C++ 데이터 및 애니메이션 참조 결과는 실제 실행 검증됨.
 - Airborne V2 film/저장 필드의 JS CPU optics는 실행 증거가 있음. 이는 예술적 VFX이며 실제 유체 런타임이 아님.
 - Rust/C# 도구체인은 기존 전달 환경에서 없었고 실제 native/WASM, 하드웨어 GPU/Hybrid, 게임 에디터는 검증되지 않음. 기존 보고서를 새 런타임 실행처럼 수정하지 않음.
-- 공개 사이트는 source-only 또는 선택 에셋으로 생성 가능. 권리 검토/라이선스 결정/원격 CI는 아직 필요함. GitHub 업로드 및 Pages 공개를 수행하지 않음.
+- 공개 사이트는 source-only 또는 선택 에셋으로 생성 가능. 권리 검토/라이선스 결정/원격 CI는 아직 필요함. GitHub main 등록 후 [native CPU CI](https://github.com/ictseoyoungmin/vapor-vfx/actions/runs/45661533068)가 성공했다. WASM·GPU 및 hero cloud parity는 별도 확인이 필요하며 Pages 배포 상태는 미확인이다.
 
 ## 다음 작업
 
@@ -26,3 +26,7 @@ Distribution 0.24 · Rust core 0.22.0 · C ABI v1 · Lab core 0.22. 이번 revis
 3. 대표 장치의 실제 GPU 및 게임 비용을 확인하고 배포 범위를 확정.
 
 [마일스톤 종료 조건](MILESTONES_KO.md) · [검증 절차](VALIDATION_KO.md) · [공개 체크리스트](PUBLISHING_KO.md)
+
+## 대표 웹 예제
+
+`examples/interactive-cloud/`은 실제 canonical Float32 구름을 worker에서 CPU 렌더링한다. 회전·이동·줌과 조명 변경, 조작 중 저샘플·종료 시 품질 복원을 제공한다. Rust GPU 런타임 검증이나 실시간 성능 보장을 의미하지 않는다.

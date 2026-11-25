@@ -12,6 +12,6 @@
     "python": "0.22.0"
   },
   "unity_adapter_version": "0.22.0",
-  "example_revision": "airborne-smoke-v2-inspector",
-  "site_revision": "public-preview"
+  "example_revision": "interactive-cloud-showcase",
+  "site_revision": "interactive-cloud-featured"
 }
