@@ -36,37 +36,60 @@ export function extractDensitySurface(field,resolution=128,iso=.18){
     i=positions.length/3;for(let k=0;k<3;k++)positions.push(Math.fround(lerp(p[k],q[k],t)));
     edgeVertices.set(key,i);return i;
   }
-  function tri(a,b,c,out){
+  function tri(a,b,c){
     const ax=positions[3*b]-positions[3*a],ay=positions[3*b+1]-positions[3*a+1],az=positions[3*b+2]-positions[3*a+2];
     const bx=positions[3*c]-positions[3*a],by=positions[3*c+1]-positions[3*a+1],bz=positions[3*c+2]-positions[3*a+2];
-    const x=ay*bz-az*by,y=az*bx-ax*bz,z=ax*by-ay*bx;
-    if(!(Math.hypot(x,y,z)>0))throw new Error('Degenerate surface triangle');
-    if(x*out[0]+y*out[1]+z*out[2]<0)[b,c]=[c,b];
+    if(!(Math.hypot(ay*bz-az*by,az*bx-ax*bz,ax*by-ay*bx)>0))throw new Error('Degenerate surface triangle');
     if(indices.length>=1_800_000)throw new RangeError('Surface exceeds 600,000 triangle budget; increase threshold or lower resolution');
     indices.push(a,b,c);
   }
-  const tetra=[[0,1,2,6],[0,2,3,6],[0,3,7,6],[0,7,4,6],[0,4,5,6],[0,5,1,6]];
-  const offsets=[0,1,d+1,d,plane,plane+1,plane+d+1,plane+d];
-  const ids=new Array(8);
+  // Trace the contour on each cube face. The same face samples choose the
+  // same diagonal in both adjacent cubes, including saddle configurations.
+  const edges=[[0,1],[1,2],[2,3],[3,0],[4,5],[5,6],[6,7],[7,4],[0,4],[1,5],[2,6],[3,7]];
+  // Corners are CCW viewed from outside each cube; edge order follows them.
+  const faces=[[[0,3,2,1],[3,2,1,0]],[[4,5,6,7],[4,5,6,7]],[[0,1,5,4],[0,9,4,8]],[[3,7,6,2],[11,6,10,2]],[[0,4,7,3],[8,7,11,3]],[[1,2,6,5],[1,10,5,9]]];
+  const offsets=[0,1,d+1,d,plane,plane+1,plane+d+1,plane+d],ids=new Array(8),next=new Int8Array(12);
+  const dist2=(a,b)=>{let d=0;for(let k=0;k<3;k++)d+=(positions[a*3+k]-positions[b*3+k])**2;return d;};
   for(let z=0;z<d-1;z++)for(let y=0;y<d-1;y++)for(let x=0;x<d-1;x++){
     const base=x+y*d+z*plane;let mask=0;
     for(let k=0;k<8;k++){ids[k]=base+offsets[k];if(scalar[ids[k]]>0)mask|=1<<k;}
     if(mask===0||mask===255)continue;
-    // Fixed conforming six-tet subdivision; adjacent cubes share the same face diagonals.
-    for(const tet of tetra){
-      const inside=[],outside=[];
-      for(const k of tet){const id=ids[k];(scalar[id]>0?inside:outside).push(id);}
-      if(!inside.length||!outside.length)continue;
-      const out=[0,0,0];
-      for(const id of outside){const p=point(id);for(let k=0;k<3;k++)out[k]+=p[k]/outside.length;}
-      for(const id of inside){const p=point(id);for(let k=0;k<3;k++)out[k]-=p[k]/inside.length;}
-      if(inside.length===1){const [a]=inside;tri(...outside.map(b=>edge(a,b)),out);}
-      else if(outside.length===1){const [a]=outside;tri(...inside.map(b=>edge(a,b)),out);}
-      else{
-        const [a,b]=inside,[c,e]=outside;
-        const ac=edge(a,c),ae=edge(a,e),be=edge(b,e),bc=edge(b,c);
-        tri(ac,ae,be,out);tri(ac,be,bc,out);
+    next.fill(-1);
+    for(const [corners,faceEdges] of faces){
+      const signs=corners.map(c=>scalar[ids[c]]>0),crossings=[];
+      for(let k=0;k<4;k++)if(signs[k]!==signs[(k+1)%4])crossings.push(k);
+      function connect(a,b){
+        // Interior stays on the right viewed from outside the cube face.
+        if(signs[a])[a,b]=[b,a];
+        next[faceEdges[a]]=faceEdges[b];
       }
+      if(crossings.length===2)connect(...crossings);
+      else if(crossings.length===4){
+        const s=corners.map(c=>scalar[ids[c]]);
+        // The bilinear saddle decision (Q) is invariant to face reversal.
+        // Q=0 falls back to the sign of the face-center sum.
+        const q=s[0]*s[2]-s[1]*s[3],center=q===0?s.reduce((a,b)=>a+b,0)>0:(q>0?signs[0]:signs[1]);
+        for(let k=0;k<4;k++)if(signs[k]!==center)connect((k+3)%4,k);
+      }
+    }
+    for(let start=0;start<12;start++){
+      if(next[start]<0)continue;
+      const polygon=[];let k=start;
+      do{
+        if(next[k]<0||polygon.length>=12)throw Error('Broken cube contour');
+        const [a,b]=edges[k];polygon.push(edge(ids[a],ids[b]));
+        const successor=next[k];next[k]=-1;k=successor;
+      }while(k!==start);
+      if(polygon.length===3)tri(...polygon);
+      else if(polygon.length===4){
+        const [a,b,c,e]=polygon;
+        if(dist2(a,c)<=dist2(b,e)){tri(a,b,c);tri(a,c,e);}else{tri(a,b,e);tri(b,c,e);}
+      }else if(polygon.length>4){
+        // A local center avoids long diagonals through nonplanar contours.
+        const center=positions.length/3;
+        for(let j=0;j<3;j++)positions.push(Math.fround(polygon.reduce((a,i)=>a+positions[3*i+j],0)/polygon.length));
+        for(let j=0;j<polygon.length;j++)tri(center,polygon[j],polygon[(j+1)%polygon.length]);
+      }else throw Error('Invalid cube contour');
     }
   }
   if(!indices.length)throw new RangeError('No surface at this density threshold');
