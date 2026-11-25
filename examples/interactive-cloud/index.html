@@ -16,6 +16,15 @@
 <label>Distance <output id="distanceValue"></output><input id="distance" type="range" min="0.6" max="4" step="0.01"></label>
 <div class="buttons"><button id="reset">Reset camera</button><button id="save" disabled>Save PNG</button></div>
 <dl><dt>Density grid</dt><dd id="grid">—</dd><dt>Last render</dt><dd id="timing">—</dd><dt>Optical cache</dt><dd id="cache">—</dd></dl>
-<p class="note">The worker renders reduced-resolution frames while dragging and refines the view when you release. CPU rendering is on demand, not a real-time performance benchmark. Hero quality can take longer.</p></aside></div>
+<p class="note">The worker renders reduced-resolution frames while dragging and refines the view when you release. CPU rendering is on demand, not a real-time performance benchmark. Hero quality can take longer.</p>
+<section class="bake-panel" aria-labelledby="bake-title"><h2 id="bake-title">Bake cloud asset</h2>
+<p class="note">GLB surface mesh · 128³ extraction grid. Uses the selected density quality, not the camera or sunlight.</p>
+<label>Density threshold <output id="threshold-value">0.18</output><input id="bake-threshold" type="range" min="0.05" max="0.75" step="0.01" value="0.18"></label>
+<label class="bake-check"><input id="bake-material" type="checkbox" checked> Include PBR material</label>
+<label class="bake-check"><input id="bake-lod" type="checkbox" checked> Generate LOD1 / LOD2</label>
+<div class="buttons"><button id="bake" type="button" disabled>Bake GLB</button><button id="bake-cancel" type="button" hidden>Cancel</button></div>
+<p class="note">Opaque isosurface approximation; internal density and scattering remain in the source VPF1.</p>
+<p id="bake-status" role="status" aria-live="polite" class="note"></p><div id="bake-result" class="bake-result"></div>
+</section></aside></div>
 <footer><p>Uses the canonical cloud scene and existing Fidelity Lab optics. No Rust build, external model, or downloaded volume required. <a href="../fidelity-cloud/index.html">Experimental WebGPU cloud</a> is a separate path.</p></footer>
 </main><script type="module" src="viewer.mjs"></script></body></html>

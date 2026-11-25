@@ -23,7 +23,7 @@ Cross-platform volumetric VFX research lab & experimental Rust game SDK.
 
 ## Explore the volume
 
-**Interactive Volumetric Cloud** is the featured example. Generate a canonical cloud in the browser, drag to orbit, right-drag to pan, scroll to zoom, and change lighting. A CPU worker reuses the density and optical-depth cache as the camera moves. It refines the render after interaction; it does not rotate a flat picture.
+**Interactive Volumetric Cloud** is the featured example. Generate a canonical cloud in the browser, drag to orbit, right-drag to pan, scroll to zoom, and change lighting. A CPU worker reuses the density and optical-depth cache as the camera moves. It refines the render after interaction; it does not rotate a flat picture. **Bake cloud asset** exports the selected density as indexed GLB surface geometry at 128³, with optional 64³/32³ LODs, PBR material, and the original VPF1 field. GLB is an opaque density-isosurface approximation, not a volumetric renderer.
 
 <table>
 <tr>

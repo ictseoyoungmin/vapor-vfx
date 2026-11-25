@@ -34,7 +34,7 @@ jobs:
       - name: Verify site generator
         run: python -m unittest discover -s tests -p test_pages.py
       - name: Verify cloud and fog reference examples
-        run: node --test tests/interactive-cloud.test.mjs tests/terrain-fog.test.mjs
+        run: node --test tests/interactive-cloud.test.mjs tests/terrain-fog.test.mjs tests/cloud-mesh.test.mjs
       - name: Build curated website
         env:
           ASSET_MODE: ${{ github.event_name == 'push' && 'none' || inputs.asset_mode }}

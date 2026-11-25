@@ -78,6 +78,7 @@ def main() -> int:
     run('field_asset_python',[sys.executable,'-m','unittest','discover','-s','tests','-p','test_field_asset.py','-v'],evidence='actual VPF1 decoding/roundtrip; not Rust execution')
     run('field_sequence_python',[sys.executable,'-m','unittest','discover','-s','tests','-p','test_field_sequence.py','-v'],evidence='actual Python VPA decode/interpolation/cache/CRC')
     run('field_sequence_js',['node','--test','tests/field-sequence.test.mjs'],evidence='actual JS VPA playback plus explicit GPU host test double')
+    run('cloud_mesh_glb_js',['node','--test','tests/cloud-mesh.test.mjs'],evidence='actual VPF1 static GLB extraction, topology, LOD and material checks')
     run('field_asset_js',['node','--test','tests/field-asset.test.mjs'],evidence='actual JS VPF1 decoder/encoder')
     run('stage1_contract_tests',[sys.executable,'-m','unittest','discover','-s','tests','-p','test_contract.py','-v'])
     run('runtime_tool_self_tests',[sys.executable,'-m','unittest','discover','-s','tests','-p','test_runtime_tools.py','-v'],evidence='tool/provenance/PNG self-tests, NOT Rust runtime')
