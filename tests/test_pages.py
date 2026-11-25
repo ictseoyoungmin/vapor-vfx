@@ -30,6 +30,25 @@ class PagesTests(unittest.TestCase):
             self.assertFalse(report['runtime_binaries']);self.assertFalse(report['release_certification'])
             self.assertGreater(report['static_references_checked'],60)
 
+    def test_distinct_featured_effects(self):
+        import re
+        for mode in ('none','auto'):
+            with self.subTest(mode=mode), tempfile.TemporaryDirectory() as tmp:
+                out=Path(tmp)/'site';pages.build(out,mode)
+                home=(out/'index.html').read_text()
+                featured=home.split('Explore clouds, smoke and fog',1)[1].split('</section>',1)[0]
+                self.assertEqual(re.findall(r'<h3>(.*?)</h3>',featured),['Interactive Volumetric Cloud','Airborne smoke','Terrain Fog'])
+                self.assertEqual(re.findall(r'<img src="(.*?)"',featured),['media/cloud.png','media/airborne.jpg','media/fog.png'])
+                gallery=(out/'examples.html').read_text()
+                self.assertIn('id="research"',gallery)
+                reference=gallery.split('id="reference"',1)[1].split('</section>',1)[0]
+                self.assertIn('Terrain Fog',reference)
+                self.assertNotIn('Fidelity Lab / reference settings',reference)
+                fog=(out/'examples/terrain-fog/index.html').read_text()
+                self.assertIn('href="../../examples.html"',fog)
+                self.assertTrue((out/'examples/terrain-fog/worker.mjs').is_file())
+                self.assertTrue((out/'examples/high-fidelity/fog-view.mjs').is_file())
+
     def test_full_assets_when_available(self):
         if not all(pages.available_assets('auto').values()):self.skipTest('optional assets not present in source checkout')
         with tempfile.TemporaryDirectory() as tmp:
