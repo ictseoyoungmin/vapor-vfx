@@ -24,13 +24,17 @@ export function panOrbit(o,dx,dy,extent,height,fov){
   const right=[-Math.cos(o.yaw),0,-Math.sin(o.yaw)],up=[-Math.sin(o.yaw)*Math.sin(o.pitch),Math.cos(o.pitch),Math.cos(o.yaw)*Math.sin(o.pitch)];
   return {...o,target:o.target.map((p,i)=>clamp(p-k*dx*right[i]+k*dy*up[i],-extent[i]*.5,extent[i]*1.5))};
 }
+export function createCloudField(scene,quality='preview'){
+  if(!['preview','hero'].includes(quality))throw Error('Unknown cloud quality');
+  return generateFidelityVolume(scene.preset,{quality:scene.quality,cells:scene.profiles[quality].cells,extent:scene.extent,settings:scene.settings,time:scene.time});
+}
 export function createCloudSession(scene){
   let volume,prepared,qualityKey,lightKey,fieldBuilds=0,cacheBuilds=0;
   return {render({orbit,quality='preview',light='original',interactive=false}={}){
     if(!['preview','hero'].includes(quality)||!['original','side','back'].includes(light))throw Error('Unknown viewer setting');
     const profile=scene.profiles[quality],t=performance.now(),camera=orbitCamera(orbit);
     if(quality!==qualityKey){
-      volume=generateFidelityVolume(scene.preset,{quality:scene.quality,cells:profile.cells,extent:scene.extent,settings:scene.settings,time:scene.time});
+      volume=createCloudField(scene,quality);
       qualityKey=quality;prepared=null;fieldBuilds++;
     }
     const reused=Boolean(prepared&&light===lightKey);

@@ -1,3 +1,4 @@
+import {setupCloudBake} from './bake-ui.mjs';
 import {defaultOrbit,rotateOrbit,zoomOrbit,panOrbit} from './cloud-view.mjs';
 const $=id=>document.getElementById(id),canvas=$('canvas'),status=$('status');
 const DEG=180/Math.PI,context=canvas.getContext('2d');
@@ -39,6 +40,7 @@ function receive({data}){
 try{
   const r=await fetch(new URL('../../contracts/cloud-hero.json',import.meta.url));if(!r.ok)throw Error('Cloud scene could not be loaded ('+r.status+')');
   scene=await r.json();orbit=defaultOrbit(scene);
+  setupCloudBake(scene,()=>$('quality').value);
   worker=new Worker(new URL('./cloud-worker.mjs',import.meta.url),{type:'module'});
   worker.onmessage=receive;worker.onerror=e=>fail(e.message||'Worker unavailable. Serve the example over HTTP.');
   for(const id of ['quality','light'])$(id).addEventListener('change',()=>request(false));

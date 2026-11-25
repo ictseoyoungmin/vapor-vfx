@@ -56,6 +56,10 @@
     "./field-sequence": {
       "types": "./field-sequence.d.ts",
       "import": "./field-sequence.mjs"
+    },
+    "./cloud-mesh": {
+      "types": "./cloud-mesh.d.ts",
+      "import": "./cloud-mesh.mjs"
     }
   },
   "files": [
