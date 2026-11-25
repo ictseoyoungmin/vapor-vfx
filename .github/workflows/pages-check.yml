@@ -1,7 +1,7 @@
 name: Pages example checks
 on:
   pull_request:
-    paths: ['site/**','examples/**','bindings/web/**','contracts/**','tools/build_pages.py','tools/validate_interactive_cloud.py','tests/test_pages.py','tests/interactive-cloud.test.mjs','tests/terrain-fog.test.mjs','.github/workflows/pages-check.yml']
+    paths: ['site/**','examples/**','bindings/web/**','contracts/**','tools/build_pages.py','tools/validate_interactive_cloud.py','tests/test_pages.py','tests/interactive-cloud.test.mjs','tests/terrain-fog.test.mjs','.github/workflows/pages-check.yml','.github/workflows/pages.yml']
   workflow_dispatch:
 permissions:
   contents: read
