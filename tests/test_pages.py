@@ -20,6 +20,13 @@ class PagesTests(unittest.TestCase):
             self.assertIn('examples/airborne-smoke/index.html',(out/'examples.html').read_text())
             self.assertNotIn('href="examples/animated-cloud/index.html"',(out/'examples.html').read_text())
             self.assertNotIn('@@FEATURED@@',(out/'index.html').read_text())
+            home=(out/'index.html').read_text(); gallery=(out/'examples.html').read_text()
+            self.assertIn('href="examples/interactive-cloud/index.html"',home)
+            self.assertLess(gallery.index('Interactive Volumetric Cloud'),gallery.index('Airborne smoke'))
+            viewer=(out/'examples/interactive-cloud/index.html').read_text()
+            self.assertIn('href="../../examples.html"',viewer)
+            self.assertTrue((out/'examples/interactive-cloud/cloud-worker.mjs').is_file())
+            self.assertTrue((out/'contracts/cloud-hero.json').is_file())
             self.assertFalse(report['runtime_binaries']);self.assertFalse(report['release_certification'])
             self.assertGreater(report['static_references_checked'],60)
 

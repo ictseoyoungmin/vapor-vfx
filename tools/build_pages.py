@@ -49,6 +49,8 @@ def layout(name, body, project):
 def hosted_example(page, original, groups):
     # Keep the actual render / simulation modules untouched. Public variants expose only
     # prerequisites available in this artifact and do not navigate to optional history.
+    if page == 'interactive-cloud':
+        original = original.replace('href="../index.html"', 'href="../../examples.html"')
     if page == 'airborne-smoke' and not groups['airborne-smoke']:
         original = original.replace('<a style="color:#9bc6e8" href="inspect.html">3D 볼륨 검사기</a>', '3D 볼륨 검사기(전체 SDK 필요)')
     if page == 'high-fidelity':
@@ -121,7 +123,7 @@ def build(out, mode):
     count=validation.get('source_test_count') if validation.get('complete') and validation.get('source_checks_passed') else None
     count_text=str(count) if isinstance(count,int) else 'Not recorded'
     test_version=f"Evidence report: distribution {validation.get('distribution_version','unknown')}." if count is not None else 'No completed source-test report in this checkout.'
-    featured_ids=('airborne','fidelity','inspector') if groups['airborne-smoke'] else ('airborne','fidelity','scene-depth')
+    featured_ids=('interactive-cloud','airborne','inspector') if groups['airborne-smoke'] else ('interactive-cloud','airborne','fidelity')
     asset_links='<p class="asset-list"><a href="assets/field-assets/cloud.vpf" download>Cloud VPF1 (14.9 MB)</a> <a href="assets/field-assets/fog.vpf" download>Fog VPF1 (1.8 MB)</a></p>' if groups['field-assets'] else '<p class="small">Field downloads are not included in this site build; use the full SDK.</p>'
     replacements={'FEATURED':''.join(card(next(x for x in catalog if x['id']==i),groups) for i in featured_ids), 'ASSET_LINKS':asset_links,'SOURCE_COUNT':esc(count_text),'TEST_VERSION':esc(test_version),'VERSION':esc(project['distribution_version']),'SDK_VERSION':esc(project['sdk_version'])}
     replacements.update({g.upper():''.join(card(x,groups) for x in catalog if x['group']==g) for g in ('reference','experimental','local')})
