@@ -31,7 +31,7 @@ Cross-platform volumetric VFX research lab & experimental Rust game SDK.
 <td width="50%"><a href="https://ictseoyoungmin.github.io/vapor-vfx/examples.html"><img src="site/media/cloud-motion.png" alt="Actual animated cloud field reference comparison" width="100%"></a><br><b>Animated cloud</b><br>VPA1 Float32 keyframes and streaming.</td>
 </tr>
 <tr>
-<td><img src="site/media/fog.png" alt="Actual terrain-following fog reference render" width="100%"><br><b>Terrain fog</b><br>Depth-aware volumetric compositing.</td>
+<td><a href="https://ictseoyoungmin.github.io/vapor-vfx/examples/terrain-fog/"><img src="site/media/fog.png" alt="Actual terrain-following fog reference render" width="100%"></a><br><b>Terrain Fog</b><br>Explore the valley, lighting, and fog coverage.</td>
 <td><img src="site/media/smoke-field.jpg" alt="Actual saved smoke field rendered from different viewpoints" width="100%"><br><b>Volume inspection</b><br>Re-light and inspect saved 3D fields.</td>
 </tr>
 </table>

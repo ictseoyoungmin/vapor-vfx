@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="color-scheme" content="dark"><title>Terrain Fog | Vapor VFX</title><link rel="stylesheet" href="../interactive-cloud/viewer.css"></head>
+<body><main>
+<header><a href="../index.html">VAPOR VFX / EXAMPLES</a><span class="tag">CPU REFERENCE</span></header>
+<div class="intro"><p class="eyebrow">ENVIRONMENT / GROUND VOLUME</p><h1>Terrain Fog</h1><p>Explore a ground-hugging Float32 fog field in a procedural forest valley. The reference renderer composites fog with the actual terrain and tree depth, and computes directional lighting and occlusion.</p></div>
+<div class="workspace"><section class="viewport" aria-label="Terrain fog viewport">
+<div class="viewport-top"><span>FIDELITY LAB <b>·</b> VALLEY</span><span class="tag">DEPTH-AWARE</span></div>
+<canvas id="canvas" width="480" height="300" aria-label="Rendered terrain and volumetric fog" style="cursor:default"></canvas>
+<div class="hint">Select a view or lighting preset and adjust fog coverage, then render.</div>
+<div class="telemetry" id="status" role="status" aria-live="polite" data-ready="false">Preparing the valley…</div>
+</section><aside class="controls"><h2>Environment settings</h2>
+<label>Quality<select id="quality"><option value="medium" selected>Preview / 48 × 12 × 48</option><option value="high">High / 96 × 24 × 96</option></select></label>
+<label>Viewpoint<select id="view"><option value="valley">Valley trail</option><option value="oblique">Oblique view</option></select></label>
+<label>Lighting<select id="light"><option value="side">Side light</option><option value="back">Backlight</option></select></label>
+<label>Fog coverage <output id="coverageValue">42%</output><input id="coverage" type="range" min="0" max="1" step=".01" value=".42"></label>
+<div class="buttons"><button id="render" disabled>Render</button><button id="reset" disabled>Reset</button><button id="save" disabled>Save PNG</button></div>
+<dl><dt>Density grid</dt><dd id="grid">—</dd><dt>Last render</dt><dd id="timing">—</dd><dt>Optical cache</dt><dd id="cache">—</dd></dl>
+<p class="note">Independent JS CPU generation and rendering, not weather CFD or a real-time engine benchmark. No GPU, native build, or optional asset files are required.</p>
+</aside></div>
+<footer><p>See <a href="../scene-depth/index.html">Scene Depth</a> for the technical compositing comparison, or <a href="../interactive-cloud/index.html">Interactive Volumetric Cloud</a> for cloud orbit controls.</p></footer>
+</main><script type="module" src="main.mjs"></script></body></html>

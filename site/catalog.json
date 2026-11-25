@@ -22,6 +22,17 @@
     "status": "Browser player tested"
   },
   {
+    "id": "terrain-fog",
+    "group": "reference",
+    "title": "Terrain Fog",
+    "desc": "Explore ground-hugging fog in a forest valley. Change viewpoint, sunlight and coverage; terrain and tree depth occlude the volume.",
+    "kind": "JS CPU · no build or assets",
+    "route": "examples/terrain-fog/index.html",
+    "image": "media/fog.png",
+    "action": "Explore the fog",
+    "status": "Terrain-aware reference renderer"
+  },
+  {
     "id": "inspector",
     "group": "reference",
     "title": "Smoke volume inspector",
@@ -35,20 +46,20 @@
   },
   {
     "id": "fidelity",
-    "group": "reference",
-    "title": "Fidelity Lab",
-    "desc": "Generate volumetric clouds and terrain-following fog. Compare side lighting, backlighting and camera angles.",
+    "group": "research",
+    "title": "Fidelity Lab / reference settings",
+    "desc": "Compare generator and optical settings for cloud and fog in the original reference tool. Archived fluid snapshots remain local-only.",
     "kind": "JS CPU · no Rust",
     "route": "examples/high-fidelity/index.html",
-    "image": "media/cloud.png",
-    "action": "Generate a cloud",
+    "image": "",
+    "action": "Open the reference lab",
     "status": "JS reference execution tested"
   },
   {
     "id": "scene-depth",
-    "group": "reference",
-    "title": "Scene depth",
-    "desc": "Compare volumetric fog compositing with and without opaque-scene depth. A small technical verification scene.",
+    "group": "research",
+    "title": "Scene depth / compositing",
+    "desc": "Technical comparison of fog compositing with and without opaque-scene depth.",
     "kind": "JS CPU · no Rust",
     "route": "examples/scene-depth/index.html",
     "image": "",
@@ -70,11 +81,11 @@
   {
     "id": "fidelity-cloud",
     "group": "experimental",
-    "title": "WebGPU Fidelity cloud",
-    "desc": "Render an explicitly selected JS-generated or baked Float32 cloud with GPU optical-depth caching.",
+    "title": "WebGPU Fidelity cloud / renderer",
+    "desc": "Experimental GPU optical-depth cache and Float32 cloud rendering. Separate from the featured CPU viewer.",
     "kind": "WebGPU · experimental",
     "route": "examples/fidelity-cloud/index.html",
-    "image": "media/cloud.png",
+    "image": "",
     "action": "Try GPU cloud",
     "status": "Device execution unverified"
   },

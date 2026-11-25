@@ -46,8 +46,28 @@ def main():
             page.set_viewport_size({'width':390,'height':844})
             assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
             assert not errors, errors
+            page.set_viewport_size({'width':1280,'height':900})
+            page.goto(f'http://127.0.0.1:{server.server_port}/examples/terrain-fog/')
+            ready=page.locator('#status[data-ready=true]')
+            ready.wait_for(timeout=120000)
+            assert int(page.locator('#status').get_attribute('data-visible-pixels')) > 100
+            before=page.locator('#canvas').evaluate('(c)=>c.toDataURL()')
+            page.screenshot(path=str(args.output/'terrain-fog.png'),full_page=True)
+            page.select_option('#view','oblique');page.click('#render');ready.wait_for(timeout=120000)
+            assert page.locator('#canvas').evaluate('(c)=>c.toDataURL()')!=before
+            assert page.locator('#status').get_attribute('data-cache-builds')=='1'
+            page.select_option('#light','back');page.click('#render');ready.wait_for(timeout=120000)
+            assert page.locator('#status').get_attribute('data-cache-builds')=='2'
+            page.locator('#coverage').evaluate("(e)=>{e.value='0.8';e.dispatchEvent(new Event('input',{bubbles:true}));}")
+            page.click('#render');ready.wait_for(timeout=120000)
+            assert page.locator('#status').get_attribute('data-field-builds')=='2'
+            page.click('#reset');ready.wait_for(timeout=120000)
+            assert page.locator('#canvas').evaluate('(c)=>c.toDataURL()')==before
+            page.set_viewport_size({'width':390,'height':844})
+            assert page.evaluate('document.documentElement.scrollWidth <= innerWidth')
+            assert not errors, errors
             browser.close()
     finally:
         server.shutdown();server.server_close();thread.join(timeout=5)
-    print('PASS browser: actual cloud orbit, zoom, lighting, reset, cache reuse, mobile bounds')
+    print('PASS browser: cloud and terrain fog, controls, reset, cache reuse, mobile bounds')
 if __name__=='__main__':main()
