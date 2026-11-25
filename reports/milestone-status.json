@@ -1,0 +1,39 @@
+{
+  "schema": "vapor.milestones/1",
+  "distribution_version": "0.22",
+  "production_release_ready": false,
+  "M1": {
+    "status": "BLOCKED",
+    "reason": "Actual VPA1 JS/Python/C++ parity; native Rust CPU/WASM blocked"
+  },
+  "M2": {
+    "status": "IN_PROGRESS",
+    "rust_candidate": "SOURCE_ONLY_UNVERIFIED",
+    "lab_coupled_experiment": "PASS_EXECUTION",
+    "visual_acceptance": "FAIL_FULL_PLUME",
+    "remaining": [
+      "actual Rust verification",
+      "near/far conservative flux and pressure coupling",
+      "resolved jet and shear-layer convergence / full plume validation",
+      "obstacles",
+      "GPU/Hybrid and bindings",
+      "actual runtime performance"
+    ],
+    "lab_resolved_experiment": "PASS_EXECUTION_ONLY",
+    "lab_nested_scalar": "PASS_CLOSURE_ONLY_FAIL_SHAPE",
+    "lab_lagrangian": "PASS_EXECUTION_ONLY_FAIL_VISUAL_ACCEPTANCE",
+    "lab_full_domain": "PASS_EXECUTION_ONLY_FAIL_VISUAL_ACCEPTANCE"
+  },
+  "M3": {
+    "status": "IN_PROGRESS",
+    "reason": "actual 12s animated cloud reference plus hero deformation; no Rust/GPU validation"
+  },
+  "M4": {
+    "status": "IN_PROGRESS",
+    "reason": "VPA1 data-only streaming, WebGPU source and buffer lifecycle test-double; hardware/editor unverified"
+  },
+  "M5": {
+    "status": "NOT_READY",
+    "reason": "separate source and animation packages; actual binaries missing"
+  }
+}

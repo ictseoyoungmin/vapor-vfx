@@ -1,0 +1,4 @@
+#include "vapor.h"
+#include <stdio.h>
+#define SIZE(T) printf("\"" #T "\":%zu,",sizeof(T))
+int main(void){if(sizeof(VaporAtlasTicket)!=32||offsetof(VaporAtlasTicket,id)!=8||offsetof(VaporAtlasTicket,ticks)!=16||offsetof(VaporAtlasTicket,bytes)!=24||sizeof(VaporBackendOptions)!=32||offsetof(VaporBackendOptions,reserved)!=20||offsetof(VaporBackendOptions,detail_turbulence)!=24||offsetof(VaporBackendOptions,detail_frequency)!=28||sizeof(VaporBackendInfo)!=64||offsetof(VaporBackendInfo,cpu_bytes)!=40)return 2;printf("{");SIZE(VaporConfig);SIZE(VaporEmitter);SIZE(VaporObstacle);SIZE(VaporMetrics);SIZE(VaporAdvance);SIZE(VaporRender);SIZE(VaporBackendOptions);SIZE(VaporBackendInfo);SIZE(VaporAtlasTicket);printf("\"metrics_centroid\":%zu,\"metrics_clamps\":%zu,\"metrics_bytes\":%zu,\"config_boundary\":%zu}\n",offsetof(VaporMetrics,centroid),offsetof(VaporMetrics,clamped_velocities),offsetof(VaporMetrics,cpu_bytes),offsetof(VaporConfig,boundary));return 0;}

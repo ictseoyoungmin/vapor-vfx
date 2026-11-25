@@ -1,0 +1,30 @@
+#ifndef VAPOR_VOLUME_USH
+#define VAPOR_VOLUME_USH
+float2 VaporField(Texture2D Atlas,SamplerState S,float3 P,float3 Grid){
+ if(any(P<0)||any(P>1))return 0;
+ float3 Q=clamp(P*Grid-.5,0,Grid-1);float Z=floor(Q.z);
+ float2 Uv=float2((Q.x+.5)/Grid.x,(Q.y+.5+Z*Grid.y)/(Grid.y*Grid.z));
+ float2 Uv1=float2(Uv.x,(Q.y+.5+min(Z+1,Grid.z-1)*Grid.y)/(Grid.y*Grid.z));
+ return lerp(Atlas.SampleLevel(S,Uv,0).rg,Atlas.SampleLevel(S,Uv1,0).rg,frac(Q.z));
+}
+float VaporDensityOptical(Texture2D Atlas,SamplerState S,float3 P,float3 Grid,float Cap,float ThermalFade){float2 F=VaporField(Atlas,S,P,Grid);return F.r*Cap*(1-ThermalFade*(1-exp(-F.g*16)));}
+float VaporDensity(Texture2D Atlas,SamplerState S,float3 P,float3 Grid,float Cap){return VaporDensityOptical(Atlas,S,P,Grid,Cap,0);}
+float3 VaporWorldToCore(float3 P,float3 Origin,float3 X,float3 Y,float3 Z){float3 D=P-Origin;return float3(dot(D,Y),dot(D,Z),-dot(D,X))*.01;}
+// Output straight RGB/alpha for a normal translucent unlit material, not premultiplied.
+// SceneDistanceCm must be distance ALONG the camera ray, or a large value to disable clipping.
+float4 VaporRaymarchOptical(Texture2D Atlas,SamplerState S,float3 EyeWorldCm,float3 SurfaceWorldCm,float3 OriginCm,float3 AxisX,float3 AxisY,float3 AxisZ,float3 Grid,float3 Extent,float Cap,float Extinction,float3 Colour,float Steps,float SceneDistanceCm,float Anisotropy,float Albedo,float Ambient,float Emission,float ThermalFade){
+ float3 Eye=VaporWorldToCore(EyeWorldCm,OriginCm,AxisX,AxisY,AxisZ)/Extent;
+ float3 Surface=VaporWorldToCore(SurfaceWorldCm,OriginCm,AxisX,AxisY,AxisZ)/Extent;
+ float3 D=normalize(Surface-Eye);float3 Safe=D;for(int k=0;k<3;k++)if(abs(Safe[k])<1e-6)Safe[k]=Safe[k]<0?-1e-6:1e-6;
+ float3 A=-Eye/Safe,B=(1-Eye)/Safe;float3 N=min(A,B),F=max(A,B);float T0=max(0,max(N.x,max(N.y,N.z)));float T1=min(F.x,min(F.y,F.z));
+ T1=min(T1,SceneDistanceCm*.01/max(length(D*Extent),1e-6));if(T1<=T0)return 0;
+ int Count=clamp((int)Steps,8,256);float Dt=(T1-T0)/Count,Ds=Dt*length(D*Extent),Tr=1;float3 Light=0;float3 LightDir=normalize(float3(-.45,.8,.35));float ShadowStep=min(Extent.x,min(Extent.y,Extent.z))/8;float G=clamp(Anisotropy,-.9,.9);float Phase=min(4.,(1-G*G)/pow(max(.001,1+G*G-2*G*dot(normalize(D*Extent),LightDir)),1.5));
+ [loop]for(int I=0;I<Count&&Tr>.01;I++){float3 P=Eye+D*(T0+(I+.5)*Dt);float Rho=VaporDensityOptical(Atlas,S,P,Grid,Cap,ThermalFade);float A0=1-exp(-Rho*Extinction*Ds);float Shadow=0;
+  [unroll]for(int J=1;J<=8;J++)Shadow+=VaporDensityOptical(Atlas,S,P+LightDir*(J*ShadowStep)/Extent,Grid,Cap,ThermalFade)*ShadowStep;
+  float Heat=saturate(VaporField(Atlas,S,P,Grid).g*16/5);Light+=Tr*A0*(Colour*Albedo*(Ambient+(1-Ambient)*exp(-Shadow*Extinction)*Phase)+float3(1,.3,.045)*Emission*Heat*Heat);Tr*=1-A0;}
+ float Alpha=1-Tr;return float4(Light/max(Alpha,1e-6),Alpha);
+}
+float4 VaporRaymarch(Texture2D Atlas,SamplerState S,float3 EyeWorldCm,float3 SurfaceWorldCm,float3 OriginCm,float3 AxisX,float3 AxisY,float3 AxisZ,float3 Grid,float3 Extent,float Cap,float Extinction,float3 Colour,float Steps,float SceneDistanceCm){
+ return VaporRaymarchOptical(Atlas,S,EyeWorldCm,SurfaceWorldCm,OriginCm,AxisX,AxisY,AxisZ,Grid,Extent,Cap,Extinction,Colour,Steps,SceneDistanceCm,0,1,.35,0,0);
+}
+#endif

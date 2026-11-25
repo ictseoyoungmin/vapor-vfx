@@ -1,0 +1,1508 @@
+{
+  "schema": "vapor.game-sdk.validation/5",
+  "distribution_version": "0.23",
+  "sdk_version": "0.22.0",
+  "fidelity_lab_version": "0.22.0",
+  "complete": true,
+  "timestamp_utc": "2026-11-25T15:56:46.560426+00:00",
+  "runtime_required": false,
+  "gpu_runtime_requested": false,
+  "wasm_runtime_requested": false,
+  "cpu_runtime_gates_passed": false,
+  "gpu_runtime_gates_passed": false,
+  "production_release_ready": false,
+  "source_checks_passed": true,
+  "source_test_count": 327,
+  "core_release_gates_passed": false,
+  "any_check_failed": false,
+  "boundary_fixture_notice": "C/WASM fixture, GPU host/readback doubles and Worker transport double do not execute the Rust/WGSL fluid solver. Never shipped as runtimes.",
+  "checks": {
+    "field_asset_python": {
+      "status": "PASS",
+      "evidence": "actual VPF1 decoding/roundtrip; not Rust execution",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_field_asset.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_fixture (test_field_asset.FieldAssetTests.test_fixture) ... ok\ntest_invalid_bytes (test_field_asset.FieldAssetTests.test_invalid_bytes) ... ok\ntest_invalid_encode (test_field_asset.FieldAssetTests.test_invalid_encode) ... ok\ntest_nan_even_valid_crc (test_field_asset.FieldAssetTests.test_nan_even_valid_crc) ... ok\ntest_native_bridge_no_runtime (test_field_asset.FieldAssetTests.test_native_bridge_no_runtime) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.005s\n\nOK\n",
+      "test_count": 5
+    },
+    "field_sequence_python": {
+      "status": "PASS",
+      "evidence": "actual Python VPA decode/interpolation/cache/CRC",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_field_sequence.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_corruption (test_field_sequence.SequenceTests.test_corruption) ... ok\ntest_encoder_rejects_inconsistent_grid_and_time (test_field_sequence.SequenceTests.test_encoder_rejects_inconsistent_grid_and_time) ... ok\ntest_exact_and_interpolated (test_field_sequence.SequenceTests.test_exact_and_interpolated) ... ok\ntest_index_and_reencode (test_field_sequence.SequenceTests.test_index_and_reencode) ... ok\ntest_invalid_sample_time (test_field_sequence.SequenceTests.test_invalid_sample_time) ... ok\ntest_seeks_cache_and_mutation (test_field_sequence.SequenceTests.test_seeks_cache_and_mutation) ... ok\ntest_valid_crc_bad_time (test_field_sequence.SequenceTests.test_valid_crc_bad_time) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.004s\n\nOK\n",
+      "test_count": 7
+    },
+    "field_sequence_js": {
+      "status": "PASS",
+      "evidence": "actual JS VPA playback plus explicit GPU host test double",
+      "command": [
+        "node",
+        "--test",
+        "tests/field-sequence.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: exact keyframes and interpolated golden agree with Python\nok 1 - exact keyframes and interpolated golden agree with Python\n  ---\n  duration_ms: 5.597178\n  type: 'test'\n  ...\n# Subtest: bounded cache, clamp and independent copies\nok 2 - bounded cache, clamp and independent copies\n  ---\n  duration_ms: 1.6606\n  type: 'test'\n  ...\n# Subtest: invalid index and record data rejected\nok 3 - invalid index and record data rejected\n  ---\n  duration_ms: 0.635638\n  type: 'test'\n  ...\n# Subtest: concurrent seek rejected and dispose cancels pending load\nok 4 - concurrent seek rejected and dispose cancels pending load\n  ---\n  duration_ms: 0.424026\n  type: 'test'\n  ...\n# Subtest: failed frame fetch leaves retry possible\nok 5 - failed frame fetch leaves retry possible\n  ---\n  duration_ms: 0.788263\n  type: 'test'\n  ...\n# Subtest: sequence upload reuses exactly two GPU buffers (test double)\nok 6 - sequence upload reuses exactly two GPU buffers (test double)\n  ---\n  duration_ms: 3.918461\n  type: 'test'\n  ...\n# Subtest: failed GPU upload does not change committed field or time (test double)\nok 7 - failed GPU upload does not change committed field or time (test double)\n  ---\n  duration_ms: 0.598814\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 90.104922\n",
+      "test_count": 7
+    },
+    "field_asset_js": {
+      "status": "PASS",
+      "evidence": "actual JS VPF1 decoder/encoder",
+      "command": [
+        "node",
+        "--test",
+        "tests/field-asset.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: shared fixture roundtrips losslessly\nok 1 - shared fixture roundtrips losslessly\n  ---\n  duration_ms: 1.711375\n  type: 'test'\n  ...\n# Subtest: byte offset and owned decoded arrays\nok 2 - byte offset and owned decoded arrays\n  ---\n  duration_ms: 0.518916\n  type: 'test'\n  ...\n# Subtest: rejects bad version, length, trailing bytes, payload checksum and dimensions\nok 3 - rejects bad version, length, trailing bytes, payload checksum and dimensions\n  ---\n  duration_ms: 1.186621\n  type: 'test'\n  ...\n# Subtest: rejects non-finite scalars even with valid checksum\nok 4 - rejects non-finite scalars even with valid checksum\n  ---\n  duration_ms: 0.629088\n  type: 'test'\n  ...\n# Subtest: invalid encoder input fails\nok 5 - invalid encoder input fails\n  ---\n  duration_ms: 0.344799\n  type: 'test'\n  ...\n1..5\n# tests 5\n# suites 0\n# pass 5\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 76.544814\n",
+      "test_count": 5
+    },
+    "stage1_contract_tests": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_contract.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_fails_on_abs_error (test_contract.ContractTests.test_fails_on_abs_error) ... ok\ntest_fails_on_extra_or_missing_samples (test_contract.ContractTests.test_fails_on_extra_or_missing_samples) ... ok\ntest_fails_on_mass_relative_error (test_contract.ContractTests.test_fails_on_mass_relative_error) ... ok\ntest_fails_on_nan_and_none (test_contract.ContractTests.test_fails_on_nan_and_none) ... ok\ntest_fails_on_quality_and_time_mismatch (test_contract.ContractTests.test_fails_on_quality_and_time_mismatch) ... ok\ntest_frozen_contract_structure (test_contract.ContractTests.test_frozen_contract_structure) ... ok\ntest_grid_fallback_budget (test_contract.ContractTests.test_grid_fallback_budget) ... ok\ntest_nested_gpu_candidate (test_contract.ContractTests.test_nested_gpu_candidate) ... ok\ntest_parity_identity_passes (test_contract.ContractTests.test_parity_identity_passes) ... ok\n\n----------------------------------------------------------------------\nRan 9 tests in 0.002s\n\nOK\n",
+      "test_count": 9
+    },
+    "runtime_tool_self_tests": {
+      "status": "PASS",
+      "evidence": "tool/provenance/PNG self-tests, NOT Rust runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_runtime_tools.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_blocked_rerun_does_not_keep_previous_capture (test_runtime_tools.RuntimeToolsTests.test_blocked_rerun_does_not_keep_previous_capture) ... ok\ntest_cpu_artifact_cannot_satisfy_gpu_gate (test_runtime_tools.RuntimeToolsTests.test_cpu_artifact_cannot_satisfy_gpu_gate) ... ok\ntest_cpu_workspace_has_no_registry_dependency (test_runtime_tools.RuntimeToolsTests.test_cpu_workspace_has_no_registry_dependency) ... ok\ntest_cpu_workspace_includes_new_actual_physics_tests (test_runtime_tools.RuntimeToolsTests.test_cpu_workspace_includes_new_actual_physics_tests) ... ok\ntest_interrupted_validation_cannot_retain_old_success (test_runtime_tools.RuntimeToolsTests.test_interrupted_validation_cannot_retain_old_success) ... ok\ntest_manifest_has_current_package_version (test_runtime_tools.RuntimeToolsTests.test_manifest_has_current_package_version) ... ok\ntest_missing_binary_never_passes (test_runtime_tools.RuntimeToolsTests.test_missing_binary_never_passes) ... ok\ntest_nonfinite_metrics_detected (test_runtime_tools.RuntimeToolsTests.test_nonfinite_metrics_detected) ... ok\ntest_optimized_python_cannot_disable_runtime_assertions (test_runtime_tools.RuntimeToolsTests.test_optimized_python_cannot_disable_runtime_assertions) ... ok\ntest_output_cleanup_rejects_parent_traversal (test_runtime_tools.RuntimeToolsTests.test_output_cleanup_rejects_parent_traversal) ... ok\ntest_parity_thresholds_are_fixed (test_runtime_tools.RuntimeToolsTests.test_parity_thresholds_are_fixed) ... ok\ntest_png_dimensions_and_scanlines (test_runtime_tools.RuntimeToolsTests.test_png_dimensions_and_scanlines) ... ok\ntest_png_rejects_short_buffer (test_runtime_tools.RuntimeToolsTests.test_png_rejects_short_buffer) ... ok\ntest_premultiplied_linear_to_srgb (test_runtime_tools.RuntimeToolsTests.test_premultiplied_linear_to_srgb) ... ok\ntest_receipt_detects_changed_binary (test_runtime_tools.RuntimeToolsTests.test_receipt_detects_changed_binary) ... ok\ntest_receipt_detects_stale_sources (test_runtime_tools.RuntimeToolsTests.test_receipt_detects_stale_sources) ... ok\ntest_unreceipted_fixture_never_passes (test_runtime_tools.RuntimeToolsTests.test_unreceipted_fixture_never_passes) ... ok\n\n----------------------------------------------------------------------\nRan 17 tests in 1.065s\n\nOK\n",
+      "test_count": 17
+    },
+    "cloud_equivalence_and_package_guards": {
+      "status": "PASS",
+      "evidence": "numeric comparison and fail-closed packaging controls, not Rust runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_cloud_equivalence.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_exact_hero_recipe_forwarded (test_cloud_equivalence.CloudEquivalence.test_exact_hero_recipe_forwarded) ... ok\ntest_numeric_errors_not_hidden_by_average (test_cloud_equivalence.CloudEquivalence.test_numeric_errors_not_hidden_by_average) ... ok\ntest_release_rejects_blocked_stale_or_partial_evidence (test_cloud_equivalence.CloudEquivalence.test_release_rejects_blocked_stale_or_partial_evidence) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.002s\n\nOK\n",
+      "test_count": 3
+    },
+    "resolved_runtime_tool_tests": {
+      "status": "PASS",
+      "evidence": "runtime report/PPM boundary only; no Rust execution",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_resolved_runtime_tools.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_capture_conversion_and_bad_payload (test_resolved_runtime_tools.ResolvedRuntimeToolTests.test_capture_conversion_and_bad_payload) ... ok\ntest_metrics_differentiate_pressure_and_velocity (test_resolved_runtime_tools.ResolvedRuntimeToolTests.test_metrics_differentiate_pressure_and_velocity) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.002s\n\nOK\n",
+      "test_count": 2
+    },
+    "temporal_projection_math": {
+      "status": "PASS",
+      "evidence": "independent CPU camera packet / normalized FP16 anchor math; NOT WGSL execution",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_temporal_math.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "Independent half-float projection audit: 10240 anchors; max screen error 0.103827 pixels at 320x200 / 200x320\ntest_jitter_strata_are_unique_and_unbiased (test_temporal_math.TemporalMath.test_jitter_strata_are_unique_and_unbiased) ... ok\ntest_normalized_half_precision_anchor_error_outside_domain (test_temporal_math.TemporalMath.test_normalized_half_precision_anchor_error_outside_domain) ... ok\ntest_ray_pixel_roundtrip_and_y_orientation (test_temporal_math.TemporalMath.test_ray_pixel_roundtrip_and_y_orientation) ... ok\n\n----------------------------------------------------------------------\nRan 3 tests in 0.040s\n\nOK\n",
+      "test_count": 3
+    },
+    "detail_curl_math": {
+      "status": "PASS",
+      "evidence": "independent CPU math for bounded tapered curl, NOT WGSL execution",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_detail_curl_math.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_amplitude_bound (test_detail_curl_math.CurlMath.test_amplitude_bound) ... ok\ntest_continuous_divergence_including_taper (test_detail_curl_math.CurlMath.test_continuous_divergence_including_taper) ... ok\ntest_domain_wall_velocity_and_exterior_zero (test_detail_curl_math.CurlMath.test_domain_wall_velocity_and_exterior_zero) ... ok\ntest_phase_wrap (test_detail_curl_math.CurlMath.test_phase_wrap) ... ok\ntest_precomputed_basis_matches_continuous_formula (test_detail_curl_math.CurlMath.test_precomputed_basis_matches_continuous_formula) ... ok\ntest_unresolved_band_culled (test_detail_curl_math.CurlMath.test_unresolved_band_culled) ... ok\ntest_zero_amplitude_and_local_coordinate_translation (test_detail_curl_math.CurlMath.test_zero_amplitude_and_local_coordinate_translation) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.058s\n\nOK\n",
+      "test_count": 7
+    },
+    "quality_metric_self_tests": {
+      "status": "PASS",
+      "evidence": "independent field diagnostics and timing/gate self-tests, not Rust runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_quality_metrics.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_atlas_layout_quantization (test_quality_metrics.QualityMetricsTests.test_atlas_layout_quantization) ... ok\ntest_boundary_fraction (test_quality_metrics.QualityMetricsTests.test_boundary_fraction) ... ok\ntest_empty_valid (test_quality_metrics.QualityMetricsTests.test_empty_valid) ... ok\ntest_explicit_gpu_or_wasm_requires_runtime (test_quality_metrics.QualityMetricsTests.test_explicit_gpu_or_wasm_requires_runtime) ... ok\ntest_fixed_tick_schedule (test_quality_metrics.QualityMetricsTests.test_fixed_tick_schedule) ... ok\ntest_invalid_axis (test_quality_metrics.QualityMetricsTests.test_invalid_axis) ... ok\ntest_invalid_field (test_quality_metrics.QualityMetricsTests.test_invalid_field) ... ok\ntest_malformed_atlas (test_quality_metrics.QualityMetricsTests.test_malformed_atlas) ... ok\ntest_radial_world_distance (test_quality_metrics.QualityMetricsTests.test_radial_world_distance) ... ok\ntest_signed_axial_and_weighted_spread (test_quality_metrics.QualityMetricsTests.test_signed_axial_and_weighted_spread) ... ok\ntest_timing (test_quality_metrics.QualityMetricsTests.test_timing) ... ok\ntest_world_coordinates_anisotropic_grid (test_quality_metrics.QualityMetricsTests.test_world_coordinates_anisotropic_grid) ... ok\n\n----------------------------------------------------------------------\nRan 12 tests in 0.002s\n\nOK\n",
+      "test_count": 12
+    },
+    "emitter_kernel_audit": {
+      "status": "PASS",
+      "evidence": "independent NumPy source quadrature; NOT Rust/WGSL runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/audit_emitter.py"
+      ],
+      "returncode": 0,
+      "output": "{\n  \"status\": \"PASS\",\n  \"evidence\": \"independent NumPy cell-center quadrature of equations; NOT Rust/WGSL fluid runtime\",\n  \"rows\": [\n    {\n      \"quality\": \"low\",\n      \"dx\": 0.024,\n      \"samples\": 2048,\n      \"old_exact_integral\": 0.0,\n      \"new_exact_integral\": 8.501907619487859e-07,\n      \"analytic_integral\": 8.312654161398593e-07,\n      \"old_ratio\": {\n        \"min\": 0.0,\n        \"max\": 16.643053359513544,\n        \"mean\": 6.62048136355638,\n        \"zero_samples\": 8,\n        \"cv\": 0.5694431678348458\n      },\n      \"new_ratio\": {\n        \"min\": 0.78940321100662,\n        \"max\": 1.2016280477674022,\n        \"mean\": 1.0000281636865458,\n        \"zero_samples\": 0,\n        \"cv\": 0.06530029564655111\n      }\n    },\n    {\n      \"quality\": \"medium\",\n      \"dx\": 0.012,\n      \"samples\": 2048,\n      \"old_exact_integral\": 0.0,\n      \"new_exact_integral\": 8.501907619487873e-07,\n      \"analytic_integral\": 8.312654161398593e-07,\n      \"old_ratio\": {\n        \"min\": 0.0,\n        \"max\": 3.507904868147897,\n        \"mean\": 1.2413265414625712,\n        \"zero_samples\": 8,\n        \"cv\": 0.47696802251342973\n      },\n      \"new_ratio\": {\n        \"min\": 0.8387576478832555,\n        \"max\": 1.1506127749593047,\n        \"mean\": 1.0000171704457368,\n        \"zero_samples\": 0,\n        \"cv\": 0.05258673024005735\n      }\n    },\n    {\n      \"quality\": \"high\",\n      \"dx\": 0.006,\n      \"samples\": 2048,\n      \"old_exact_integral\": 8.897063784153814e-07,\n      \"new_exact_integral\": 8.897063784153814e-07,\n      \"analytic_integral\": 8.312654161398593e-07,\n      \"old_ratio\": {\n        \"min\": 0.9360062005545412,\n        \"max\": 1.0703036131912007,\n        \"mean\": 0.9999653270293971,\n        \"zero_samples\": 0,\n        \"cv\": 0.025938419377683933\n      },\n      \"new_ratio\": {\n        \"min\": 0.9360062005545412,\n        \"max\": 1.0703036131912007,\n        \"mean\": 0.9999653270293971,\n        \"zero_samples\": 0,\n        \"cv\": 0.025938419377683933\n      }\n    }\n  ]\n}\n"
+    },
+    "effect_catalog_generated": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/generate_effects.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "PASS effect catalog synchronization\n"
+    },
+    "effect_procedural_fixtures": {
+      "status": "PASS",
+      "evidence": "actual JS atlas replay; Rust comparison separate",
+      "command": [
+        "node",
+        "tools/generate_effects_fixtures.mjs",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "PASS 6 actual Node atlas fixtures\n"
+    },
+    "effect_python_tests": {
+      "status": "PASS",
+      "evidence": "catalog/recipe/ABI boundary; not native fluid execution",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_effects.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_bad_quality_id (test_effects.EffectTests.test_bad_quality_id) ... ok\ntest_catalog_no_mutation (test_effects.EffectTests.test_catalog_no_mutation) ... ok\ntest_catalog_quality_preserves_extent (test_effects.EffectTests.test_catalog_quality_preserves_extent) ... ok\ntest_data_copy (test_effects.EffectTests.test_data_copy) ... ok\ntest_ember (test_effects.EffectTests.test_ember) ... ok\ntest_layout (test_effects.EffectTests.test_layout) ... ok\ntest_recipe_injection (test_effects.EffectTests.test_recipe_injection) ... ok\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nOK\n",
+      "test_count": 7
+    },
+    "effect_cpp_layout": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "-fsyntax-only",
+        "tests/effects_layout.cpp"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "fidelity_port_golden_replay": {
+      "status": "PASS",
+      "evidence": "Actual JS golden fields/optics, not Rust execution",
+      "command": [
+        "node",
+        "tools/generate_fidelity_port_fixtures.mjs",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "cloud 4608 623\ncloud-wind 4608 633\nfog-terrain 4320 303\ndust 3840 538\n"
+    },
+    "fidelity_port_host_tests": {
+      "status": "PASS",
+      "evidence": "ctypes layout; not native runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_fidelity_port.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_invalid_grid (test_fidelity_port.PortContract.test_invalid_grid) ... ok\ntest_layout (test_fidelity_port.PortContract.test_layout) ... ok\n\n----------------------------------------------------------------------\nRan 2 tests in 0.000s\n\nOK\n",
+      "test_count": 2
+    },
+    "fidelity_c_header_layout": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "-fsyntax-only",
+        "tests/fidelity_layout.c"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "python_syntax": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "compileall",
+        "-q",
+        "bindings/python",
+        "examples/python",
+        "tools",
+        "lab"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_adapters_three_volume.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "adapters/three/volume.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_effect-catalog.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/effect-catalog.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_effects.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/effects.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_field-asset.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/field-asset.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_field-sequence.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/field-sequence.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu-fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu-fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu-field.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu-field.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu-protocol.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu-protocol.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu-render.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu-render.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu-temporal.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu-temporal.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_gpu.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/gpu.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_native-fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/native-fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_preview.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/preview.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_procedural.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/procedural.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_readback-pool.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/readback-pool.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_vapor-worker.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/vapor-worker.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_vapor.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/vapor.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_bindings_web_worker-client.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "bindings/web/worker-client.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_airborne-smoke_inspect-worker.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/airborne-smoke/inspect-worker.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_airborne-smoke_inspect.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/airborne-smoke/inspect.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_airborne-smoke_volume-render.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/airborne-smoke/volume-render.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_animated-cloud_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/animated-cloud/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_cpu-canvas_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/cpu-canvas/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_effects-studio_studio.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/effects-studio/studio.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_fidelity-cloud_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/fidelity-cloud/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_high-fidelity_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/high-fidelity/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_high-fidelity_valley.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/high-fidelity/valley.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_node_fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/node/fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_node_smoke.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/node/smoke.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_scene-depth_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/scene-depth/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_scene-depth_scene.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/scene-depth/scene.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_web_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/web/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_examples_webgpu-volume_main.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "examples/webgpu-volume/main.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_audit_fidelity_cache.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/audit_fidelity_cache.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_benchmark_preview.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/benchmark_preview.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_benchmark_procedural.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/benchmark_procedural.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_benchmark_reprojection.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/benchmark_reprojection.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_optical_calibration.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/optical_calibration.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_profile_procedural.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/profile_procedural.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_calibrated_plume.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_calibrated_plume.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_cloud_motion.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_cloud_motion.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_coupled_density.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_coupled_density.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_detail_comparison.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_detail_comparison.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_effect_previews.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_effect_previews.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_fidelity_fog.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_fidelity_fog.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_full_domain.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_full_domain.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_hero_deform.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_hero_deform.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_lagrangian.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_lagrangian.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_reference_fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_reference_fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_resolved_plume.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_resolved_plume.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_scene_depth.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_scene_depth.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_lab_render_source_lab.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "lab/render_source_lab.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_atlas_preview.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/atlas_preview.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_bake_field_assets.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/bake_field_assets.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_cloud_reference.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/cloud_reference.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_fidelity_field_preview.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/fidelity_field_preview.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_float_preview.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/float_preview.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_generate_effects_fixtures.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/generate_effects_fixtures.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_generate_fidelity_port_fixtures.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/generate_fidelity_port_fixtures.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_generate_pchip_fixtures.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/generate_pchip_fixtures.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_sequence_hashes.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/sequence_hashes.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_validate_wasm_fidelity.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/validate_wasm_fidelity.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "js_syntax_tools_webgpu_detail_probe.mjs": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "node",
+        "--check",
+        "tools/webgpu_detail_probe.mjs"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "procedural_full_atlas_parity": {
+      "status": "PASS",
+      "evidence": "actual JS CPU atlas, full buffer hashes recorded from 0.8",
+      "command": [
+        "node",
+        "--test",
+        "tests/procedural-parity.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: cumulus_cloud low t=0 bitwise 0.8 parity\nok 1 - cumulus_cloud low t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 12.236622\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud low t=0.25 bitwise 0.8 parity\nok 2 - cumulus_cloud low t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 6.02614\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud low t=2.5 bitwise 0.8 parity\nok 3 - cumulus_cloud low t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 6.052389\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud low t=513.75 bitwise 0.8 parity\nok 4 - cumulus_cloud low t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 4.668938\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud low t=9999999 bitwise 0.8 parity\nok 5 - cumulus_cloud low t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 1.651306\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud medium t=0 bitwise 0.8 parity\nok 6 - cumulus_cloud medium t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 18.677093\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud medium t=0.25 bitwise 0.8 parity\nok 7 - cumulus_cloud medium t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 12.023277\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud medium t=2.5 bitwise 0.8 parity\nok 8 - cumulus_cloud medium t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 6.592976\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud medium t=513.75 bitwise 0.8 parity\nok 9 - cumulus_cloud medium t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 6.414102\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud medium t=9999999 bitwise 0.8 parity\nok 10 - cumulus_cloud medium t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 6.624493\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud high t=0 bitwise 0.8 parity\nok 11 - cumulus_cloud high t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 41.443449\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud high t=0.25 bitwise 0.8 parity\nok 12 - cumulus_cloud high t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 42.786171\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud high t=2.5 bitwise 0.8 parity\nok 13 - cumulus_cloud high t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 44.866339\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud high t=513.75 bitwise 0.8 parity\nok 14 - cumulus_cloud high t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 40.978754\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud high t=9999999 bitwise 0.8 parity\nok 15 - cumulus_cloud high t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 41.066874\n  type: 'test'\n  ...\n# Subtest: ground_fog low t=0 bitwise 0.8 parity\nok 16 - ground_fog low t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 2.299783\n  type: 'test'\n  ...\n# Subtest: ground_fog low t=0.25 bitwise 0.8 parity\nok 17 - ground_fog low t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 2.049203\n  type: 'test'\n  ...\n# Subtest: ground_fog low t=2.5 bitwise 0.8 parity\nok 18 - ground_fog low t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 2.346231\n  type: 'test'\n  ...\n# Subtest: ground_fog low t=513.75 bitwise 0.8 parity\nok 19 - ground_fog low t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 2.341664\n  type: 'test'\n  ...\n# Subtest: ground_fog low t=9999999 bitwise 0.8 parity\nok 20 - ground_fog low t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 2.678051\n  type: 'test'\n  ...\n# Subtest: ground_fog medium t=0 bitwise 0.8 parity\nok 21 - ground_fog medium t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 12.600018\n  type: 'test'\n  ...\n# Subtest: ground_fog medium t=0.25 bitwise 0.8 parity\nok 22 - ground_fog medium t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 3.905912\n  type: 'test'\n  ...\n# Subtest: ground_fog medium t=2.5 bitwise 0.8 parity\nok 23 - ground_fog medium t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 3.969986\n  type: 'test'\n  ...\n# Subtest: ground_fog medium t=513.75 bitwise 0.8 parity\nok 24 - ground_fog medium t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 3.823491\n  type: 'test'\n  ...\n# Subtest: ground_fog medium t=9999999 bitwise 0.8 parity\nok 25 - ground_fog medium t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 3.951049\n  type: 'test'\n  ...\n# Subtest: ground_fog high t=0 bitwise 0.8 parity\nok 26 - ground_fog high t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 27.145156\n  type: 'test'\n  ...\n# Subtest: ground_fog high t=0.25 bitwise 0.8 parity\nok 27 - ground_fog high t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 27.75795\n  type: 'test'\n  ...\n# Subtest: ground_fog high t=2.5 bitwise 0.8 parity\nok 28 - ground_fog high t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 27.190343\n  type: 'test'\n  ...\n# Subtest: ground_fog high t=513.75 bitwise 0.8 parity\nok 29 - ground_fog high t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 27.212215\n  type: 'test'\n  ...\n# Subtest: ground_fog high t=9999999 bitwise 0.8 parity\nok 30 - ground_fog high t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 27.207768\n  type: 'test'\n  ...\n# Subtest: dust low t=0 bitwise 0.8 parity\nok 31 - dust low t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 1.454066\n  type: 'test'\n  ...\n# Subtest: dust low t=0.25 bitwise 0.8 parity\nok 32 - dust low t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 1.503938\n  type: 'test'\n  ...\n# Subtest: dust low t=2.5 bitwise 0.8 parity\nok 33 - dust low t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 1.275411\n  type: 'test'\n  ...\n# Subtest: dust low t=513.75 bitwise 0.8 parity\nok 34 - dust low t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 0.618152\n  type: 'test'\n  ...\n# Subtest: dust low t=9999999 bitwise 0.8 parity\nok 35 - dust low t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 0.650881\n  type: 'test'\n  ...\n# Subtest: dust medium t=0 bitwise 0.8 parity\nok 36 - dust medium t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 2.740033\n  type: 'test'\n  ...\n# Subtest: dust medium t=0.25 bitwise 0.8 parity\nok 37 - dust medium t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 2.92837\n  type: 'test'\n  ...\n# Subtest: dust medium t=2.5 bitwise 0.8 parity\nok 38 - dust medium t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 2.621357\n  type: 'test'\n  ...\n# Subtest: dust medium t=513.75 bitwise 0.8 parity\nok 39 - dust medium t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 2.829975\n  type: 'test'\n  ...\n# Subtest: dust medium t=9999999 bitwise 0.8 parity\nok 40 - dust medium t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 2.923874\n  type: 'test'\n  ...\n# Subtest: dust high t=0 bitwise 0.8 parity\nok 41 - dust high t=0 bitwise 0.8 parity\n  ---\n  duration_ms: 64.652259\n  type: 'test'\n  ...\n# Subtest: dust high t=0.25 bitwise 0.8 parity\nok 42 - dust high t=0.25 bitwise 0.8 parity\n  ---\n  duration_ms: 19.711138\n  type: 'test'\n  ...\n# Subtest: dust high t=2.5 bitwise 0.8 parity\nok 43 - dust high t=2.5 bitwise 0.8 parity\n  ---\n  duration_ms: 19.876333\n  type: 'test'\n  ...\n# Subtest: dust high t=513.75 bitwise 0.8 parity\nok 44 - dust high t=513.75 bitwise 0.8 parity\n  ---\n  duration_ms: 19.7396\n  type: 'test'\n  ...\n# Subtest: dust high t=9999999 bitwise 0.8 parity\nok 45 - dust high t=9999999 bitwise 0.8 parity\n  ---\n  duration_ms: 19.445607\n  type: 'test'\n  ...\n1..45\n# tests 45\n# suites 0\n# pass 45\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 713.794152\n",
+      "test_count": 45
+    },
+    "temporal_reprojection_tests": {
+      "status": "PASS",
+      "evidence": "actual JS CPU optical-layer reprojection and prior preview parity; not native fluid or GPU",
+      "command": [
+        "node",
+        "--test",
+        "tests/reprojection.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: cumulus_cloud: 0.9 renderer output exact; temporal first frame exact\nok 1 - cumulus_cloud: 0.9 renderer output exact; temporal first frame exact\n  ---\n  duration_ms: 82.072993\n  type: 'test'\n  ...\n# Subtest: ground_fog: 0.9 renderer output exact; temporal first frame exact\nok 2 - ground_fog: 0.9 renderer output exact; temporal first frame exact\n  ---\n  duration_ms: 45.685368\n  type: 'test'\n  ...\n# Subtest: dust: 0.9 renderer output exact; temporal first frame exact\nok 3 - dust: 0.9 renderer output exact; temporal first frame exact\n  ---\n  duration_ms: 54.709851\n  type: 'test'\n  ...\n# Subtest: stable snapshot supports camera orbit, translation and bounded history\nok 4 - stable snapshot supports camera orbit, translation and bounded history\n  ---\n  duration_ms: 148.540911\n  type: 'test'\n  ...\n# Subtest: world translation uses the same local view and same exact raw image\nok 5 - world translation uses the same local view and same exact raw image\n  ---\n  duration_ms: 26.005634\n  type: 'test'\n  ...\n# Subtest: changed or empty density snapshot clears history, no old visible pixels\nok 6 - changed or empty density snapshot clears history, no old visible pixels\n  ---\n  duration_ms: 26.980884\n  type: 'test'\n  ...\n# Subtest: different caller identity resets history on same snapshot\nok 7 - different caller identity resets history on same snapshot\n  ---\n  duration_ms: 25.287716\n  type: 'test'\n  ...\n# Subtest: camera cut resets history on same snapshot\nok 8 - camera cut resets history on same snapshot\n  ---\n  duration_ms: 23.570563\n  type: 'test'\n  ...\n# Subtest: resolution and background changes reset history\nok 9 - resolution and background changes reset history\n  ---\n  duration_ms: 28.165892\n  type: 'test'\n  ...\n# Subtest: renderFrame and returned image data cannot mutate private history\nok 10 - renderFrame and returned image data cannot mutate private history\n  ---\n  duration_ms: 28.48288\n  type: 'test'\n  ...\n# Subtest: prepared volume owns geometry and optical data\nok 11 - prepared volume owns geometry and optical data\n  ---\n  duration_ms: 24.862128\n  type: 'test'\n  ...\n# Subtest: disabled history, reset and bounded input validation\nok 12 - disabled history, reset and bounded input validation\n  ---\n  duration_ms: 25.051307\n  type: 'test'\n  ...\n# Subtest: actual cloud low-step moving-camera sequence improves mean high-step-reference MSE\nok 13 - actual cloud low-step moving-camera sequence improves mean high-step-reference MSE\n  ---\n  duration_ms: 226.726539\n  type: 'test'\n  ...\n1..13\n# tests 13\n# suites 0\n# pass 13\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 837.394594\n",
+      "test_count": 13
+    },
+    "high_fidelity_reference_tests": {
+      "status": "PASS",
+      "evidence": "actual Float32 CPU density and optical tests; NOT native fluid or GPU",
+      "command": [
+        "node",
+        "--test",
+        "tests/fidelity.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: seeded volume repeats exactly; wind evolves 3D density\nok 1 - seeded volume repeats exactly; wind evolves 3D density\n  ---\n  duration_ms: 131.366028\n  type: 'test'\n  ...\n# Subtest: terrain-relative fog excludes all cells below heightfield\nok 2 - terrain-relative fog excludes all cells below heightfield\n  ---\n  duration_ms: 57.57695\n  type: 'test'\n  ...\n# Subtest: fluid cannot be silently substituted with procedural density\nok 3 - fluid cannot be silently substituted with procedural density\n  ---\n  duration_ms: 0.814331\n  type: 'test'\n  ...\n# Subtest: constant density follows Beer-Lambert including scene clipping\nok 4 - constant density follows Beer-Lambert including scene clipping\n  ---\n  duration_ms: 11.456772\n  type: 'test'\n  ...\n# Subtest: empty brick traversal preserves all actual samples including interpolation halo\nok 5 - empty brick traversal preserves all actual samples including interpolation halo\n  ---\n  duration_ms: 105.653606\n  type: 'test'\n  ...\n# Subtest: sun visibility is independent from self shadow; local light adds radiance\nok 6 - sun visibility is independent from self shadow; local light adds radiance\n  ---\n  duration_ms: 7.350344\n  type: 'test'\n  ...\n# Subtest: prepare owns its Float32 snapshot and invalid inputs rejected\nok 7 - prepare owns its Float32 snapshot and invalid inputs rejected\n  ---\n  duration_ms: 1.765404\n  type: 'test'\n  ...\n# Subtest: atlas conversion stays explicit, preserving raw Float32 low density in new renderer\nok 8 - atlas conversion stays explicit, preserving raw Float32 low density in new renderer\n  ---\n  duration_ms: 4.213757\n  type: 'test'\n  ...\n1..8\n# tests 8\n# suites 0\n# pass 8\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 417.364413\n",
+      "test_count": 8
+    },
+    "scene_depth_float_tests": {
+      "status": "PASS",
+      "evidence": "actual JS CPU analytic optics and field precision, NOT Rust/GPU execution",
+      "command": [
+        "node",
+        "--test",
+        "tests/scene-depth.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: opaque foreground clips the entire ray and preserves the host colour exactly\nok 1 - opaque foreground clips the entire ray and preserves the host colour exactly\n  ---\n  duration_ms: 5.550984\n  type: 'test'\n  ...\n# Subtest: uniform float volume agrees with analytic Beer-Lambert for clipped and full segments\nok 2 - uniform float volume agrees with analytic Beer-Lambert for clipped and full segments\n  ---\n  duration_ms: 2.787141\n  type: 'test'\n  ...\n# Subtest: scene zero distance means no hit; synthetic ground does not truncate supplied scene\nok 3 - scene zero distance means no hit; synthetic ground does not truncate supplied scene\n  ---\n  duration_ms: 1.662183\n  type: 'test'\n  ...\n# Subtest: Float32 preserves sub-8bit density in actual software raymarch\nok 4 - Float32 preserves sub-8bit density in actual software raymarch\n  ---\n  duration_ms: 3.302152\n  type: 'test'\n  ...\n# Subtest: float fields are owned immutable snapshots, and temperature is not byte clamped\nok 5 - float fields are owned immutable snapshots, and temperature is not byte clamped\n  ---\n  duration_ms: 2.727504\n  type: 'test'\n  ...\n# Subtest: invalid float/depth input and depth with temporal history fail closed\nok 6 - invalid float/depth input and depth with temporal history fail closed\n  ---\n  duration_ms: 1.992169\n  type: 'test'\n  ...\n# Subtest: profile float comparison counts sub-byte density loss and renders two real views\nok 7 - profile float comparison counts sub-byte density loss and renders two real views\n  ---\n  duration_ms: 9.331627\n  type: 'test'\n  ...\n1..7\n# tests 7\n# suites 0\n# pass 7\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 101.181833\n",
+      "test_count": 7
+    },
+    "atlas_preview_tests": {
+      "status": "PASS",
+      "evidence": "actual JS procedural atlas + CPU raymarch, not native fluid execution",
+      "command": [
+        "node",
+        "--test",
+        "tests/atlas-preview.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: density bounds and quantized integral use actual render-grid spacing\nok 1 - density bounds and quantized integral use actual render-grid spacing\n  ---\n  duration_ms: 1.973732\n  type: 'test'\n  ...\n# Subtest: empty, malformed or invalid alpha atlas is rejected\nok 2 - empty, malformed or invalid alpha atlas is rejected\n  ---\n  duration_ms: 0.437485\n  type: 'test'\n  ...\n# Subtest: actual procedural atlas renders two nonempty camera views, same source hash\nok 3 - actual procedural atlas renders two nonempty camera views, same source hash\n  ---\n  duration_ms: 85.129458\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 152.807259\n",
+      "test_count": 3
+    },
+    "effect_js_tests": {
+      "status": "PASS",
+      "evidence": "actual CPU procedural atlas/preview; fluid lifecycle only uses an explicit test double",
+      "command": [
+        "node",
+        "--test",
+        "tests/effects.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: catalog cigarette_smoke all three qualities\nok 1 - catalog cigarette_smoke all three qualities\n  ---\n  duration_ms: 2.529552\n  type: 'test'\n  ...\n# Subtest: catalog exhaled_aerosol all three qualities\nok 2 - catalog exhaled_aerosol all three qualities\n  ---\n  duration_ms: 0.899778\n  type: 'test'\n  ...\n# Subtest: catalog cumulus_cloud all three qualities\nok 3 - catalog cumulus_cloud all three qualities\n  ---\n  duration_ms: 0.442984\n  type: 'test'\n  ...\n# Subtest: catalog ground_fog all three qualities\nok 4 - catalog ground_fog all three qualities\n  ---\n  duration_ms: 0.269197\n  type: 'test'\n  ...\n# Subtest: catalog steam all three qualities\nok 5 - catalog steam all three qualities\n  ---\n  duration_ms: 0.177142\n  type: 'test'\n  ...\n# Subtest: catalog smoke all three qualities\nok 6 - catalog smoke all three qualities\n  ---\n  duration_ms: 0.197422\n  type: 'test'\n  ...\n# Subtest: catalog dust all three qualities\nok 7 - catalog dust all three qualities\n  ---\n  duration_ms: 0.388443\n  type: 'test'\n  ...\n# Subtest: catalog flame all three qualities\nok 8 - catalog flame all three qualities\n  ---\n  duration_ms: 0.213044\n  type: 'test'\n  ...\n# Subtest: catalog immutable and detached copies\nok 9 - catalog immutable and detached copies\n  ---\n  duration_ms: 1.479613\n  type: 'test'\n  ...\n# Subtest: cumulus_cloud actual deterministic CPU atlas\nok 10 - cumulus_cloud actual deterministic CPU atlas\n  ---\n  duration_ms: 32.037103\n  type: 'test'\n  ...\n# Subtest: ground_fog actual deterministic CPU atlas\nok 11 - ground_fog actual deterministic CPU atlas\n  ---\n  duration_ms: 9.224509\n  type: 'test'\n  ...\n# Subtest: dust actual deterministic CPU atlas\nok 12 - dust actual deterministic CPU atlas\n  ---\n  duration_ms: 12.857343\n  type: 'test'\n  ...\n# Subtest: procedural backend explicit and bad parameters rejected\nok 13 - procedural backend explicit and bad parameters rejected\n  ---\n  duration_ms: 0.710367\n  type: 'test'\n  ...\n# Subtest: periodic noise remains continuous across wrap\nok 14 - periodic noise remains continuous across wrap\n  ---\n  duration_ms: 15.384786\n  type: 'test'\n  ...\n# Subtest: recipe round trip and refuses execution injection\nok 15 - recipe round trip and refuses execution injection\n  ---\n  duration_ms: 4.473349\n  type: 'test'\n  ...\n# Subtest: LOD and ember visual\nok 16 - LOD and ember visual\n  ---\n  duration_ms: 0.297268\n  type: 'test'\n  ...\n# Subtest: world budget, concurrent reservation, removal\nok 17 - world budget, concurrent reservation, removal\n  ---\n  duration_ms: 4.216079\n  type: 'test'\n  ...\n# Subtest: world closes pending effect\nok 18 - world closes pending effect\n  ---\n  duration_ms: 3.476579\n  type: 'test'\n  ...\n# Subtest: actual preview nonuniform, optical controls change pixels, bounded work\nok 19 - actual preview nonuniform, optical controls change pixels, bounded work\n  ---\n  duration_ms: 102.017922\n  type: 'test'\n  ...\n# Subtest: history reset on identity change\nok 20 - history reset on identity change\n  ---\n  duration_ms: 19.507849\n  type: 'test'\n  ...\n# Subtest: fluid lifecycle forwarding only (explicit simulation test double, not physics)\nok 21 - fluid lifecycle forwarding only (explicit simulation test double, not physics)\n  ---\n  duration_ms: 19.449593\n  type: 'test'\n  ...\n# Subtest: CPU shadow integrates full domain exit for anisotropic boxes\nok 22 - CPU shadow integrates full domain exit for anisotropic boxes\n  ---\n  duration_ms: 3.777272\n  type: 'test'\n  ...\n# Subtest: prepared CPU preview reuses immutable density/light across camera views\nok 23 - prepared CPU preview reuses immutable density/light across camera views\n  ---\n  duration_ms: 30.61188\n  type: 'test'\n  ...\n# Subtest: opt-in fine curl presets fit standard quality budgets without altering legacy presets\nok 24 - opt-in fine curl presets fit standard quality budgets without altering legacy presets\n  ---\n  duration_ms: 1.404973\n  type: 'test'\n  ...\n1..24\n# tests 24\n# suites 0\n# pass 24\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 339.04721\n",
+      "test_count": 24
+    },
+    "gpu_protocol_tests": {
+      "status": "PASS",
+      "evidence": "control-and-wire; no WGSL execution",
+      "command": [
+        "node",
+        "--test",
+        "tests/gpu-protocol.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: MAC and fine dimensions use +1 staggered padding\nok 1 - MAC and fine dimensions use +1 staggered padding\n  ---\n  duration_ms: 2.116673\n  type: 'test'\n  ...\n# Subtest: GPU params exact 128-byte offsets\nok 2 - GPU params exact 128-byte offsets\n  ---\n  duration_ms: 0.690288\n  type: 'test'\n  ...\n# Subtest: emitter/obstacle control offsets and normalized direction\nok 3 - emitter/obstacle control offsets and normalized direction\n  ---\n  duration_ms: 0.657069\n  type: 'test'\n  ...\n# Subtest: bad IDs, nonfinite parameters and f32 radius underflow rejected\nok 4 - bad IDs, nonfinite parameters and f32 radius underflow rejected\n  ---\n  duration_ms: 0.944644\n  type: 'test'\n  ...\n# Subtest: failed scene mutation is transactional\nok 5 - failed scene mutation is transactional\n  ---\n  duration_ms: 0.269308\n  type: 'test'\n  ...\n# Subtest: PCHIP control evaluation agrees with all 156 original JS vectors\nok 6 - PCHIP control evaluation agrees with all 156 original JS vectors\n  ---\n  duration_ms: 10.917866\n  type: 'test'\n  ...\n# Subtest: profile clock disables outside interval and repeats correctly\nok 7 - profile clock disables outside interval and repeats correctly\n  ---\n  duration_ms: 0.46751\n  type: 'test'\n  ...\n# Subtest: mode validation is strict, CPU cannot claim fine GPU work\nok 8 - mode validation is strict, CPU cannot claim fine GPU work\n  ---\n  duration_ms: 0.52193\n  type: 'test'\n  ...\n# Subtest: hitch accounting limits executed steps without hidden time\nok 9 - hitch accounting limits executed steps without hidden time\n  ---\n  duration_ms: 0.731409\n  type: 'test'\n  ...\n# Subtest: CPU/Auto factory uses supplied CPU module, strict GPU does not silently substitute\nok 10 - CPU/Auto factory uses supplied CPU module, strict GPU does not silently substitute\n  ---\n  duration_ms: 1.715751\n  type: 'test'\n  ...\n# Subtest: shared schedule points only to real WGSL entry names and separate pressure dispatches\nok 11 - shared schedule points only to real WGSL entry names and separate pressure dispatches\n  ---\n  duration_ms: 2.773391\n  type: 'test'\n  ...\n# Subtest: CPU memory admission uses CPU allocation, not a GPU worst-case estimate\nok 12 - CPU memory admission uses CPU allocation, not a GPU worst-case estimate\n  ---\n  duration_ms: 0.206985\n  type: 'test'\n  ...\n# Subtest: prototype-named config keys are not accepted as declared options\nok 13 - prototype-named config keys are not accepted as declared options\n  ---\n  duration_ms: 0.155129\n  type: 'test'\n  ...\n# Subtest: GPU readback timeout has finite bounded limits\nok 14 - GPU readback timeout has finite bounded limits\n  ---\n  duration_ms: 0.323547\n  type: 'test'\n  ...\n# Subtest: misspelled execution options cannot silently select the default backend\nok 15 - misspelled execution options cannot silently select the default backend\n  ---\n  duration_ms: 0.263238\n  type: 'test'\n  ...\n# Subtest: fine curl time packet wraps at sixteen seconds without changing ABI\nok 16 - fine curl time packet wraps at sixteen seconds without changing ABI\n  ---\n  duration_ms: 0.179444\n  type: 'test'\n  ...\n1..16\n# tests 16\n# suites 0\n# pass 16\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 81.340498\n",
+      "test_count": 16
+    },
+    "gpu_host_tests": {
+      "status": "PASS",
+      "evidence": "GPU device test double; no WGSL execution",
+      "command": [
+        "node",
+        "--test",
+        "tests/gpu-host.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: GPU dispatch order; never invokes CPU solver; no compute readback\nok 1 - GPU dispatch order; never invokes CPU solver; no compute readback\n  ---\n  duration_ms: 12.473071\n  type: 'test'\n  ...\n# Subtest: Hybrid invokes CPU once and uploads exact staggered MAC; only fine GPU passes\nok 2 - Hybrid invokes CPU once and uploads exact staggered MAC; only fine GPU passes\n  ---\n  duration_ms: 2.913348\n  type: 'test'\n  ...\n# Subtest: explicit atlas readback owns result; bounded pending snapshots; reset cannot race\nok 3 - explicit atlas readback owns result; bounded pending snapshots; reset cannot race\n  ---\n  duration_ms: 4.325832\n  type: 'test'\n  ...\n# Subtest: shader error never triggers auto CPU fallback and cleans resources\nok 4 - shader error never triggers auto CPU fallback and cleans resources\n  ---\n  duration_ms: 2.021672\n  type: 'test'\n  ...\n# Subtest: device error fail-stop, no reset fallback, shared device not destroyed\nok 5 - device error fail-stop, no reset fallback, shared device not destroyed\n  ---\n  duration_ms: 2.856635\n  type: 'test'\n  ...\n# Subtest: sequential atlas snapshots reuse staging and add no persistent GPU buffers\nok 6 - sequential atlas snapshots reuse staging and add no persistent GPU buffers\n  ---\n  duration_ms: 6.033861\n  type: 'test'\n  ...\n# Subtest: third concurrent atlas request does not dispatch a wasted pack pass\nok 7 - third concurrent atlas request does not dispatch a wasted pack pass\n  ---\n  duration_ms: 2.045016\n  type: 'test'\n  ...\n# Subtest: hybrid diagnostics cannot report healthy CPU state after GPU failure\nok 8 - hybrid diagnostics cannot report healthy CPU state after GPU failure\n  ---\n  duration_ms: 2.338761\n  type: 'test'\n  ...\n# Subtest: hybrid CPU cleanup error cannot leave GPU resources or listeners live\nok 9 - hybrid CPU cleanup error cannot leave GPU resources or listeners live\n  ---\n  duration_ms: 1.804963\n  type: 'test'\n  ...\n# Subtest: gpu direct volume uses current field, no pack/readback\nok 10 - gpu direct volume uses current field, no pack/readback\n  ---\n  duration_ms: 3.954244\n  type: 'test'\n  ...\n# Subtest: hybrid direct volume uses current field, no pack/readback\nok 11 - hybrid direct volume uses current field, no pack/readback\n  ---\n  duration_ms: 2.939076\n  type: 'test'\n  ...\n# Subtest: direct render rejects disposed or failed source; renderer never owns simulation\nok 12 - direct render rejects disposed or failed source; renderer never owns simulation\n  ---\n  duration_ms: 1.730203\n  type: 'test'\n  ...\n# Subtest: camera packet exact uniform offsets and invalid inputs\nok 13 - camera packet exact uniform offsets and invalid inputs\n  ---\n  duration_ms: 0.309106\n  type: 'test'\n  ...\n# Subtest: gpu temporal passes use active borrowed field, disjoint history textures and one submission\nok 14 - gpu temporal passes use active borrowed field, disjoint history textures and one submission\n  ---\n  duration_ms: 3.28121\n  type: 'test'\n  ...\n# Subtest: hybrid temporal passes use active borrowed field, disjoint history textures and one submission\nok 15 - hybrid temporal passes use active borrowed field, disjoint history textures and one submission\n  ---\n  duration_ms: 2.563602\n  type: 'test'\n  ...\n# Subtest: temporal policy reset epoch even at same tick; explicit history reset\nok 16 - temporal policy reset epoch even at same tick; explicit history reset\n  ---\n  duration_ms: 1.590806\n  type: 'test'\n  ...\n# Subtest: temporal dynamic history is explicit, weight and tick gap bounded\nok 17 - temporal dynamic history is explicit, weight and tick gap bounded\n  ---\n  duration_ms: 1.446714\n  type: 'test'\n  ...\n# Subtest: temporal invalidates camera cut, optical or ray budget changes; background independent\nok 18 - temporal invalidates camera cut, optical or ray budget changes; background independent\n  ---\n  duration_ms: 2.448793\n  type: 'test'\n  ...\n# Subtest: temporal resize reuses no old textures, bounded allocation and invalid controls fail before submit\nok 19 - temporal resize reuses no old textures, bounded allocation and invalid controls fail before submit\n  ---\n  duration_ms: 1.429218\n  type: 'test'\n  ...\n# Subtest: temporal partial texture allocation failure releases owned resources and can retry\nok 20 - temporal partial texture allocation failure releases owned resources and can retry\n  ---\n  duration_ms: 1.447466\n  type: 'test'\n  ...\n# Subtest: temporal shader compilation rejection allocates no history and never substitutes a renderer\nok 21 - temporal shader compilation rejection allocates no history and never substitutes a renderer\n  ---\n  duration_ms: 1.11821\n  type: 'test'\n  ...\n# Subtest: temporal off mode midpoint, no history; load applies only to host composite\nok 22 - temporal off mode midpoint, no history; load applies only to host composite\n  ---\n  duration_ms: 1.336903\n  type: 'test'\n  ...\n# Subtest: gpu scene depth direct path uses current field and borrowed texture, no readback\nok 23 - gpu scene depth direct path uses current field and borrowed texture, no readback\n  ---\n  duration_ms: 2.63668\n  type: 'test'\n  ...\n# Subtest: hybrid scene depth direct path uses current field and borrowed texture, no readback\nok 24 - hybrid scene depth direct path uses current field and borrowed texture, no readback\n  ---\n  duration_ms: 1.280179\n  type: 'test'\n  ...\n# Subtest: depth opt-in and invalid scene configuration reject before submission; temporal cannot ignore depth\nok 25 - depth opt-in and invalid scene configuration reject before submission; temporal cannot ignore depth\n  ---\n  duration_ms: 1.909106\n  type: 'test'\n  ...\n# Subtest: gpu fidelity builds optical cache once per field revision, then reuses it for camera and radiance changes\nok 26 - gpu fidelity builds optical cache once per field revision, then reuses it for camera and radiance changes\n  ---\n  duration_ms: 2.691631\n  type: 'test'\n  ...\n# Subtest: hybrid fidelity builds optical cache once per field revision, then reuses it for camera and radiance changes\nok 27 - hybrid fidelity builds optical cache once per field revision, then reuses it for camera and radiance changes\n  ---\n  duration_ms: 1.989215\n  type: 'test'\n  ...\n# Subtest: fidelity rejects bad cache budget/scene before submission; untracked field is never cached across calls\nok 28 - fidelity rejects bad cache budget/scene before submission; untracked field is never cached across calls\n  ---\n  duration_ms: 2.319617\n  type: 'test'\n  ...\n# Subtest: fidelity cache resize failure preserves previous owned cache and rejects stale reuse\nok 29 - fidelity cache resize failure preserves previous owned cache and rejects stale reuse\n  ---\n  duration_ms: 1.9185\n  type: 'test'\n  ...\n# Subtest: stale shader manifest v1 is rejected before dispatch\nok 30 - stale shader manifest v1 is rejected before dispatch\n  ---\n  duration_ms: 1.132841\n  type: 'test'\n  ...\n# Subtest: float field preserves every density/temperature value and zeroes mask channels\nok 31 - float field preserves every density/temperature value and zeroes mask channels\n  ---\n  duration_ms: 56.933281\n  type: 'test'\n  ...\n# Subtest: float source GPU upload, camera/translation cache reuse and committed field replacement\nok 32 - float source GPU upload, camera/translation cache reuse and committed field replacement\n  ---\n  duration_ms: 8.415585\n  type: 'test'\n  ...\n# Subtest: float source rejects invalid field and failed replacement preserves old commit\nok 33 - float source rejects invalid field and failed replacement preserves old commit\n  ---\n  duration_ms: 6.389096\n  type: 'test'\n  ...\n# Subtest: float source concurrent replace and disposal during pending upload release buffer\nok 34 - float source concurrent replace and disposal during pending upload release buffer\n  ---\n  duration_ms: 2.984302\n  type: 'test'\n  ...\n1..34\n# tests 34\n# suites 0\n# pass 34\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 241.590662\n",
+      "test_count": 34
+    },
+    "gpu_readback_pool_tests": {
+      "status": "PASS",
+      "evidence": "stateful GPU transfer test double; no hardware timing",
+      "command": [
+        "node",
+        "--test",
+        "tests/readback-pool.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: 120 sequential snapshots allocate one staging buffer and return owned copies\nok 1 - 120 sequential snapshots allocate one staging buffer and return owned copies\n  ---\n  duration_ms: 5.302212\n  type: 'test'\n  ...\n# Subtest: busy pool rejects before encoding, submission or allocation\nok 2 - busy pool rejects before encoding, submission or allocation\n  ---\n  duration_ms: 1.201903\n  type: 'test'\n  ...\n# Subtest: larger snapshots replace idle buffers, smaller ones reuse without growth\nok 3 - larger snapshots replace idle buffers, smaller ones reuse without growth\n  ---\n  duration_ms: 0.243009\n  type: 'test'\n  ...\n# Subtest: multiple regions are copied into one map in declared order\nok 4 - multiple regions are copied into one map in declared order\n  ---\n  duration_ms: 0.859888\n  type: 'test'\n  ...\n# Subtest: timeout cancels map, frees failed slot, and reports fail-stop to owner\nok 5 - timeout cancels map, frees failed slot, and reports fail-stop to owner\n  ---\n  duration_ms: 10.074562\n  type: 'test'\n  ...\n# Subtest: dispose cancels pending reads immediately, destroys all slots and is idempotent\nok 6 - dispose cancels pending reads immediately, destroys all slots and is idempotent\n  ---\n  duration_ms: 0.469813\n  type: 'test'\n  ...\n# Subtest: mapping rejection removes failed buffer and preserves failure cause\nok 7 - mapping rejection removes failed buffer and preserves failure cause\n  ---\n  duration_ms: 0.308755\n  type: 'test'\n  ...\n# Subtest: invalid sizes and empty/over-budget batches never allocate or submit\nok 8 - invalid sizes and empty/over-budget batches never allocate or submit\n  ---\n  duration_ms: 0.686573\n  type: 'test'\n  ...\n# Subtest: encoding errors clean reserved resources and do not submit\nok 9 - encoding errors clean reserved resources and do not submit\n  ---\n  duration_ms: 0.463554\n  type: 'test'\n  ...\n# Subtest: invalid capacity and timeout limits fail immediately\nok 10 - invalid capacity and timeout limits fail immediately\n  ---\n  duration_ms: 0.421712\n  type: 'test'\n  ...\n1..10\n# tests 10\n# suites 0\n# pass 10\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 74.27242\n",
+      "test_count": 10
+    },
+    "worker_lifecycle_tests": {
+      "status": "PASS",
+      "evidence": "Worker transport test double; real client lifecycle",
+      "command": [
+        "node",
+        "--test",
+        "tests/worker-client.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: tick before init is rejected without accumulating elapsed time\nok 1 - tick before init is rejected without accumulating elapsed time\n  ---\n  duration_ms: 2.133407\n  type: 'test'\n  ...\n# Subtest: single in-flight tick coalesces elapsed, not a stale work queue\nok 2 - single in-flight tick coalesces elapsed, not a stale work queue\n  ---\n  duration_ms: 1.091059\n  type: 'test'\n  ...\n# Subtest: pending RPCs are bounded, including metrics/slider updates\nok 3 - pending RPCs are bounded, including metrics/slider updates\n  ---\n  duration_ms: 0.724589\n  type: 'test'\n  ...\n# Subtest: reset invalidates old atlas and does not carry over pre-reset time\nok 4 - reset invalidates old atlas and does not carry over pre-reset time\n  ---\n  duration_ms: 0.561698\n  type: 'test'\n  ...\n# Subtest: request timeout terminates worker and rejects every outstanding request\nok 5 - request timeout terminates worker and rejects every outstanding request\n  ---\n  duration_ms: 16.175302\n  type: 'test'\n  ...\n# Subtest: dispose cannot wait forever behind a hung tick\nok 6 - dispose cannot wait forever behind a hung tick\n  ---\n  duration_ms: 11.468504\n  type: 'test'\n  ...\n# Subtest: new calls are rejected as soon as disposal starts\nok 7 - new calls are rejected as soon as disposal starts\n  ---\n  duration_ms: 0.396785\n  type: 'test'\n  ...\n# Subtest: dispose during init never transitions a terminated client to ready\nok 8 - dispose during init never transitions a terminated client to ready\n  ---\n  duration_ms: 0.430885\n  type: 'test'\n  ...\n# Subtest: message deserialization errors reject pending operations\nok 9 - message deserialization errors reject pending operations\n  ---\n  duration_ms: 0.395043\n  type: 'test'\n  ...\n# Subtest: postMessage failure removes request and clears its timer\nok 10 - postMessage failure removes request and clears its timer\n  ---\n  duration_ms: 0.521319\n  type: 'test'\n  ...\n# Subtest: call cannot bypass init, tick coalescing or bounded dispose\nok 11 - call cannot bypass init, tick coalescing or bounded dispose\n  ---\n  duration_ms: 0.271591\n  type: 'test'\n  ...\n# Subtest: large accumulated elapsed is capped and explicitly accounted for\nok 12 - large accumulated elapsed is capped and explicitly accounted for\n  ---\n  duration_ms: 0.249428\n  type: 'test'\n  ...\n# Subtest: invalid limits and seconds are rejected before queue mutation\nok 13 - invalid limits and seconds are rejected before queue mutation\n  ---\n  duration_ms: 0.538254\n  type: 'test'\n  ...\n# Subtest: full RPC capacity retains tick elapsed instead of dropping time\nok 14 - full RPC capacity retains tick elapsed instead of dropping time\n  ---\n  duration_ms: 0.274545\n  type: 'test'\n  ...\n1..14\n# tests 14\n# suites 0\n# pass 14\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 95.457749\n",
+      "test_count": 14
+    },
+    "wgsl_reserved_word_preflight": {
+      "status": "PASS",
+      "evidence": "lexical preflight; NOT WGSL compilation",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/check_wgsl_source.py"
+      ],
+      "returncode": 0,
+      "output": "PASS reserved-word preflight shaders/compute/detail.wgsl (NOT WGSL compilation)\nPASS reserved-word preflight shaders/compute/export.wgsl (NOT WGSL compilation)\nPASS reserved-word preflight shaders/compute/mac.wgsl (NOT WGSL compilation)\nPASS reserved-word preflight shaders/render/fidelity.wgsl (NOT WGSL compilation)\nPASS reserved-word preflight shaders/render/temporal.wgsl (NOT WGSL compilation)\nPASS reserved-word preflight shaders/render/volume.wgsl (NOT WGSL compilation)\n"
+    },
+    "wgsl_lexical_guard_tests": {
+      "status": "PASS",
+      "evidence": "lexical guard self-tests; NOT WGSL compilation",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_shader_source.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_canonical_shaders_have_no_reserved_words (test_shader_source.ShaderSourceTests.test_canonical_shaders_have_no_reserved_words) ... ok\ntest_comments_are_not_identifiers (test_shader_source.ShaderSourceTests.test_comments_are_not_identifiers) ... ok\ntest_line_numbers_and_nested_comments (test_shader_source.ShaderSourceTests.test_line_numbers_and_nested_comments) ... ok\ntest_old_target_regression_is_rejected (test_shader_source.ShaderSourceTests.test_old_target_regression_is_rejected) ... ok\ntest_unclosed_comment_is_not_silently_accepted (test_shader_source.ShaderSourceTests.test_unclosed_comment_is_not_silently_accepted) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.004s\n\nOK\n",
+      "test_count": 5
+    },
+    "gpu_schedule_generated": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/generate_passes.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "PASS shared GPU schedule\n"
+    },
+    "distribution_copies": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/sync_distribution.py",
+        "--check"
+      ],
+      "returncode": 0,
+      "output": "PASS 30 canonical distribution copies\n"
+    },
+    "typescript_api": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "tsc",
+        "-p",
+        "tests/tsconfig.json"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "cpp_field_sequence_build": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "tests/field_sequence.cpp",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/field-sequence"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "cpp_field_sequence_execute": {
+      "status": "PASS",
+      "evidence": "actual C++17 VPA player, not Rust/engine",
+      "command": [
+        "/tmp/vapor-abi-test-pfguw6gh/field-sequence",
+        "/mnt/data/vapor_0.23/fixtures/field-sequence"
+      ],
+      "returncode": 0,
+      "output": "PASS C++ VPA golden fields, cache and CRC\n"
+    },
+    "cpp_field_asset_build": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "tests/field_asset.cpp",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/field-asset"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "cpp_field_asset_execute": {
+      "status": "PASS",
+      "evidence": "actual C++17 VPF1 data-only reader; not native Rust or game editor",
+      "command": [
+        "/tmp/vapor-abi-test-pfguw6gh/field-asset",
+        "/mnt/data/vapor_0.23/fixtures/field-asset.vpf"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "c_header_layout_build": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "tests/abi_layout.c",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/layout"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "c_header_layout_execute": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/tmp/vapor-abi-test-pfguw6gh/layout"
+      ],
+      "returncode": 0,
+      "output": "{\"VaporConfig\":100,\"VaporEmitter\":56,\"VaporObstacle\":56,\"VaporMetrics\":112,\"VaporAdvance\":40,\"VaporRender\":76,\"VaporBackendOptions\":32,\"VaporBackendInfo\":64,\"VaporAtlasTicket\":32,\"metrics_centroid\":56,\"metrics_clamps\":88,\"metrics_bytes\":104,\"config_boundary\":96}\n"
+    },
+    "cpp_header_layout": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "-x",
+        "c++",
+        "-fsyntax-only",
+        "tests/abi_layout.c"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "c_test_double_build": {
+      "status": "PASS",
+      "evidence": "C ABI test double only",
+      "command": [
+        "gcc",
+        "-std=c11",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-shared",
+        "-fPIC",
+        "-Iinclude",
+        "tests/ffi_fixture.c",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/libfixture.so"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "python_abi_boundary_tests": {
+      "status": "PASS",
+      "evidence": "C fixture, not Rust",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-p",
+        "test_bindings.py",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_advance_metrics_and_reset (test_bindings.BindingTests.test_advance_metrics_and_reset) ... ok\ntest_atlas_layout (test_bindings.BindingTests.test_atlas_layout) ... ok\ntest_atlas_pending_busy_then_submission_tick (test_bindings.BindingTests.test_atlas_pending_busy_then_submission_tick) ... ok\ntest_atlas_reset_cancel_and_foreign_owner (test_bindings.BindingTests.test_atlas_reset_cancel_and_foreign_owner) ... ok\ntest_atlas_short_buffer_is_retryable_and_pending_does_not_write (test_bindings.BindingTests.test_atlas_short_buffer_is_retryable_and_pending_does_not_write) ... ok\ntest_atlas_ticket_layout (test_bindings.BindingTests.test_atlas_ticket_layout) ... ok\ntest_auto_fallback_is_reported_not_gpu (test_bindings.BindingTests.test_auto_fallback_is_reported_not_gpu) ... ok\ntest_backend_layout_offsets (test_bindings.BindingTests.test_backend_layout_offsets) ... ok\ntest_config (test_bindings.BindingTests.test_config) ... ok\ntest_cpu_detail_and_unknown_mode_rejected (test_bindings.BindingTests.test_cpu_detail_and_unknown_mode_rejected) ... ok\ntest_create_close (test_bindings.BindingTests.test_create_close) ... ok\ntest_emitter_marshalling (test_bindings.BindingTests.test_emitter_marshalling) ... ok\ntest_exact_mac_padded_layout_and_owned_copy (test_bindings.BindingTests.test_exact_mac_padded_layout_and_owned_copy) ... ok\ntest_extended_options_binary_marshalling (test_bindings.BindingTests.test_extended_options_binary_marshalling) ... ok\ntest_obstacle_marshalling (test_bindings.BindingTests.test_obstacle_marshalling) ... ok\ntest_profile_and_errors (test_bindings.BindingTests.test_profile_and_errors) ... ok\ntest_render_layout (test_bindings.BindingTests.test_render_layout) ... ok\ntest_sizes (test_bindings.BindingTests.test_sizes) ... ok\ntest_snapshot_layout_owned (test_bindings.BindingTests.test_snapshot_layout_owned) ... ok\ntest_strict_gpu_and_hybrid_fail_not_cpu (test_bindings.BindingTests.test_strict_gpu_and_hybrid_fail_not_cpu) ... ok\ntest_unknown_and_unsigned (test_bindings.BindingTests.test_unknown_and_unsigned) ... ok\n\n----------------------------------------------------------------------\nRan 21 tests in 0.005s\n\nOK\n",
+      "test_count": 21
+    },
+    "cpp_atlas_stream_build": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "g++",
+        "-std=c++17",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-Iinclude",
+        "tests/atlas_stream.cpp",
+        "/tmp/vapor-abi-test-pfguw6gh/libfixture.so",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/atlas_stream"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "cpp_atlas_stream_lifecycle": {
+      "status": "PASS",
+      "evidence": "C++ helper against explicit C fixture; not engine or Rust execution",
+      "command": [
+        "/tmp/vapor-abi-test-pfguw6gh/atlas_stream"
+      ],
+      "returncode": 0,
+      "output": "PASS C++ AtlasStream lifecycle against C test double\n"
+    },
+    "wasm_c_test_double_build": {
+      "status": "PASS",
+      "evidence": "C/WASM ABI test double only",
+      "command": [
+        "clang",
+        "--target=wasm32",
+        "-O0",
+        "-nostdlib",
+        "-fno-builtin",
+        "-Iinclude",
+        "tests/ffi_fixture.c",
+        "-Wl,--no-entry",
+        "-Wl,--export-all",
+        "-Wl,--export-memory",
+        "-Wl,--initial-memory=262144",
+        "-o",
+        "/tmp/vapor-abi-test-pfguw6gh/fixture.wasm"
+      ],
+      "returncode": 0,
+      "output": ""
+    },
+    "javascript_abi_boundary_tests": {
+      "status": "PASS",
+      "evidence": "C/WASM fixture, not Rust",
+      "command": [
+        "node",
+        "--test",
+        "tests/web-binding.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: config layout and validation\nok 1 - config layout and validation\n  ---\n  duration_ms: 2.866109\n  type: 'test'\n  ...\n# Subtest: emitter/obstacle and metrics layout\nok 2 - emitter/obstacle and metrics layout\n  ---\n  duration_ms: 0.663959\n  type: 'test'\n  ...\n# Subtest: advance, reset, and error statuses\nok 3 - advance, reset, and error statuses\n  ---\n  duration_ms: 0.394001\n  type: 'test'\n  ...\n# Subtest: field snapshots and memory growth\nok 4 - field snapshots and memory growth\n  ---\n  duration_ms: 5.093794\n  type: 'test'\n  ...\n# Subtest: atlas and profile contracts\nok 5 - atlas and profile contracts\n  ---\n  duration_ms: 0.457485\n  type: 'test'\n  ...\n# Subtest: dispose idempotent and stale handle blocked\nok 6 - dispose idempotent and stale handle blocked\n  ---\n  duration_ms: 0.213585\n  type: 'test'\n  ...\n# Subtest: prototype-named fields are rejected before the native boundary\nok 7 - prototype-named fields are rejected before the native boundary\n  ---\n  duration_ms: 0.255697\n  type: 'test'\n  ...\n# Subtest: disposal attempts every cached free even when one free reports failure\nok 8 - disposal attempts every cached free even when one free reports failure\n  ---\n  duration_ms: 0.341374\n  type: 'test'\n  ...\n# Subtest: CPU preview calls real ABI shape and returns owned snapshots (C fixture only)\nok 9 - CPU preview calls real ABI shape and returns owned snapshots (C fixture only)\n  ---\n  duration_ms: 3.004522\n  type: 'test'\n  ...\n# Subtest: CPU preview rejects excessive work, missing camera and unknown options\nok 10 - CPU preview rejects excessive work, missing camera and unknown options\n  ---\n  duration_ms: 0.524614\n  type: 'test'\n  ...\n# Subtest: native Fidelity WASM fixture: generation layouts, terrain, and owned output\nok 11 - native Fidelity WASM fixture: generation layouts, terrain, and owned output\n  ---\n  duration_ms: 3.4569\n  type: 'test'\n  ...\n# Subtest: native Fidelity WASM fixture: render layouts and scene data\nok 12 - native Fidelity WASM fixture: render layouts and scene data\n  ---\n  duration_ms: 0.676608\n  type: 'test'\n  ...\n# Subtest: native Fidelity rejects malformed inputs and old binaries without fallback\nok 13 - native Fidelity rejects malformed inputs and old binaries without fallback\n  ---\n  duration_ms: 0.552145\n  type: 'test'\n  ...\n1..13\n# tests 13\n# suites 0\n# pass 13\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 84.684805\n",
+      "test_count": 13
+    },
+    "project_layout": {
+      "status": "PASS",
+      "evidence": "source-contract",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "tools/verify_layout.py"
+      ],
+      "returncode": 0,
+      "output": "PASS layout: 24 migrated scripts; version, active docs, product dependency boundaries\n"
+    },
+    "lab_optical_calibration": {
+      "status": "PASS",
+      "evidence": "actual Beer-Lambert authoring math, not microphysical validation",
+      "command": [
+        "node",
+        "--test",
+        "lab/tests/optical-calibration.test.mjs"
+      ],
+      "returncode": 0,
+      "output": "TAP version 13\n# Subtest: Beer-Lambert inverse\nok 1 - Beer-Lambert inverse\n  ---\n  duration_ms: 0.798959\n  type: 'test'\n  ...\n# Subtest: fit fixed path opacity\nok 2 - fit fixed path opacity\n  ---\n  duration_ms: 0.252021\n  type: 'test'\n  ...\n# Subtest: rejects empty, saturated and invalid data\nok 3 - rejects empty, saturated and invalid data\n  ---\n  duration_ms: 0.352961\n  type: 'test'\n  ...\n1..3\n# tests 3\n# suites 0\n# pass 3\n# fail 0\n# cancelled 0\n# skipped 0\n# todo 0\n# duration_ms 56.239867\n",
+      "test_count": 3
+    },
+    "lab_tests": {
+      "status": "PASS",
+      "evidence": "independent research, not SDK runtime",
+      "command": [
+        "/opt/pyvenv/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "lab/tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "output": "test_constant_and_mass (test_cloud_motion.CloudMotionTests.test_constant_and_mass) ... ok\ntest_discrete_divergence_and_boundary (test_cloud_motion.CloudMotionTests.test_discrete_divergence_and_boundary) ... ok\ntest_flowmap_zero_velocity_and_normalization (test_cloud_motion.CloudMotionTests.test_flowmap_zero_velocity_and_normalization) ... ok\ntest_inflow_does_not_create_scalar (test_conservative_transport.Conservation.test_inflow_does_not_create_scalar) ... ok\ntest_invalid_shape_and_negative_rejected (test_conservative_transport.Conservation.test_invalid_shape_and_negative_rejected) ... ok\ntest_open_boundary_budget_and_positivity (test_conservative_transport.Conservation.test_open_boundary_budget_and_positivity) ... ok\ntest_stationary_is_exact (test_conservative_transport.Conservation.test_stationary_is_exact) ... ok\ntest_clipped_source_is_not_renormalized (test_coupled_density.CoupledDensityTests.test_clipped_source_is_not_renormalized) ... ok\ntest_coupled_mass_budget (test_coupled_density.CoupledDensityTests.test_coupled_mass_budget) ... ok\ntest_emission_stops_without_gain (test_coupled_density.CoupledDensityTests.test_emission_stops_without_gain) ... ok\ntest_physical_source_invariant_grid_phase_and_resolution (test_coupled_density.CoupledDensityTests.test_physical_source_invariant_grid_phase_and_resolution) ... ok\ntest_axis_frame (test_lagrangian_plume.LagrangianTests.test_axis_frame) ... ok\ntest_boundary_and_saturation_budget (test_lagrangian_plume.LagrangianTests.test_boundary_and_saturation_budget) ... ok\ntest_cic_budget (test_lagrangian_plume.LagrangianTests.test_cic_budget) ... ok\ntest_emission_identical_mass_by_model (test_lagrangian_plume.LagrangianTests.test_emission_identical_mass_by_model) ... ok\ntest_local_velocity_divergence_away_from_cutoffs (test_lagrangian_plume.LagrangianTests.test_local_velocity_divergence_away_from_cutoffs) ... ok\ntest_seeded_replay (test_lagrangian_plume.LagrangianTests.test_seeded_replay) ... ok\ntest_bidirectional_interface_closure (test_nested_transport.NestedTransport.test_bidirectional_interface_closure) ... ok\ntest_nonuniform_velocity_area_consistency (test_nested_transport.NestedTransport.test_nonuniform_velocity_area_consistency) ... ok\ntest_static_and_invalid (test_nested_transport.NestedTransport.test_static_and_invalid) ... ok\ntest_fast_mac_advection_matches_independent_scipy (test_resolved_plume.ResolvedPlumeTests.test_fast_mac_advection_matches_independent_scipy) ... ok\ntest_matched_source_and_seed_advance_actual_fields (test_resolved_plume.ResolvedPlumeTests.test_matched_source_and_seed_advance_actual_fields) ... ok\ntest_physical_support_and_rotating_seed_bounds (test_resolved_plume.ResolvedPlumeTests.test_physical_support_and_rotating_seed_bounds) ... ok\ntest_pressure_cg_against_exact_dst (test_resolved_plume.ResolvedPlumeTests.test_pressure_cg_against_exact_dst) ... ok\ntest_physical_source_quadrature (test_source_quadrature.SourceQuadrature.test_physical_source_quadrature) ... ok\n\n----------------------------------------------------------------------\nRan 25 tests in 20.930s\n\nOK\n",
+      "test_count": 25
+    },
+    "legacy_source_hashes": {
+      "status": "NOT_RUN",
+      "reason": "Optional archive re-audit: extract companion history ZIP and pass --legacy. Frozen fixtures retained."
+    },
+    "legacy_static_checks": {
+      "status": "NOT_RUN",
+      "reason": "Optional archive re-audit: extract companion history ZIP and pass --legacy. Frozen fixtures retained."
+    },
+    "original_js_pchip_156_vectors": {
+      "status": "NOT_RUN",
+      "reason": "Optional archive re-audit: extract companion history ZIP and pass --legacy. Frozen fixtures retained."
+    },
+    "real_rust_cpu_runtime": {
+      "status": "NOT_RUN",
+      "reason": "Explicit --source-only; no runtime success claimed"
+    },
+    "real_native_fidelity": {
+      "status": "NOT_RUN",
+      "reason": "Explicit --source-only; no runtime success claimed"
+    },
+    "unity_editor_integration": {
+      "status": "NOT_RUN",
+      "reason": "No engine SDK/editor execution; not a required all-platform test matrix."
+    },
+    "godot_editor_integration": {
+      "status": "NOT_RUN",
+      "reason": "No engine SDK/editor execution; not a required all-platform test matrix."
+    },
+    "unreal_editor_integration": {
+      "status": "NOT_RUN",
+      "reason": "No engine SDK/editor execution; not a required all-platform test matrix."
+    },
+    "browser_visual_gpu": {
+      "status": "NOT_RUN",
+      "reason": "Not required for CPU gate. tools/capture_cpu.py captures actual CPU WASM separately."
+    },
+    "v18_full_visual_numerical_parity": {
+      "status": "NOT_ESTABLISHED",
+      "reason": "New MAC/detail paths are not proven equivalent to all v18 numerics, lighting and temporal rendering."
+    },
+    "hardware_game_frame_cost": {
+      "status": "NOT_RUN",
+      "reason": "Transfer test-double allocation counts are not GPU timings or game FPS."
+    }
+  },
+  "status": "INCOMPLETE_RUNTIME"
+}

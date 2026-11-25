@@ -1,0 +1,150 @@
+{
+  "distribution": "0.24",
+  "scope": "publication polish, documentation, static site; no simulation change",
+  "core_version": "0.22.0",
+  "pages": {
+    "full": {
+      "schema": "vapor.pages/1",
+      "distribution": "0.24",
+      "sdk": "0.22.0",
+      "asset_groups": {
+        "airborne-smoke": true,
+        "cloud-motion": true,
+        "field-assets": true
+      },
+      "static_references_checked": 118,
+      "hosted_examples": [
+        "airborne-smoke",
+        "animated-cloud",
+        "fidelity-cloud",
+        "high-fidelity",
+        "scene-depth",
+        "webgpu-volume"
+      ],
+      "files": 94,
+      "runtime_binaries": false,
+      "release_certification": false
+    },
+    "lite": {
+      "schema": "vapor.pages/1",
+      "distribution": "0.24",
+      "sdk": "0.22.0",
+      "asset_groups": {
+        "airborne-smoke": false,
+        "cloud-motion": false,
+        "field-assets": false
+      },
+      "static_references_checked": 106,
+      "hosted_examples": [
+        "airborne-smoke",
+        "fidelity-cloud",
+        "high-fidelity",
+        "scene-depth",
+        "webgpu-volume"
+      ],
+      "files": 52,
+      "runtime_binaries": false,
+      "release_certification": false
+    }
+  },
+  "new_tests": {
+    "passed": 6,
+    "suite": "tests/test_pages.py"
+  },
+  "layout": "PASS",
+  "browser": {
+    "method": "Chromium set_content with exact generated HTML, CSS, JS and media inlined for local visual checks; actual hosted HTTP navigation BLOCKED by policy",
+    "pages": {
+      "index.html": {
+        "title": "Vapor — Overview",
+        "overflow": false,
+        "images": [
+          960,
+          960,
+          960,
+          960
+        ],
+        "codeButtons": 0,
+        "navLinks": 4
+      },
+      "examples.html": {
+        "title": "Vapor — Examples",
+        "overflow": false,
+        "images": [
+          960,
+          960,
+          960,
+          1920,
+          960
+        ],
+        "codeButtons": 0,
+        "navLinks": 4
+      },
+      "guide.html": {
+        "title": "Vapor — Guide",
+        "overflow": false,
+        "images": [],
+        "codeButtons": 11,
+        "navLinks": 4
+      },
+      "status.html": {
+        "title": "Vapor — Status",
+        "overflow": false,
+        "images": [],
+        "codeButtons": 0,
+        "navLinks": 4
+      }
+    },
+    "mobile": {
+      "index.html": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "examples.html": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "guide.html": {
+        "width": 390,
+        "scrollWidth": 390
+      },
+      "status.html": {
+        "width": 390,
+        "scrollWidth": 390
+      }
+    },
+    "page_errors": [],
+    "status": "PASS_VISUAL_CONTENT_ONLY"
+  },
+  "guide_examples": {
+    "javascript_cpu_cloud": "PASS, 320x200 RGBA, 256000 bytes",
+    "python_vpf": "PASS, 176x88x120 cloud",
+    "python_vpa": "PASS, 96x48x64 sample at 3.25s"
+  },
+  "preservation": {
+    "baseline": "0.23 full SDK ZIP",
+    "unchanged_by_directory": {
+      "adapters": 39,
+      "assets": 42,
+      "bindings": 66,
+      "contracts": 3,
+      "crates": 37,
+      "effects": 1,
+      "examples": 30,
+      "fixtures": 35,
+      "include": 5,
+      "lab": 64,
+      "shaders": 7
+    },
+    "unchanged_total": 329,
+    "documentation_changed": [
+      "lab/README.md"
+    ]
+  },
+  "prior_validation": "0.23 report retained; full SDK regression suite not rerun for this documentation/site change",
+  "blockers": [
+    "Actual hosted HTTP browser navigation blocked by environment policy",
+    "Rust CPU/WASM and GPU/engine execution not established",
+    "Source rights/license review and actual GitHub Pages deployment not performed"
+  ]
+}

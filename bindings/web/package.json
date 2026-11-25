@@ -1,0 +1,69 @@
+{
+  "name": "@vapor-game/runtime",
+  "version": "0.22.0",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": {
+      "types": "./vapor.d.ts",
+      "import": "./vapor.mjs"
+    },
+    "./worker": "./vapor-worker.mjs",
+    "./worker-client": {
+      "types": "./worker-client.d.ts",
+      "import": "./worker-client.mjs"
+    },
+    "./gpu": {
+      "types": "./gpu.d.ts",
+      "import": "./gpu.mjs"
+    },
+    "./effects": {
+      "types": "./effects.d.ts",
+      "import": "./effects.mjs"
+    },
+    "./preview": {
+      "types": "./preview.d.ts",
+      "import": "./preview.mjs"
+    },
+    "./gpu-render": {
+      "types": "./gpu-render.d.ts",
+      "import": "./gpu-render.mjs"
+    },
+    "./gpu-temporal": {
+      "types": "./gpu-temporal.d.ts",
+      "import": "./gpu-temporal.mjs"
+    },
+    "./fidelity": {
+      "types": "./fidelity.d.ts",
+      "import": "./fidelity.mjs"
+    },
+    "./gpu-fidelity": {
+      "types": "./gpu-fidelity.d.ts",
+      "import": "./gpu-fidelity.mjs"
+    },
+    "./native-fidelity": {
+      "types": "./native-fidelity.d.ts",
+      "import": "./native-fidelity.mjs"
+    },
+    "./gpu-field": {
+      "types": "./gpu-field.d.ts",
+      "import": "./gpu-field.mjs"
+    },
+    "./field-asset": {
+      "types": "./field-asset.d.ts",
+      "import": "./field-asset.mjs"
+    },
+    "./field-sequence": {
+      "types": "./field-sequence.d.ts",
+      "import": "./field-sequence.mjs"
+    }
+  },
+  "files": [
+    "*.mjs",
+    "*.d.ts",
+    "vapor.wasm",
+    "*.d.mts",
+    "shaders/compute/",
+    "shaders/render/"
+  ]
+}

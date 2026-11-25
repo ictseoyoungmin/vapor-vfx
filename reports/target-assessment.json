@@ -1,0 +1,38 @@
+{
+  "distribution_version": "0.23",
+  "estimation": "subjective product readiness estimate, not a numerical test gate or certification",
+  "lab": {
+    "previous_estimate": 80,
+    "estimate": 85,
+    "target": 90,
+    "achieved": false,
+    "evidence": [
+      "actual 12-second animated cloud, conservative and inverse-map comparison",
+      "hero density deformation and actual 960x600 render",
+      "49 sample JS/Python parity and larger domain coupled aerosol diagnostic"
+    ],
+    "remaining": [
+      "smoke/aerosol visual approval",
+      "validated effect-specific optics, realistic coupled dynamics",
+      "dynamic cloud detail loss and scene performance"
+    ]
+  },
+  "rust_game_sdk": {
+    "previous_estimate": 48,
+    "estimate": 51,
+    "target": 55,
+    "achieved": false,
+    "evidence": [
+      "VPF1-compatible VPA1 playback source",
+      "Rust direct sequence reader and actual-runtime probe source",
+      "actual JS/Python/C++ field parity; GPU allocation control test double"
+    ],
+    "remaining": [
+      "real Rust native/WASM compilation and fidelity parity",
+      "actual GPU/Hybrid and representative game runtime",
+      "no verified engine animation integration"
+    ]
+  },
+  "production_release_ready": false,
+  "assessment_note": "0.23 integrates the visual example and VPF inspector; no claimed percentage increase without additional production runtime/physical fidelity evidence."
+}

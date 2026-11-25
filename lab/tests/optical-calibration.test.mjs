@@ -1,0 +1,4 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {extinctionForTransmission,fitOpacityFromProbe} from '../optical_calibration.mjs';
+test('Beer-Lambert inverse',()=>{const e=extinctionForTransmission(.08,.3);assert.ok(Math.abs(Math.exp(-e*.08)-.3)<1e-14);});
+test('fit fixed path opacity',()=>{const path=.03,alpha=new Float32Array([0,1-Math.exp(-path),1-Math.exp(-path)]),r=fitOpacityFromProbe(alpha,{targetOpacity:.5});assert.ok(Math.abs(1-Math.exp(-r.extinction*path)-.5)<1e-6);assert.equal(r.sampleCount,2);});
+test('rejects empty, saturated and invalid data',()=>{for(const a of [new Float32Array(10),new Float32Array([1]),new Float32Array([NaN])])assert.throws(()=>fitOpacityFromProbe(a));assert.throws(()=>extinctionForTransmission(0,.5));assert.throws(()=>extinctionForTransmission(1e-10,.5));});

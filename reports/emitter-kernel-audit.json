@@ -1,0 +1,72 @@
+{
+  "status": "PASS",
+  "evidence": "independent NumPy cell-center quadrature of equations; NOT Rust/WGSL fluid runtime",
+  "rows": [
+    {
+      "quality": "low",
+      "dx": 0.024,
+      "samples": 2048,
+      "old_exact_integral": 0.0,
+      "new_exact_integral": 8.501907619487859e-07,
+      "analytic_integral": 8.312654161398593e-07,
+      "old_ratio": {
+        "min": 0.0,
+        "max": 16.643053359513544,
+        "mean": 6.62048136355638,
+        "zero_samples": 8,
+        "cv": 0.5694431678348458
+      },
+      "new_ratio": {
+        "min": 0.78940321100662,
+        "max": 1.2016280477674022,
+        "mean": 1.0000281636865458,
+        "zero_samples": 0,
+        "cv": 0.06530029564655111
+      }
+    },
+    {
+      "quality": "medium",
+      "dx": 0.012,
+      "samples": 2048,
+      "old_exact_integral": 0.0,
+      "new_exact_integral": 8.501907619487873e-07,
+      "analytic_integral": 8.312654161398593e-07,
+      "old_ratio": {
+        "min": 0.0,
+        "max": 3.507904868147897,
+        "mean": 1.2413265414625712,
+        "zero_samples": 8,
+        "cv": 0.47696802251342973
+      },
+      "new_ratio": {
+        "min": 0.8387576478832555,
+        "max": 1.1506127749593047,
+        "mean": 1.0000171704457368,
+        "zero_samples": 0,
+        "cv": 0.05258673024005735
+      }
+    },
+    {
+      "quality": "high",
+      "dx": 0.006,
+      "samples": 2048,
+      "old_exact_integral": 8.897063784153814e-07,
+      "new_exact_integral": 8.897063784153814e-07,
+      "analytic_integral": 8.312654161398593e-07,
+      "old_ratio": {
+        "min": 0.9360062005545412,
+        "max": 1.0703036131912007,
+        "mean": 0.9999653270293971,
+        "zero_samples": 0,
+        "cv": 0.025938419377683933
+      },
+      "new_ratio": {
+        "min": 0.9360062005545412,
+        "max": 1.0703036131912007,
+        "mean": 0.9999653270293971,
+        "zero_samples": 0,
+        "cv": 0.025938419377683933
+      }
+    }
+  ]
+}

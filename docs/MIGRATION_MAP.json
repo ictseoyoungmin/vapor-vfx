@@ -1,0 +1,36 @@
+{
+  "from": "0.16",
+  "to": "0.17-layout",
+  "moved": {
+    "tools/reference_fluid.py": "lab/reference_fluid.py",
+    "tools/reference_detail.py": "lab/reference_detail.py",
+    "tools/resolved_source_lab.py": "lab/resolved_source_lab.py",
+    "tools/compare_detail_models.py": "lab/compare_detail_models.py",
+    "tools/render_detail_comparison.mjs": "lab/render_detail_comparison.mjs",
+    "tools/render_source_lab.mjs": "lab/render_source_lab.mjs",
+    "tools/render_fidelity.mjs": "lab/render_fidelity.mjs",
+    "tools/render_fidelity_fog.mjs": "lab/render_fidelity_fog.mjs",
+    "tools/render_reference_fidelity.mjs": "lab/render_reference_fidelity.mjs",
+    "tools/compose_fidelity.py": "lab/compose_fidelity.py",
+    "tools/audit_fidelity_cache.mjs": "lab/audit_fidelity_cache.mjs",
+    "tools/compose_fidelity_cache.py": "lab/compose_fidelity_cache.py",
+    "tools/benchmark_preview.mjs": "lab/benchmark_preview.mjs",
+    "tools/benchmark_procedural.mjs": "lab/benchmark_procedural.mjs",
+    "tools/benchmark_reprojection.mjs": "lab/benchmark_reprojection.mjs",
+    "tools/benchmark_reprojection.py": "lab/benchmark_reprojection.py",
+    "tools/compose_reprojection_sheet.py": "lab/compose_reprojection_sheet.py",
+    "tools/compose_scene_depth.py": "lab/compose_scene_depth.py",
+    "tools/render_scene_depth.mjs": "lab/render_scene_depth.mjs",
+    "tools/render_effect_previews.py": "lab/render_effect_previews.py",
+    "tools/render_effect_previews.mjs": "lab/render_effect_previews.mjs",
+    "tools/profile_procedural.py": "lab/profile_procedural.py",
+    "tools/profile_procedural.mjs": "lab/profile_procedural.mjs",
+    "tools/capture_atlas_demo.py": "lab/capture_atlas_demo.py"
+  },
+  "archive": {
+    "legacy/": "history/legacy/",
+    "docs/": "history/docs/",
+    "reports/": "history/reports/"
+  },
+  "note": "original archive bytes preserved; historical docs use 0.16 paths"
+}

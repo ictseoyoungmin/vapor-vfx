@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "scope": "Evaluate high-resolution original cloud with a coarse inverse flow map.\nOne resampling of the original hero density, bounded global mass normalization.\nNot a high-resolution velocity solve and not meteorological dynamics.\n",
+  "seconds": 12.0,
+  "velocity_grid": [
+    96,
+    48,
+    64
+  ],
+  "hero_grid": [
+    176,
+    88,
+    120
+  ],
+  "mass_correction": 0.9984241908253023,
+  "heat_correction": 1.0,
+  "relative_mass_error": -1.7268906866043003e-09,
+  "detail_energy_before": 0.008740171888584563,
+  "detail_energy_after": 0.006803412173878338
+}

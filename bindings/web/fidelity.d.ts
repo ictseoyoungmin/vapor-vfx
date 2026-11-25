@@ -1,0 +1,13 @@
+import type {Material,EffectKey} from './effects.mjs';
+export type Vec3=readonly [number,number,number];
+export type FidelityFields={density:Float32Array;temperature:Float32Array};
+export type FidelityGrid={cells:Vec3;extent:Vec3};
+export type FidelityLighting={light:{direction:Vec3;radiance:Vec3};sky:Vec3;ground:Vec3;multiScatter:number};
+export type FidelityOptions=FidelityGrid&{fields:FidelityFields;densityCap:number;material:Material;light?:FidelityLighting['light'];sky?:Vec3;ground?:Vec3;multiScatter?:number;shadowSteps?:number;lightScale?:number;localLight?:{position:Vec3;radiance:Vec3;range:number;direction?:Vec3;cone?:number};sunVisibility?:(position:Vec3, direction:Vec3)=>number};
+export type FidelityCamera={eye:Vec3;target:Vec3;width?:number;height?:number;fov?:number;steps?:number;background?:'sky'|'dark';exposure?:number;jitter?:number;skipEmpty?:boolean;scene?:{depth:Float32Array;radiance:Float32Array}};
+export type FidelityFrame={rgba:Uint8Array;alpha:Float32Array;linear:Float32Array;diagnostics:{visiblePixels:number;samples:number;skippedSamples:number;occupiedBricks:number;totalBricks:number;lightCells:number[];cacheBytes:number;reference:true}};
+export function getFidelityPreset(key:EffectKey|number,quality?:'low'|'medium'|'high'):{material:Material;lighting:FidelityLighting};
+export function generateFidelityVolume(key:'cumulus_cloud'|'ground_fog'|'dust',options?:{quality?:'low'|'medium'|'high';cells?:Vec3;extent?:Vec3;settings?:Partial<{seed:number;coverage:number;humidity:number;erosion:number;wind:Vec3}>;time?:number;terrain?:Float32Array}):FidelityGrid&{fields:FidelityFields;densityCap:number;key:string;model:string};
+export function atlasToFidelityFields(atlas:Uint8Array,cells:Vec3,densityCap:number):FidelityFields;
+export function cameraFrame(options:Required<Pick<FidelityCamera,'eye'|'target'|'width'|'height'>>&Pick<FidelityCamera,'fov'>):{eye:number[];ray(x:number,y:number):number[]};
+export function prepareFidelityVolume(options:FidelityOptions):{render(camera:FidelityCamera):FidelityFrame;transmittanceAt(position:Vec3):number};

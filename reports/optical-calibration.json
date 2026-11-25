@@ -1,0 +1,99 @@
+{
+  "scope": "Lab-only one-time Beer-Lambert calibration from a fixed anchor; not measured physical opacity or production preset change",
+  "rows": [
+    {
+      "effect": "cigarette_smoke",
+      "status": "PASS_AUTHORING_ONLY",
+      "anchorTime": 1.9999999999999978,
+      "anchor": "cigarette_smoke-packets-0120",
+      "originalExtinction": 18,
+      "fit": {
+        "extinction": 947.8571740296953,
+        "probeExtinction": 1,
+        "quantile": 0.95,
+        "targetOpacity": 0.55,
+        "minAlpha": 0.00001,
+        "pathDensity": 0.0008424346178897575,
+        "probeAlpha": 0.0008420798694714904,
+        "sampleCount": 9373
+      },
+      "rows": [
+        {
+          "time": 1.0000000000000013,
+          "file": "cigarette_smoke-packets-0060-calibrated.png",
+          "extinction": 947.8571740296953,
+          "visiblePixels": 6545,
+          "rgbaSha256": "dce0fadc693f22e32fb7dfc8d1d72bb0799b26f2699db398c659abf55de4dd7e"
+        },
+        {
+          "time": 1.9999999999999978,
+          "file": "cigarette_smoke-packets-0120-calibrated.png",
+          "extinction": 947.8571740296953,
+          "visiblePixels": 15718,
+          "rgbaSha256": "ea88aab19bbb3a52343e5ee926e779283ec78320b34510b72e6364f0f62acc64"
+        },
+        {
+          "time": 2.9999999999999942,
+          "file": "cigarette_smoke-packets-0180-calibrated.png",
+          "extinction": 947.8571740296953,
+          "visiblePixels": 23720,
+          "rgbaSha256": "fbdce4970aaf93bbc603b73db71fd022f1c82f542c24fdf57177d7e99e64bbdd"
+        },
+        {
+          "time": 3.9999999999999907,
+          "file": "cigarette_smoke-packets-0240-calibrated.png",
+          "extinction": 947.8571740296953,
+          "visiblePixels": 31650,
+          "rgbaSha256": "fbcf94169acbd3489fd7eeda40ed639ab65fe69ca6d9ce56cd743c3d8bc8d518"
+        }
+      ]
+    },
+    {
+      "effect": "exhaled_aerosol",
+      "status": "PASS_AUTHORING_ONLY",
+      "anchorTime": 1.9999999999999978,
+      "anchor": "exhaled_aerosol-packets-0120",
+      "originalExtinction": 14,
+      "fit": {
+        "extinction": 200.84158181930366,
+        "probeExtinction": 1,
+        "quantile": 0.95,
+        "targetOpacity": 0.72,
+        "minAlpha": 0.00001,
+        "pathDensity": 0.006338157986418218,
+        "probeAlpha": 0.00631811423227191,
+        "sampleCount": 28641
+      },
+      "rows": [
+        {
+          "time": 1.0000000000000013,
+          "file": "exhaled_aerosol-packets-0060-calibrated.png",
+          "extinction": 200.84158181930366,
+          "visiblePixels": 12601,
+          "rgbaSha256": "d21ba93ca8c8ffe7946d910a8f3a17d405464fc53745d8e1fe96ac49501518de"
+        },
+        {
+          "time": 1.9999999999999978,
+          "file": "exhaled_aerosol-packets-0120-calibrated.png",
+          "extinction": 200.84158181930366,
+          "visiblePixels": 30354,
+          "rgbaSha256": "e4bcbb05214a80dc413c655aba3a8242f7d44d2af4a05c9762d641803550144e"
+        },
+        {
+          "time": 2.9999999999999942,
+          "file": "exhaled_aerosol-packets-0180-calibrated.png",
+          "extinction": 200.84158181930366,
+          "visiblePixels": 45350,
+          "rgbaSha256": "dde5b61bc763423e716a3835312cdd958462137ea4a31ecb60cadb28123103ff"
+        },
+        {
+          "time": 3.9999999999999907,
+          "file": "exhaled_aerosol-packets-0240-calibrated.png",
+          "extinction": 200.84158181930366,
+          "visiblePixels": 57013,
+          "rgbaSha256": "cb5b49d2c81a7b70c9d056251641824e27b7ffb271ca403791d5f5a68b271b63"
+        }
+      ]
+    }
+  ]
+}

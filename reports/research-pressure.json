@@ -1,0 +1,122 @@
+{
+  "status": "PASS",
+  "evidence": "Matrix-free CG audit against exact open-grid DST and old RB-SOR math.\nIndependent NumPy float64 CG/f32 stored pressure; not Rust runtime/timing.\n",
+  "rows": [
+    {
+      "key": "cigarette_smoke",
+      "case": "manufactured_low_and_high_frequency",
+      "cells": [
+        36,
+        72,
+        36
+      ],
+      "sor32": {
+        "iterations": 32,
+        "residual_rms": 14.904365932002518,
+        "relative_residual": 0.532592106985976,
+        "relative_pressure_l2": 0.359146060136834
+      },
+      "sor256": {
+        "iterations": 256,
+        "residual_rms": 0.011033788447917144,
+        "relative_residual": 0.00039428102237450623,
+        "relative_pressure_l2": 0.00026572859907717623
+      },
+      "cg256": {
+        "iterations": 2,
+        "residual_rms": 6.853046829459392e-05,
+        "relative_residual": 2.4488654309931793e-06,
+        "relative_pressure_l2": 2.569661526119089e-08
+      },
+      "initial_divergence_rms": 27.984579073746907,
+      "cg_gate": true
+    },
+    {
+      "key": "cigarette_smoke",
+      "case": "local_source_velocity",
+      "cells": [
+        36,
+        72,
+        36
+      ],
+      "sor32": {
+        "iterations": 32,
+        "residual_rms": 0.0005113342459515806,
+        "relative_residual": 0.011205805304130111,
+        "relative_pressure_l2": 0.082815285447618
+      },
+      "sor256": {
+        "iterations": 256,
+        "residual_rms": 2.8226546927965473e-07,
+        "relative_residual": 6.185801005642487e-06,
+        "relative_pressure_l2": 5.398655916313412e-05
+      },
+      "cg256": {
+        "iterations": 138,
+        "residual_rms": 9.625510742437404e-08,
+        "relative_residual": 2.109414735792605e-06,
+        "relative_pressure_l2": 4.657839082773626e-06
+      },
+      "initial_divergence_rms": 0.04563119134000291,
+      "cg_gate": true
+    },
+    {
+      "key": "exhaled_aerosol",
+      "case": "manufactured_low_and_high_frequency",
+      "cells": [
+        64,
+        32,
+        32
+      ],
+      "sor32": {
+        "iterations": 32,
+        "residual_rms": 1.3123889256386483,
+        "relative_residual": 0.633082785748417,
+        "relative_pressure_l2": 0.274833366912745
+      },
+      "sor256": {
+        "iterations": 256,
+        "residual_rms": 0.00013693363921528674,
+        "relative_residual": 6.605536520730413e-05,
+        "relative_pressure_l2": 2.820651412859976e-05
+      },
+      "cg256": {
+        "iterations": 2,
+        "residual_rms": 6.175124287516326e-06,
+        "relative_residual": 2.9788158143601594e-06,
+        "relative_pressure_l2": 2.556359326355391e-08
+      },
+      "initial_divergence_rms": 2.0730131274809027,
+      "cg_gate": true
+    },
+    {
+      "key": "exhaled_aerosol",
+      "case": "local_source_velocity",
+      "cells": [
+        64,
+        32,
+        32
+      ],
+      "sor32": {
+        "iterations": 32,
+        "residual_rms": 0.013753008433782672,
+        "relative_residual": 0.022957201462362447,
+        "relative_pressure_l2": 0.06990021093718815
+      },
+      "sor256": {
+        "iterations": 256,
+        "residual_rms": 1.472276491680851e-06,
+        "relative_residual": 2.4575966917022534e-06,
+        "relative_pressure_l2": 6.725811455045379e-06
+      },
+      "cg256": {
+        "iterations": 135,
+        "residual_rms": 6.037565150211292e-07,
+        "relative_residual": 1.0078202173938221e-06,
+        "relative_pressure_l2": 1.940220684811895e-06
+      },
+      "initial_divergence_rms": 0.5990716445264578,
+      "cg_gate": true
+    }
+  ]
+}

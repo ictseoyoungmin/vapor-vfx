@@ -1,0 +1,660 @@
+{
+  "schema": "vapor.effects/1",
+  "quality": {
+    "low": {
+      "scale": 0.5,
+      "pressureIterations": 16,
+      "steps": 40,
+      "uploadHz": 10,
+      "proceduralUploadHz": 2
+    },
+    "medium": {
+      "scale": 1,
+      "pressureIterations": 32,
+      "steps": 72,
+      "uploadHz": 20,
+      "proceduralUploadHz": 4
+    },
+    "high": {
+      "scale": 2,
+      "pressureIterations": 48,
+      "steps": 112,
+      "uploadHz": 30,
+      "proceduralUploadHz": 6
+    }
+  },
+  "presets": [
+    {
+      "id": 1,
+      "key": "cigarette_smoke",
+      "label": "Thin sidestream smoke",
+      "kind": "fluid",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.5,
+        "cooling": 2.3,
+        "buoyancy": 1.4,
+        "densityWeight": 0.02,
+        "drag": 0.18,
+        "vorticity": 0.3,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 3,
+        "densityCap": 2,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          20,
+          32,
+          20
+        ],
+        "cellSize": 0.012
+      },
+      "emitter": {
+        "position": [
+          0.12,
+          0.03,
+          0.12
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.007,
+        "length": 0.018,
+        "speed": 0.12,
+        "densityRate": 6,
+        "temperature": 2.5,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.66,
+          0.74,
+          0.85
+        ],
+        "extinction": 18,
+        "anisotropy": 0.25,
+        "albedo": 0.8,
+        "emission": 0,
+        "thermalFade": 0,
+        "ambient": 0.3
+      },
+      "procedural": null,
+      "profile": null,
+      "ember": true
+    },
+    {
+      "id": 2,
+      "key": "exhaled_aerosol",
+      "label": "Exhaled aerosol",
+      "kind": "fluid",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.65,
+        "cooling": 1.7,
+        "buoyancy": 0.15,
+        "densityWeight": 0.02,
+        "drag": 0.22,
+        "vorticity": 0.25,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 8,
+        "densityCap": 4,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          24,
+          20,
+          20
+        ],
+        "cellSize": 0.04
+      },
+      "emitter": {
+        "position": [
+          0.1,
+          0.36,
+          0.4
+        ],
+        "direction": [
+          1,
+          0.08,
+          0
+        ],
+        "radius": 0.034,
+        "length": 0.08,
+        "speed": 1.8,
+        "densityRate": 25,
+        "temperature": 0.65,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.93,
+          0.95,
+          1
+        ],
+        "extinction": 14,
+        "anisotropy": 0.48,
+        "albedo": 0.95,
+        "emission": 0,
+        "thermalFade": 0.18,
+        "ambient": 0.3
+      },
+      "procedural": null,
+      "profile": {
+        "duration": 2.2,
+        "points": [
+          [
+            0,
+            0,
+            0,
+            1
+          ],
+          [
+            0.12,
+            1,
+            0.8,
+            1
+          ],
+          [
+            0.35,
+            0.85,
+            1,
+            1
+          ],
+          [
+            0.75,
+            0.5,
+            0.55,
+            0.8
+          ],
+          [
+            1,
+            0,
+            0,
+            0
+          ]
+        ]
+      },
+      "ember": false
+    },
+    {
+      "id": 3,
+      "key": "cumulus_cloud",
+      "label": "Cumulus cloud",
+      "kind": "cloud",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.35,
+        "cooling": 1,
+        "buoyancy": 0.8,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.15,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 12,
+        "densityCap": 1,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          48,
+          24,
+          32
+        ],
+        "cellSize": 3
+      },
+      "emitter": {
+        "position": [
+          72.0,
+          7.5,
+          48.0
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 4.199999999999999,
+        "length": 6,
+        "speed": 0.4,
+        "densityRate": 12,
+        "temperature": 0.7,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.96,
+          0.97,
+          1
+        ],
+        "extinction": 0.095,
+        "anisotropy": 0.58,
+        "albedo": 0.95,
+        "emission": 0,
+        "thermalFade": 0,
+        "ambient": 0.34
+      },
+      "procedural": {
+        "seed": 43,
+        "coverage": 0.53,
+        "humidity": 0.76,
+        "wind": [
+          0.6,
+          0,
+          0.22
+        ],
+        "erosion": 0.23
+      },
+      "profile": null,
+      "ember": false
+    },
+    {
+      "id": 4,
+      "key": "ground_fog",
+      "label": "Ground fog",
+      "kind": "fog",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.35,
+        "cooling": 1,
+        "buoyancy": 0.8,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.15,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 12,
+        "densityCap": 1,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          48,
+          12,
+          48
+        ],
+        "cellSize": 1.25
+      },
+      "emitter": {
+        "position": [
+          30.0,
+          3.125,
+          30.0
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 1.75,
+        "length": 2.5,
+        "speed": 0.4,
+        "densityRate": 12,
+        "temperature": 0.7,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.77,
+          0.85,
+          0.94
+        ],
+        "extinction": 0.19,
+        "anisotropy": 0.42,
+        "albedo": 0.94,
+        "emission": 0,
+        "thermalFade": 0,
+        "ambient": 0.42
+      },
+      "procedural": {
+        "seed": 18,
+        "coverage": 0.72,
+        "humidity": 0.88,
+        "wind": [
+          0.25,
+          0,
+          0.1
+        ],
+        "erosion": 0.13
+      },
+      "profile": null,
+      "ember": false
+    },
+    {
+      "id": 5,
+      "key": "steam",
+      "label": "Steam vent",
+      "kind": "fluid",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.85,
+        "cooling": 1.4,
+        "buoyancy": 1.4,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.28,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 6,
+        "densityCap": 4,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          20,
+          28,
+          20
+        ],
+        "cellSize": 0.045
+      },
+      "emitter": {
+        "position": [
+          0.44999999999999996,
+          0.11249999999999999,
+          0.44999999999999996
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.065,
+        "length": 0.09,
+        "speed": 0.8,
+        "densityRate": 24,
+        "temperature": 2.4,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.9,
+          0.93,
+          0.98
+        ],
+        "extinction": 9,
+        "anisotropy": 0.42,
+        "albedo": 0.94,
+        "emission": 0,
+        "thermalFade": 0.12,
+        "ambient": 0.3
+      },
+      "procedural": null,
+      "profile": null,
+      "ember": false
+    },
+    {
+      "id": 6,
+      "key": "smoke",
+      "label": "Ambient smoke",
+      "kind": "fluid",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.26,
+        "cooling": 1.2,
+        "buoyancy": 0.95,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.4,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 8,
+        "densityCap": 4,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          24,
+          28,
+          24
+        ],
+        "cellSize": 0.06
+      },
+      "emitter": {
+        "position": [
+          0.72,
+          0.15,
+          0.72
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.1,
+        "length": 0.12,
+        "speed": 0.5,
+        "densityRate": 20,
+        "temperature": 1.7,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.37,
+          0.41,
+          0.47
+        ],
+        "extinction": 7,
+        "anisotropy": 0.18,
+        "albedo": 0.67,
+        "emission": 0,
+        "thermalFade": 0,
+        "ambient": 0.3
+      },
+      "procedural": null,
+      "profile": null,
+      "ember": false
+    },
+    {
+      "id": 7,
+      "key": "dust",
+      "label": "Dust bank",
+      "kind": "fog",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 0.35,
+        "cooling": 1,
+        "buoyancy": 0.8,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.15,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 8,
+        "densityCap": 1,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          40,
+          16,
+          32
+        ],
+        "cellSize": 0.5
+      },
+      "emitter": {
+        "position": [
+          10.0,
+          1.25,
+          8.0
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.7,
+        "length": 1.0,
+        "speed": 0.4,
+        "densityRate": 12,
+        "temperature": 0.7,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.71,
+          0.52,
+          0.32
+        ],
+        "extinction": 0.32,
+        "anisotropy": 0.3,
+        "albedo": 0.82,
+        "emission": 0,
+        "thermalFade": 0,
+        "ambient": 0.4
+      },
+      "procedural": {
+        "seed": 65,
+        "coverage": 0.57,
+        "humidity": 0.75,
+        "wind": [
+          0.25,
+          0,
+          0.15
+        ],
+        "erosion": 0.22
+      },
+      "profile": null,
+      "ember": false
+    },
+    {
+      "id": 8,
+      "key": "flame",
+      "label": "Stylized hot plume",
+      "kind": "fluid",
+      "config": {
+        "fixedDt": 0.016666666666666666,
+        "maxSubsteps": 4,
+        "pressureIterations": 32,
+        "sorOmega": 1.7,
+        "densityDecay": 2.3,
+        "cooling": 2.6,
+        "buoyancy": 1.8,
+        "densityWeight": 0.02,
+        "drag": 0.08,
+        "vorticity": 0.35,
+        "wind": [
+          0,
+          0,
+          0
+        ],
+        "maxVelocity": 7,
+        "densityCap": 4,
+        "boundary": 0,
+        "origin": [
+          0,
+          0,
+          0
+        ],
+        "cells": [
+          20,
+          28,
+          20
+        ],
+        "cellSize": 0.04
+      },
+      "emitter": {
+        "position": [
+          0.4,
+          0.1,
+          0.4
+        ],
+        "direction": [
+          0,
+          1,
+          0
+        ],
+        "radius": 0.07,
+        "length": 0.08,
+        "speed": 0.65,
+        "densityRate": 18,
+        "temperature": 8,
+        "enabled": true
+      },
+      "material": {
+        "colour": [
+          0.35,
+          0.17,
+          0.055
+        ],
+        "extinction": 8,
+        "anisotropy": 0.12,
+        "albedo": 0.65,
+        "emission": 2.1,
+        "thermalFade": 0,
+        "ambient": 0.22
+      },
+      "procedural": null,
+      "profile": null,
+      "ember": false
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+import test from 'node:test';import assert from 'node:assert/strict';import {readFileSync} from 'node:fs';
+import {encodeFieldAsset,decodeFieldAsset,fieldCRC32} from '../bindings/web/field-asset.mjs';
+const raw=readFileSync(new URL('../fixtures/field-asset.vpf',import.meta.url));const field=decodeFieldAsset(raw);
+test('shared fixture roundtrips losslessly',()=>{assert.deepEqual(field.cells,[4,5,6]);assert.deepEqual(field.extent,[1,2,3]);assert.equal(field.time,1.25);assert.equal(field.fields.density[3],3/128);assert.deepEqual(Buffer.from(encodeFieldAsset(field,field.time)),raw);});
+test('byte offset and owned decoded arrays',()=>{const bytes=Buffer.concat([Buffer.from([1,2,3]),raw,Buffer.from([4])]);const f=decodeFieldAsset(bytes.subarray(3,-1));bytes.fill(0);assert.equal(f.fields.density[3],3/128);});
+test('rejects bad version, length, trailing bytes, payload checksum and dimensions',()=>{for(const offset of [0,4,8,20,64,68,72,76,80]){const a=Buffer.from(raw);a[offset]^=255;assert.throws(()=>decodeFieldAsset(a));}assert.throws(()=>decodeFieldAsset(raw.subarray(0,-1)));assert.throws(()=>decodeFieldAsset(Buffer.concat([raw,Buffer.from([0])])));});
+test('rejects non-finite scalars even with valid checksum',()=>{const a=Buffer.from(raw);a.writeFloatLE(NaN,80);a.writeUInt32LE(fieldCRC32(a.subarray(80)),64);assert.throws(()=>decodeFieldAsset(a));});
+test('invalid encoder input fails',()=>{assert.throws(()=>encodeFieldAsset({...field,extent:[1,0,3]}));assert.throws(()=>encodeFieldAsset(field,-1));assert.throws(()=>encodeFieldAsset({...field,fields:{density:new Float32Array(2),temperature:new Float32Array(2)}}));});

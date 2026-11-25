@@ -1,0 +1,15 @@
+[package]
+name = "vapor-backend"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Explicit CPU, GPU and one-way hybrid backends for Vapor"
+[features]
+default = []
+gpu = ["dep:wgpu", "dep:pollster", "dep:naga"]
+[dependencies]
+vapor-core = { path = "../vapor-core" }
+[target.'cfg(not(target_arch = "wasm32"))'.dependencies]
+wgpu = { version = "=27.0.1", optional = true, default-features = false, features = ["std", "parking_lot", "vulkan", "metal", "dx12", "wgsl"] }
+pollster = { version = "0.4", optional = true }
+naga = { version = "27", optional = true, features = ["wgsl-in"] }

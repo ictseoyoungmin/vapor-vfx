@@ -1,0 +1,23 @@
+{
+  "FileVersion": 3,
+  "Version": 7,
+  "VersionName": "0.16.0-source",
+  "FriendlyName": "Vapor Game SDK",
+  "Description": "Rust CPU/GPU/one-way Hybrid smoke runtime via C ABI; experimental source integration, no packaged-engine verification.",
+  "Category": "Rendering",
+  "CanContainContent": true,
+  "IsBetaVersion": true,
+  "Installed": false,
+  "Modules": [
+    {
+      "Name": "VaporGame",
+      "Type": "Runtime",
+      "LoadingPhase": "PostConfigInit",
+      "PlatformAllowList": [
+        "Win64",
+        "Linux",
+        "Mac"
+      ]
+    }
+  ]
+}

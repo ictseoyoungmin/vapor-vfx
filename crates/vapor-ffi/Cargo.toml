@@ -1,0 +1,15 @@
+[package]
+name = "vapor-ffi"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "C ABI and minimal WASM exports for Vapor"
+[lib]
+name = "vapor"
+crate-type = ["cdylib", "staticlib", "rlib"]
+[dependencies]
+vapor-core = { path = "../vapor-core" }
+vapor-backend = { path = "../vapor-backend" }
+[features]
+default = []
+gpu = ["vapor-backend/gpu"]

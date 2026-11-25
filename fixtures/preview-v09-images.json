@@ -1,0 +1,70 @@
+{
+  "source": "0.9 archive bindings/web/preview.mjs, verified original web module hashes",
+  "quality": "low",
+  "time": 2,
+  "rows": [
+    {
+      "key": "cumulus_cloud",
+      "camera": {
+        "width": 96,
+        "height": 60,
+        "steps": 32,
+        "eye": [
+          108,
+          64.8,
+          -158.4
+        ],
+        "target": [
+          72,
+          36,
+          48
+        ],
+        "background": "sky",
+        "jitter": 0.5
+      },
+      "sha256": "dda8267372e4df0bb4ffcc653a8bf4571691e0b74827591c25b2c94cc06df3b8"
+    },
+    {
+      "key": "ground_fog",
+      "camera": {
+        "width": 96,
+        "height": 60,
+        "steps": 32,
+        "eye": [
+          45,
+          19.5,
+          -66
+        ],
+        "target": [
+          30,
+          7.5,
+          30
+        ],
+        "background": "ground",
+        "jitter": 0.5
+      },
+      "sha256": "48211482443eb2ad062ae63cd769c211e0da9ba3ed8f491891be91eeba030b9a"
+    },
+    {
+      "key": "dust",
+      "camera": {
+        "width": 96,
+        "height": 60,
+        "steps": 32,
+        "eye": [
+          15,
+          8,
+          -22
+        ],
+        "target": [
+          10,
+          4,
+          8
+        ],
+        "background": "dark",
+        "jitter": 0.5
+      },
+      "sha256": "46f62ea93c0dc04ebb8b664f3c875497dbca41fa17237b6e3dee59f4f51e72cf"
+    }
+  ]
+}

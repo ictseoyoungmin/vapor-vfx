@@ -1,0 +1,31 @@
+{
+  "schema": "vapor.release-assessment/1",
+  "distribution_version": "0.22",
+  "source_fingerprint": "026ec92e09196b45a0a877e4e3cf84d537401e62dae43033ebee9e2b0d2a8a3e",
+  "status": "BLOCKED",
+  "complete": true,
+  "production_release_ready": false,
+  "milestones": {
+    "M1": {
+      "status": "BLOCKED",
+      "reason": "Actual VPA1 JS/Python/C++ parity; native Rust CPU/WASM blocked"
+    },
+    "M2": {
+      "status": "IN_PROGRESS",
+      "reason": "FAIL_FULL_PLUME"
+    },
+    "M3": {
+      "status": "IN_PROGRESS",
+      "reason": "actual 12s animated cloud reference plus hero deformation; no Rust/GPU validation"
+    },
+    "M4": {
+      "status": "IN_PROGRESS",
+      "reason": "VPA1 data-only streaming, WebGPU source and buffer lifecycle test-double; hardware/editor unverified"
+    },
+    "M5": {
+      "status": "NOT_READY",
+      "reason": "separate source and animation packages; actual binaries missing"
+    }
+  },
+  "notice": "Status assessment after actual CPU build attempt; full release gate not executed in this delivery."
+}

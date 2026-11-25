@@ -1,0 +1,13 @@
+[package]
+name = "vapor-core"
+version.workspace = true
+edition.workspace = true
+rust-version.workspace = true
+description = "Portable MAC smoke solver, game clock, emitters and volume output"
+
+[lib]
+name = "vapor_core"
+path = "src/lib.rs"
+
+[features]
+default = []

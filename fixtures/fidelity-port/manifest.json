@@ -1,0 +1,223 @@
+{
+  "schema": "vapor.fidelity-port-fixtures/1",
+  "evidence": "Actual 0.15 JS Float32 generator and directional optical renderer, NOT Rust execution",
+  "cases": [
+    {
+      "id": "cloud",
+      "key": "cumulus_cloud",
+      "cells": [
+        24,
+        12,
+        16
+      ],
+      "extent": [
+        144,
+        72,
+        96
+      ],
+      "seed": 43,
+      "coverage": 0.53,
+      "humidity": 0.76,
+      "erosion": 0.23,
+      "wind": [
+        0.6,
+        0,
+        0.22
+      ],
+      "time": 0,
+      "terrain": false
+    },
+    {
+      "id": "cloud-wind",
+      "key": "cumulus_cloud",
+      "cells": [
+        24,
+        12,
+        16
+      ],
+      "extent": [
+        144,
+        72,
+        96
+      ],
+      "seed": 4294967295,
+      "coverage": 0.61,
+      "humidity": 0.69,
+      "erosion": 0.31,
+      "wind": [
+        -0.8,
+        0.12,
+        0.42
+      ],
+      "time": 18.25,
+      "terrain": false
+    },
+    {
+      "id": "fog-terrain",
+      "key": "ground_fog",
+      "cells": [
+        20,
+        12,
+        18
+      ],
+      "extent": [
+        60,
+        15,
+        54
+      ],
+      "seed": 18,
+      "coverage": 0.72,
+      "humidity": 0.88,
+      "erosion": 0.13,
+      "wind": [
+        0.25,
+        0,
+        0.1
+      ],
+      "time": 7,
+      "terrain": true
+    },
+    {
+      "id": "dust",
+      "key": "dust",
+      "cells": [
+        20,
+        12,
+        16
+      ],
+      "extent": [
+        20,
+        8,
+        16
+      ],
+      "seed": 65,
+      "coverage": 0.57,
+      "humidity": 0.75,
+      "erosion": 0.22,
+      "wind": [
+        0.25,
+        0,
+        0.15
+      ],
+      "time": 4,
+      "terrain": false
+    }
+  ],
+  "files": [
+    {
+      "file": "cloud.density.f32",
+      "sha256": "8d16341762066e76984b4b1f5bc839f8341c6bea54bd62d137237fae7f613bb5",
+      "bytes": 18432
+    },
+    {
+      "file": "cloud.temperature.f32",
+      "sha256": "f7b586904e3678145aa47e4232587c913139cef0102d6d8e9276fc80c35cbad3",
+      "bytes": 18432
+    },
+    {
+      "file": "cloud.alpha.f32",
+      "sha256": "05df3fa6d1c5b105bdef082dfb75405da8e3910077db4aaa437a9af2fd50b5ba",
+      "bytes": 10240
+    },
+    {
+      "file": "cloud.linear.f32",
+      "sha256": "9cf26e9f8a0b8c1f7c2c0378f81f07a04e574ea6c6562bf24d0ea6755e9a114a",
+      "bytes": 30720
+    },
+    {
+      "file": "cloud.rgba",
+      "sha256": "d4aa6345c46695f9ff72077ee9a3bc828d122e98ec7332e77e45dbc4b88bc7ba",
+      "bytes": 10240
+    },
+    {
+      "file": "cloud-wind.density.f32",
+      "sha256": "8cceaca252ddbea4fcc43a53e66ad57068dff8058beb77a3a834756248fc559b",
+      "bytes": 18432
+    },
+    {
+      "file": "cloud-wind.temperature.f32",
+      "sha256": "f7b586904e3678145aa47e4232587c913139cef0102d6d8e9276fc80c35cbad3",
+      "bytes": 18432
+    },
+    {
+      "file": "cloud-wind.alpha.f32",
+      "sha256": "cae7f6eeb0a91cde2747b9e28ce2a3ef1259404639fc1c0908962c10f631a9c2",
+      "bytes": 10240
+    },
+    {
+      "file": "cloud-wind.linear.f32",
+      "sha256": "ea8842b2af3af1a6d1fd7ed917acbf6b50df61694bdfe37dd8cbafd40fa1dfa4",
+      "bytes": 30720
+    },
+    {
+      "file": "cloud-wind.rgba",
+      "sha256": "7909cf3e468abe82720057a1deffd371a38878d8a0f67870f6bcf33901bb9bd6",
+      "bytes": 10240
+    },
+    {
+      "file": "fog-terrain.density.f32",
+      "sha256": "6fa9ff8223088bd84b9b10a2f52b4de87a180d5f1a1a82ac83b861abdb551ff8",
+      "bytes": 17280
+    },
+    {
+      "file": "fog-terrain.temperature.f32",
+      "sha256": "55ecc6e1af2de98d63e14a413199b378c013252b5d30ed742aec47414350b24d",
+      "bytes": 17280
+    },
+    {
+      "file": "fog-terrain.alpha.f32",
+      "sha256": "4ea9a7131d829f71dc0256ae3afb7d3b118e9573a41a47872d3d83ae65c56686",
+      "bytes": 10240
+    },
+    {
+      "file": "fog-terrain.linear.f32",
+      "sha256": "ab172b0dc09e4e6e8d68e62d6ea48adc1ab6ef382add4b9a39cfd0708cd83b7b",
+      "bytes": 30720
+    },
+    {
+      "file": "fog-terrain.rgba",
+      "sha256": "d94d83c78fe02dfc4561124aa31e3d052cb58595a0647ffeb450f546558eb58e",
+      "bytes": 10240
+    },
+    {
+      "file": "fog-terrain.terrain.f32",
+      "sha256": "05032ae9ea2a408408e04383ea0d90c49a2b860f6ed2f7eb7dc7a66f57e887b5",
+      "bytes": 1440
+    },
+    {
+      "file": "fog-terrain.depth.f32",
+      "sha256": "c24d3aa0e23d7b5b8d5a1f2ca54a5f57578c89f0e2ac4b86ffc450ba8f60c902",
+      "bytes": 10240
+    },
+    {
+      "file": "fog-terrain.scene.f32",
+      "sha256": "3773a6900e313672953f8990e26182c002ae493ccf3f08249c347a5f5f10f458",
+      "bytes": 30720
+    },
+    {
+      "file": "dust.density.f32",
+      "sha256": "2d50b97fcded4e868c001bd3901a737787b88800136ae821fd224b6613fd80b3",
+      "bytes": 15360
+    },
+    {
+      "file": "dust.temperature.f32",
+      "sha256": "0299f757a85a1aad6cbe1ad2b0eda925d8df667cd04e646af8917f65cbf24537",
+      "bytes": 15360
+    },
+    {
+      "file": "dust.alpha.f32",
+      "sha256": "1c979531abfb12db589d604c945a06d02d776112cb80fac3f7cb31ac4d5d171f",
+      "bytes": 10240
+    },
+    {
+      "file": "dust.linear.f32",
+      "sha256": "b9f7605c939116db439e24e865ddb227726b875bf5f4a965d4c0ac82d89466c3",
+      "bytes": 30720
+    },
+    {
+      "file": "dust.rgba",
+      "sha256": "542127e07cb75f559933892f3f71eb4b12519c7f9ef19ac4e54911b5fdad3f05",
+      "bytes": 10240
+    }
+  ]
+}

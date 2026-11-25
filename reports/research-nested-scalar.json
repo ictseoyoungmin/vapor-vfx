@@ -1,0 +1,70 @@
+{
+  "schema": "vapor.research-nested-scalar/1",
+  "status": "PASS_SCALAR_INTERFACE_ONLY",
+  "notice": "Prescribed velocity, fixed two slabs, no pressure or momentum coupling; not Rust or plume visual evidence",
+  "fine_shape": [
+    32,
+    32,
+    32
+  ],
+  "coarse_shape": [
+    8,
+    8,
+    16
+  ],
+  "uniform_shape": [
+    32,
+    32,
+    96
+  ],
+  "duration": 2.8,
+  "steps": 112,
+  "initial_mass": 0.016485298739065495,
+  "final_mass": 0.016485298739065492,
+  "outer_outflow": 1.2686712894901423e-19,
+  "interface_transfer": 0.016485297529692553,
+  "relative_closure": -2.1045702640086261e-16,
+  "normalized_l1": 0.6039126800134246,
+  "uniform_normalized_l1": 0.1077348008268847,
+  "cells": 33792,
+  "uniform_cells": 98304,
+  "seconds": 1.0608067289995233,
+  "uniform_seconds": 2.9538413170012063,
+  "rows": [
+    {
+      "time": 0.025,
+      "fine_mass": 0.01648529275715537,
+      "coarse_mass": 5.9819101227885435e-09,
+      "outer_outflow": 0.0,
+      "interface_transfer": 4.772538604298612e-09
+    },
+    {
+      "time": 0.8,
+      "fine_mass": 0.012952214761872327,
+      "coarse_mass": 0.003533083977193165,
+      "outer_outflow": 1.1390640994324716e-19,
+      "interface_transfer": 0.0035330827678216464
+    },
+    {
+      "time": 1.6,
+      "fine_mass": 1.5230706074882777e-05,
+      "coarse_mass": 0.01647006803299061,
+      "outer_outflow": 1.261036843837091e-19,
+      "interface_transfer": 0.016470066823619095
+    },
+    {
+      "time": 2.4000000000000004,
+      "fine_mass": 3.837417120630215e-12,
+      "coarse_mass": 0.016485298735228075,
+      "outer_outflow": 1.2686712887213975e-19,
+      "interface_transfer": 0.016485297525856563
+    },
+    {
+      "time": 2.8000000000000003,
+      "fine_mass": 1.4314930138083315e-15,
+      "coarse_mass": 0.01648529873906406,
+      "outer_outflow": 1.2686712894901423e-19,
+      "interface_transfer": 0.016485297529692553
+    }
+  ]
+}

@@ -1,0 +1,54 @@
+{
+  "status": "PASS",
+  "evidence": "Actual CPU test of conservation vs reconstruction diffusion on a translated 3-D pulse.\nAnalytic velocity and scalar (not a smoke solver, not a natural-plume quality claim).\n",
+  "cells": [
+    48,
+    24,
+    24
+  ],
+  "dx": 0.025,
+  "dt": 0.015,
+  "steps": 70,
+  "implementation_sha256": "5b14949a07b338894cba43cc9f3ac8cac8c309aee9c2f2ec2746272be443032e",
+  "rows": [
+    {
+      "model": "maccormack",
+      "initial_mass": 0.006643579216689138,
+      "final_mass": 0.006528757169338078,
+      "analytic_final_mass": 0.0065610423846355235,
+      "relative_mass_error": -0.0048596117009251415,
+      "l1_integral_relative": 0.1599157830298805,
+      "minimum": 0.0,
+      "peak": 0.859054446220398,
+      "elapsed_ms": 1356.063830000494,
+      "accounted_outflow": null,
+      "budget_residual": null
+    },
+    {
+      "model": "donor",
+      "initial_mass": 0.006643579216689138,
+      "final_mass": 0.0057549177188600635,
+      "analytic_final_mass": 0.0065610423846355235,
+      "relative_mass_error": -0.1213389107712328,
+      "l1_integral_relative": 0.5260782992715272,
+      "minimum": 5.833853273237862e-23,
+      "peak": 0.4826466026827968,
+      "elapsed_ms": 113.24383699957252,
+      "accounted_outflow": 0.0008886614978290746,
+      "budget_residual": 0.0
+    },
+    {
+      "model": "muscl",
+      "initial_mass": 0.006643579216689138,
+      "final_mass": 0.0066317332961163,
+      "analytic_final_mass": 0.0065610423846355235,
+      "relative_mass_error": 0.010640485975270035,
+      "l1_integral_relative": 0.10779580652996436,
+      "minimum": 3.8533888484284773e-31,
+      "peak": 0.8412027228485673,
+      "elapsed_ms": 183.30146999960562,
+      "accounted_outflow": 1.1845920572837804e-05,
+      "budget_residual": 5.522654816098038e-19
+    }
+  ]
+}

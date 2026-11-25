@@ -1,0 +1,18 @@
+import {loadVapor} from '../../bindings/web/vapor.mjs';
+import {NativeFidelityCPU} from '../../bindings/web/native-fidelity.mjs';
+import {generateFidelityVolume} from '../../bindings/web/fidelity.mjs';
+import {decodeFieldAsset} from '../../bindings/web/field-asset.mjs';
+import {GpuFieldVolume} from '../../bindings/web/gpu-field.mjs';
+import {GpuFidelityVolumeRenderer} from '../../bindings/web/gpu-fidelity.mjs';
+const scene=await (await fetch('../../contracts/cloud-hero.json')).json();
+const canvas=document.querySelector('#canvas'),status=document.querySelector('#status'),start=document.querySelector('#start'),stop=document.querySelector('#stop'),source=document.querySelector('#source');
+const asset=document.querySelector('#asset');source.onchange=()=>{asset.hidden=source.value!=='baked';};
+let device,ctx,field,renderer,animation=0,stopped=false;
+function cleanup(){cancelAnimationFrame(animation);animation=0;renderer?.dispose();field?.dispose();renderer=field=null;device?.destroy();device=null;}
+async function run(){start.disabled=true;source.disabled=true;stop.disabled=true;cleanup();stopped=false;
+ try{if(!navigator.gpu)throw Error('WebGPU unavailable');const adapter=await navigator.gpu.requestAdapter();if(!adapter)throw Error('No WebGPU adapter');device=await adapter.requestDevice();const currentDevice=device;device.lost.then(e=>{if(device===currentDevice&&renderer){status.textContent=`Device lost: ${e.message}`;cancelAnimationFrame(animation);}});ctx=canvas.getContext('webgpu');const format=navigator.gpu.getPreferredCanvasFormat(),srgb=format+'-srgb';ctx.configure({device,format,viewFormats:[srgb],alphaMode:'opaque'});
+ const opts={cells:scene.profiles.preview.cells,extent:scene.extent,quality:scene.quality,settings:scene.settings,time:scene.time};const t=performance.now();let v;if(source.value==='baked'){const file=asset.files?.[0];if(!file||file.size>80+2097152*8)throw Error('Select a bounded VPF1 cloud file');v=decodeFieldAsset(await file.arrayBuffer());if(v.extent.some((x,i)=>x!==scene.extent[i]))throw Error('This cloud demo requires the canonical extent');}else v=source.value==='rust'?new NativeFidelityCPU(await loadVapor()).generate(scene.preset,opts):generateFidelityVolume(scene.preset,opts);const ms=performance.now()-t;
+ field=await GpuFieldVolume.create(device,v);renderer=await GpuFidelityVolumeRenderer.create(field,{format:srgb});const l=scene.lighting;const base={target:scene.camera.target,material:scene.material,light:l.light.direction,sunRadiance:l.light.radiance,sky:l.sky,ground:l.ground,multiScatter:l.multiScatter,lightSteps:24,lightScale:.5,exposure:scene.camera.exposure,aspect:canvas.width/canvas.height,steps:96,background:'sky'};let last=0,frames=0;const startTime=performance.now();
+ const draw=now=>{try{if(!renderer)return;const a=(now-startTime)*.00018,eye=[72+38*Math.cos(a)-198*Math.sin(a),15,48-198*Math.cos(a)-38*Math.sin(a)];const d=renderer.render(ctx.getCurrentTexture().createView({format:srgb}),{...base,eye});if(now-last>500||frames===0){status.textContent=`Source: ${v.model}\nField: ${v.cells.join(' × ')}; generation: ${ms.toFixed(1)} ms\nStorage: ${(field.bytes/1048576).toFixed(2)} MiB; cache builds: ${d.cacheBuilds}; cache: ${d.cacheReused?'reused':'computed'}`;last=now;}frames++;if(!stopped)animation=requestAnimationFrame(draw);}catch(e){status.textContent=String(e);cancelAnimationFrame(animation);}};stop.disabled=false;animation=requestAnimationFrame(draw);
+ }catch(e){cleanup();status.textContent=String(e);}finally{start.disabled=false;source.disabled=false;}}
+start.onclick=run;stop.onclick=()=>{stopped=true;cancelAnimationFrame(animation);stop.disabled=true;};window.addEventListener('pagehide',cleanup);

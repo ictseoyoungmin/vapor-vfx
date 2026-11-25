@@ -1,0 +1,124 @@
+{
+  "distribution_version": "0.23",
+  "scope": "Fictional visual example, no runtime physics or Rust/GPU execution",
+  "reproduced_v2_frame": {
+    "frame_index": 56,
+    "time": 3.5,
+    "resolution": [
+      960,
+      540
+    ],
+    "rgba_bytes": 2073600,
+    "sha256": "afb6aba5f6fa10d1965a39045865a08447864f8ace95981cafc456d818fa5e2b",
+    "byte_exact_match": true
+  },
+  "player": {
+    "embedded_videos_preserved": true,
+    "sha256": [
+      "ea3995dc6cef96ccb16083e104f458b4fb9fb60ff26e0071e14fa68f5f706da4",
+      "e508f410baca590f26e49b181c4ec23f9d4505ecc4d324ff05859648e7a0b5f9"
+    ],
+    "browser": {
+      "status": "PASS",
+      "method": "set_content exact standalone HTML",
+      "checks": [
+        "decode",
+        "play/pause",
+        "seek",
+        "frame-step both directions",
+        "A/B same time",
+        "speed",
+        "loop",
+        "zoom"
+      ],
+      "page_errors": [],
+      "external_http_requests": []
+    },
+    "html_sha256": "a69709453d2643eea9a639faba77893da167c63b00f26a08f63ae4ea119d5035"
+  },
+  "inspector": {
+    "status": "PASS",
+    "scope": "Actual Node JS CPU optical renders, Python-exported Float32 VPF1; no Rust/GPU runtime",
+    "assetRoundtripFrames": 3,
+    "rows": [
+      {
+        "name": "front",
+        "sha256": "ef8dc85d217576bf28a48271cdae1e4a66442ca3fbd634c32ff11d23b9446003",
+        "width": 480,
+        "height": 270,
+        "cells": [
+          160,
+          112,
+          104
+        ],
+        "time": 3.5,
+        "ms": 942.037298,
+        "reused": false,
+        "cacheBuilds": 1,
+        "visiblePixels": 13415
+      },
+      {
+        "name": "orbit",
+        "sha256": "e15f0f39027300a543b2fbb232dc3266881bcbb02e7adb89962f92c4385ece1e",
+        "width": 480,
+        "height": 270,
+        "cells": [
+          160,
+          112,
+          104
+        ],
+        "time": 3.5,
+        "ms": 334.5583999999999,
+        "reused": true,
+        "cacheBuilds": 1,
+        "visiblePixels": 12077
+      },
+      {
+        "name": "later",
+        "sha256": "6f0698fa9302f42ebe72a52f61015013f29b3d5b0a20596452e0a5cc9b7e19b4",
+        "width": 480,
+        "height": 270,
+        "cells": [
+          160,
+          112,
+          104
+        ],
+        "time": 5,
+        "ms": 999.8115879999996,
+        "reused": false,
+        "cacheBuilds": 2,
+        "visiblePixels": 20208
+      },
+      {
+        "name": "backlight",
+        "sha256": "69caad5a190e3f01f30d963f079967a74eeaccc071630ea5adbe75075f0e8fb3",
+        "width": 480,
+        "height": 270,
+        "cells": [
+          160,
+          112,
+          104
+        ],
+        "time": 5,
+        "ms": 714.5035639999996,
+        "reused": false,
+        "cacheBuilds": 3,
+        "visiblePixels": 20208
+      }
+    ]
+  },
+  "inspector_browser": {
+    "status": "BLOCKED",
+    "reason": "Chromium navigation to local HTTP returned ERR_BLOCKED_BY_ADMINISTRATOR; actual JS renderer executed in Node, not browser inspector"
+  },
+  "runtime": {
+    "rust": "BLOCKED: rustc and cargo absent",
+    "gpu": "NOT_RUN",
+    "hybrid": "NOT_RUN"
+  },
+  "source_changes": "new examples, Lab recipe and package tooling; core, shaders, bindings and engine adapters unchanged",
+  "protected_product_file_count": 155,
+  "protected_product_files_byte_identical_to_0_22": true,
+  "prior_cloud_assets_preserved_byte_exact": 37,
+  "catalog_links": "PASS"
+}

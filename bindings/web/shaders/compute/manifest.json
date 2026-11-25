@@ -1,0 +1,20 @@
+{
+  "version": 2,
+  "detailPhasePeriodSeconds": 16,
+  "workgroup": 64,
+  "paramsBytes": 128,
+  "controlBytes": 3072,
+  "cellBytes": 32,
+  "beforePressure": [
+    ["classify", "swap"], ["force", "swap"], ["curl", "aux"],
+    ["vorticity", "swap"], ["limit_state", "swap"],
+    ["advect_velocity", "predict"], ["correct_velocity", "swap"],
+    ["boundary_pre", "swap"], ["divergence", "swap"]
+  ],
+  "pressure": [["sor_red", "inplace"], ["sor_black", "inplace"]],
+  "afterPressure": [
+    ["project", "swap"], ["boundary_post", "swap"], ["limit_state", "swap"],
+    ["advect_scalar", "predict"], ["correct_scalar", "swap"], ["limit_state", "swap"]
+  ],
+  "detail": [["detail_classify", "swap"], ["detail_predict", "predict"], ["detail_correct", "swap"]]
+}

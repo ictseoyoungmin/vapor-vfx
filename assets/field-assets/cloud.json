@@ -1,0 +1,83 @@
+{
+  "schema": "vapor.baked-field/1",
+  "source": "actual JS Fidelity reference, not Rust",
+  "preset": "cumulus_cloud",
+  "file": "cloud.vpf",
+  "sha256": "9cc98ed8a4673ca3590be02e18af905909401f7fb918e2cddec95559da7436db",
+  "cells": [
+    176,
+    88,
+    120
+  ],
+  "extent": [
+    144,
+    72,
+    96
+  ],
+  "densityCap": 1,
+  "time": 0,
+  "material": {
+    "colour": [
+      0.96,
+      0.97,
+      1
+    ],
+    "extinction": 0.32,
+    "anisotropy": 0.58,
+    "albedo": 0.95,
+    "emission": 0,
+    "thermalFade": 0,
+    "ambient": 0.1
+  },
+  "lighting": {
+    "light": {
+      "direction": [
+        -0.8,
+        0.56,
+        0.16
+      ],
+      "radiance": [
+        2.6,
+        2.45,
+        2.2
+      ]
+    },
+    "sky": [
+      0.07,
+      0.105,
+      0.18
+    ],
+    "ground": [
+      0.035,
+      0.04,
+      0.05
+    ],
+    "multiScatter": 0.29,
+    "shadowSteps": 40,
+    "lightScale": 0.8
+  },
+  "camera": {
+    "eye": [
+      110,
+      15,
+      -150
+    ],
+    "target": [
+      72,
+      32,
+      48
+    ],
+    "fov": 40,
+    "exposure": 0.95,
+    "jitter": 0.5,
+    "background": "sky",
+    "width": 960,
+    "height": 600,
+    "steps": 224
+  },
+  "scene": "sky",
+  "rgbaSha256": "a635eb60a11135542611c5d099339e811baafb9690a6a5d22f34972bf40c7095",
+  "visiblePixels": 110244,
+  "losslessRoundtrip": true,
+  "bytes": 14868560
+}

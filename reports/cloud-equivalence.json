@@ -1,0 +1,55 @@
+{
+  "schema": "vapor.cloud-equivalence/1",
+  "status": "BLOCKED",
+  "complete": true,
+  "profile": "hero",
+  "scene_sha256": "28281a6b9a605166d1c4c679eeeef2293e9e00a2f1ab76798a9d4be1bf6f9d85",
+  "source_fingerprint": "77dd8f1897c4772c70a3e66d6f294c1734fd9e48a93820dac3ce7002b191fc11",
+  "reference_status": "PASS",
+  "rust_status": "BLOCKED",
+  "production_release_ready": false,
+  "reference": {
+    "schema": "vapor.cloud-reference/1",
+    "source": "actual-js-reference",
+    "profile": "hero",
+    "cells": [
+      176,
+      88,
+      120
+    ],
+    "extent": [
+      144,
+      72,
+      96
+    ],
+    "densityCap": 1,
+    "width": 960,
+    "height": 600,
+    "files": {
+      "density.f32": {
+        "bytes": 7434240,
+        "sha256": "c8e2ee286db381c75e95c5012bd226cdaaa80eba66208ac13afa09eb0593ca7a"
+      },
+      "temperature.f32": {
+        "bytes": 7434240,
+        "sha256": "112487dfa3ce6d92e9c8aa35316dd5416a7469a87b803e880ce410f2df6c7a75"
+      },
+      "alpha.f32": {
+        "bytes": 2304000,
+        "sha256": "2e92e30006b5ade69279574d1bf6aba92b90461580e52aad2ca6e93f4d33b8bf"
+      },
+      "frame.rgba": {
+        "bytes": 2304000,
+        "sha256": "a635eb60a11135542611c5d099339e811baafb9690a6a5d22f34972bf40c7095"
+      }
+    },
+    "generationMs": 1202.7049599999998,
+    "prepareMs": 1539.7728209999998,
+    "renderMs": 3350.603905,
+    "visiblePixels": 110244
+  },
+  "reference_png_sha256": "c6077cd8b474af855299a4135a6c21a00cd686fbbfa4d869f69f2b5f653f0cc7",
+  "reason": "actual Rust toolchain not available",
+  "previous_reference_rgba_sha256": "a635eb60a11135542611c5d099339e811baafb9690a6a5d22f34972bf40c7095",
+  "previous_reference_exact": true
+}

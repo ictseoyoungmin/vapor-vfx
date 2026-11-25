@@ -1,0 +1,127 @@
+# Representative CPU/native + WASM path. Optional software GPU correctness run.
+# This workflow is supplied, NOT claimed to have run in this delivery session.
+name: cpu-first-validation
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+    inputs:
+      wasm_browser:
+        description: Also build CPU WASM and capture browser example
+        type: boolean
+        default: false
+      software_gpu:
+        description: Also run GPU/Hybrid on software Vulkan (not hardware performance)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+jobs:
+  cpu:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Toolchains
+        run: |
+          rustup toolchain install 1.88.0 --profile minimal
+          rustup default 1.88.0
+          python -m pip install numpy
+          npm install --global typescript@5.9.3
+      - name: Source checks and actual CPU native
+        run: python tools/check_sdk.py --require-runtime
+      - name: Actual CPU effect presets and procedural parity
+        run: python tools/validate_effects.py --modes cpu --capture
+      - name: Actual CPU fluid timeline and timing
+        run: python tools/profile_effects.py --modes cpu --capture
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cpu-runtime-evidence
+          path: |
+            reports/validation-current.json
+            reports/local/
+            dist/native/
+            target/cpu-workspace/Cargo.lock
+  wasm-browser:
+    if: github.event_name == 'workflow_dispatch' && inputs.wasm_browser
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Toolchains
+        run: |
+          rustup toolchain install 1.88.0 --profile minimal
+          rustup default 1.88.0
+          rustup target add wasm32-unknown-unknown
+          python -m pip install playwright
+          python -m playwright install --with-deps chromium
+      - name: Actual CPU WASM build and Node smoke
+        run: |
+          python tools/build.py --web
+          node examples/node/smoke.mjs
+          python tools/validate_wasm_fidelity.py
+      - name: Actual CPU browser captures
+        run: python tools/capture_cpu.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: cpu-wasm-browser-evidence
+          path: |
+            reports/local/cpu-captures/
+            bindings/web/vapor.wasm
+            bindings/web/vapor.wasm.build.json
+  software-gpu:
+    if: github.event_name == 'workflow_dispatch' && inputs.software_gpu
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Rust and software Vulkan
+        run: |
+          rustup toolchain install 1.88.0 --profile minimal
+          rustup default 1.88.0
+          python -m pip install numpy
+          sudo apt-get update
+          sudo apt-get install -y mesa-vulkan-drivers libvulkan1
+          mkdir -p /tmp/vapor-xdg
+          chmod 700 /tmp/vapor-xdg
+      - name: Actual WGSL and GPU/Hybrid correctness, explicitly software
+        env:
+          XDG_RUNTIME_DIR: /tmp/vapor-xdg
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+        run: python tools/validate_runtime.py --build --modes gpu hybrid --allow-software --capture
+      - name: Actual GPU and Hybrid effect presets
+        env:
+          XDG_RUNTIME_DIR: /tmp/vapor-xdg
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+        run: python tools/validate_effects.py --modes gpu hybrid --allow-software --capture
+      - name: Actual software GPU/Hybrid timeline (not hardware timing)
+        env:
+          XDG_RUNTIME_DIR: /tmp/vapor-xdg
+          VK_ICD_FILENAMES: /usr/share/vulkan/icd.d/lvp_icd.x86_64.json
+        run: python tools/profile_effects.py --modes gpu hybrid --allow-software --capture
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: software-gpu-runtime-evidence
+          path: |
+            reports/local/gpu-hybrid/
+            reports/local/effects-gpu-hybrid/
+            reports/local/profile-gpu-hybrid/
+            Cargo.lock

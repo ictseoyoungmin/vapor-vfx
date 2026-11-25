@@ -1,0 +1,4 @@
+import {readFile,writeFile} from 'node:fs/promises';import {dirname,join} from 'node:path';import {createHash} from 'node:crypto';
+import {FieldSequence,frameFilename} from '../bindings/web/field-sequence.mjs';import {encodeFieldAsset} from '../bindings/web/field-asset.mjs';
+const [path,out]=process.argv.slice(2);if(!path||!out)throw Error('usage: sequence_hashes INDEX OUTPUT.json');const seq=new FieldSequence(await readFile(path),i=>readFile(join(dirname(path),frameFilename(i))));const rows=[];const times=seq.index.records.map(x=>x.time);for(let i=0;i<times.length;i++){const ts=i+1<times.length?[times[i],(times[i]+times[i+1])/2]:[times[i]];for(const t of ts){const f=await seq.sample(t);rows.push({time:t,sha256:createHash('sha256').update(encodeFieldAsset(f,t)).digest('hex')});}}
+await writeFile(out,JSON.stringify({rows,maxCachedFrames:2,finalCachedFrames:seq.cachedFrames},null,2));

@@ -1,0 +1,13 @@
+[configuration]
+entry_symbol = "vapor_godot_library_init"
+compatibility_minimum = "4.4"
+reloadable = false
+[libraries]
+linux.x86_64 = "res://bin/libvapor_godot.so"
+windows.x86_64 = "res://bin/vapor_godot.dll"
+macos.arm64 = "res://bin/libvapor_godot.dylib"
+macos.x86_64 = "res://bin/libvapor_godot.dylib"
+[dependencies]
+linux.x86_64 = {"res://bin/libvapor.so": ""}
+windows.x86_64 = {"res://bin/vapor.dll": ""}
+macos = {"res://bin/libvapor.dylib": ""}

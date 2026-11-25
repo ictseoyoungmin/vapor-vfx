@@ -1,0 +1,5 @@
+use vapor_core::{field_sequence::{FieldSequence,SequenceIndex},field_asset::BakedField};
+const INDEX:&[u8]=include_bytes!("../../../fixtures/field-sequence/sequence.vpa");
+const FRAMES:[&[u8];3]=[include_bytes!("../../../fixtures/field-sequence/frame_0000.vpf"),include_bytes!("../../../fixtures/field-sequence/frame_0001.vpf"),include_bytes!("../../../fixtures/field-sequence/frame_0002.vpf")];
+#[test] fn sequence_matches_python_fixture(){let mut s=FieldSequence::new(INDEX).unwrap();let mut calls=0;let mut load=|i:usize,n:usize|{calls+=1;assert_eq!(n,FRAMES[i].len());Ok(FRAMES[i].to_vec())};let f=s.sample(0.25,&mut load).unwrap();let expected=BakedField::decode(include_bytes!("../../../fixtures/field-sequence/sample-025.vpf")).unwrap();assert_eq!(f.encode().unwrap(),expected.encode().unwrap());s.sample(0.25,&mut load).unwrap();s.sample(99.,&mut load).unwrap();assert_eq!(s.cached_frames(),2);assert_eq!(calls,3);}
+#[test] fn reject_corrupt_index(){let mut bad=INDEX.to_vec();bad[64]^=1;assert!(SequenceIndex::decode(&bad).is_err());}

@@ -1,0 +1,86 @@
+{
+  "schema": "vapor.airborne-demo/1",
+  "scope": "Fictional art-directed VFX; not an explosion physics model or runtime fluid solver. Arbitrary scene coordinates.",
+  "cells": [
+    160,
+    112,
+    104
+  ],
+  "extent": [
+    14.0,
+    10.1,
+    9.4
+  ],
+  "densityCap": 1,
+  "camera": {
+    "eye": [
+      7.0,
+      5.55,
+      -13.0
+    ],
+    "target": [
+      7.0,
+      5.55,
+      4.7
+    ],
+    "fov": 34,
+    "exposure": 1.05
+  },
+  "material": {
+    "colour": [
+      0.072,
+      0.067,
+      0.064
+    ],
+    "extinction": 5.8,
+    "anisotropy": 0.19,
+    "albedo": 0.78,
+    "emission": 7.6,
+    "thermalFade": 0,
+    "ambient": 0.035
+  },
+  "lighting": {
+    "light": {
+      "direction": [
+        0.76,
+        0.64,
+        -0.18
+      ],
+      "radiance": [
+        5.4,
+        5.0,
+        4.5
+      ]
+    },
+    "sky": [
+      0.16,
+      0.22,
+      0.31
+    ],
+    "ground": [
+      0.042,
+      0.045,
+      0.052
+    ],
+    "multiScatter": 0.19,
+    "shadowSteps": 28,
+    "lightScale": 0.625
+  },
+  "frames": [
+    {
+      "time": 2.5,
+      "frame": 40,
+      "file": "smoke-0040.vpf"
+    },
+    {
+      "time": 3.5,
+      "frame": 56,
+      "file": "smoke-0056.vpf"
+    },
+    {
+      "time": 5.0,
+      "frame": 80,
+      "file": "smoke-0080.vpf"
+    }
+  ]
+}

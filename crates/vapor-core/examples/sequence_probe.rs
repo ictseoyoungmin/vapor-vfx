@@ -1,0 +1,4 @@
+use std::{fs::File,io::Read,path::Path};
+use vapor_core::{Error,field_sequence::{FieldSequence,frame_filename}};
+fn bounded(path:&Path,max:usize)->std::io::Result<Vec<u8>>{let mut b=Vec::new();File::open(path)?.take((max+1) as u64).read_to_end(&mut b)?;if b.len()>max{return Err(std::io::Error::new(std::io::ErrorKind::InvalidData,"file too large"));}Ok(b)}
+fn main()->Result<(),Box<dyn std::error::Error>>{let args:Vec<_>=std::env::args().collect();if args.len()!=4{return Err("usage: sequence_probe INDEX TIME OUTPUT.vpf".into());}let path=Path::new(&args[1]);let dir=path.parent().unwrap_or(Path::new("."));let mut s=FieldSequence::new(&bounded(path,64+4096*16)?)?;let time=args[2].parse::<f64>()?;let f=s.sample(time,|i,n|bounded(&dir.join(frame_filename(i)?),n).map_err(|_|Error::InvalidArgument("frame I/O failed")))?;std::fs::write(&args[3],f.encode()?)?;Ok(())}

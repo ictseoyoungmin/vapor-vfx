@@ -1,0 +1,8 @@
+import {createHash} from 'node:crypto';
+import {test} from 'node:test';import assert from 'node:assert/strict';
+import {summarizeAtlas,renderAtlasViews} from '../tools/atlas_preview.mjs';
+import {createEffect} from '../bindings/web/effects.mjs';
+function atlas(cells){const a=new Uint8Array(cells.reduce((x,y)=>x*y,1)*4);for(let i=3;i<a.length;i+=4)a[i]=255;return a;}
+test('density bounds and quantized integral use actual render-grid spacing',()=>{const a=atlas([4,4,4]);a[((2*4+1)*4+3)*4]=255;const m=summarizeAtlas(a,[4,4,4],[4,8,12],2);assert.equal(m.occupiedVoxels,1);assert.equal(m.quantizedDensityIntegral,12);assert.deepEqual(m.boundsMin,[3,2,6]);assert.deepEqual(m.boundsMax,[4,4,9]);assert.deepEqual(m.centroid,[3.5,3,7.5]);});
+test('empty, malformed or invalid alpha atlas is rejected',()=>{const a=atlas([4,4,4]);assert.throws(()=>summarizeAtlas(a,[4,4,4],[4,4,4],2),/empty/);a[0]=1;a[7]=0;assert.throws(()=>summarizeAtlas(a,[4,4,4],[4,4,4],2),/alpha/);assert.throws(()=>summarizeAtlas(a.subarray(4),[4,4,4],[4,4,4],2),/metadata/);});
+test('actual procedural atlas renders two nonempty camera views, same source hash',async()=>{const e=await createEffect('cumulus_cloud',{quality:'low'});try{const a=await e.atlasRGBA8();const result=renderAtlasViews({atlas:a,cells:[...e.renderCells],extent:e.extent,densityCap:e.config.densityCap,material:e.definition.material,background:'sky',width:96,height:64,steps:32});assert.equal(result.rgba.length,192*64*4);assert.equal(result.views.length,2);assert.ok(result.views.every(v=>v.visiblePixels>0));assert.equal(result.atlasSha256,createHash('sha256').update(a).digest('hex'));assert.equal(result.width,192);}finally{e.dispose();}});

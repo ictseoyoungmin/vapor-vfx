@@ -1,0 +1,18 @@
+{
+  "distribution_version": "0.22",
+  "native_cpu_build": {
+    "status": "BLOCKED",
+    "exit": 2,
+    "log": "BLOCKED: cargo/rustc absent. Install Rust 1.88+. For web also install wasm32-unknown-unknown. No runtime created.\n"
+  },
+  "sequence_native": {
+    "status": "BLOCKED",
+    "exit": 2,
+    "log": "BLOCKED /mnt/data/vapor_0.22/reports/local/sequence-native/validation.json\n"
+  },
+  "network": "curl DNS failed for official rust distribution, Debian mirror, GitHub; separate file download route unavailable",
+  "gpu": "NOT_RUN",
+  "wasm": "NOT_RUN",
+  "csharp": "NOT_RUN",
+  "production_release_ready": false
+}

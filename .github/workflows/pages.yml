@@ -1,0 +1,52 @@
+name: Pages preview
+on:
+  workflow_dispatch:
+    inputs:
+      rights_confirmed:
+        description: 'I have confirmed code, asset and third-party redistribution rights.'
+        type: boolean
+        required: true
+        default: false
+      asset_mode:
+        description: 'Include complete optional asset groups'
+        type: choice
+        options: [auto, none, full]
+        default: auto
+permissions:
+  contents: read
+concurrency:
+  group: pages
+  cancel-in-progress: false
+jobs:
+  build:
+    if: inputs.rights_confirmed && github.ref_name == github.event.repository.default_branch
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Verify site generator
+        run: python -m unittest discover -s tests -p test_pages.py
+      - name: Build curated website
+        env:
+          ASSET_MODE: ${{ inputs.asset_mode }}
+        run: python tools/build_pages.py --assets "$ASSET_MODE"
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist/pages
+  deploy:
+    if: inputs.rights_confirmed && github.ref_name == github.event.repository.default_branch
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy Pages
+        id: deployment
+        uses: actions/deploy-pages@v4

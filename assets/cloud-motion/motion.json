@@ -1,0 +1,296 @@
+{
+  "status": "PASS",
+  "model": "Detail-preserving cloud deformation via an advected inverse flow map.\nSame prescribed MAC curl as cloud_motion; sample ORIGINAL density once per keyframe.\nGlobal bounded scalar normalization (not local conservative transport). Research only.\n",
+  "cells": [
+    96,
+    48,
+    64
+  ],
+  "extent": [
+    144.0,
+    72.0,
+    96.0
+  ],
+  "seconds": 12,
+  "keyframe_fps": 2,
+  "speed": 2,
+  "elapsed_seconds": 9.634641591999753,
+  "rows": [
+    {
+      "index": 0,
+      "time": 0.0,
+      "relative_mass_error": 0.0,
+      "raw_mass_correction": 1.0,
+      "heat_correction": 1.0,
+      "detail_energy": 0.02166944152886857,
+      "relative_shape_change": 0.0,
+      "peak_density": 0.920799970626831,
+      "substeps": 0
+    },
+    {
+      "index": 1,
+      "time": 0.5,
+      "relative_mass_error": 1.973726217194011e-09,
+      "raw_mass_correction": 1.0003210506292288,
+      "heat_correction": 1.0,
+      "detail_energy": 0.018210703335038724,
+      "relative_shape_change": 0.024931355443858116,
+      "peak_density": 0.921095609664917,
+      "substeps": 2
+    },
+    {
+      "index": 2,
+      "time": 1.0,
+      "relative_mass_error": -7.71584284011726e-10,
+      "raw_mass_correction": 1.0004715093905345,
+      "heat_correction": 1.0,
+      "detail_energy": 0.016185754644943276,
+      "relative_shape_change": 0.04744131415357572,
+      "peak_density": 0.921234130859375,
+      "substeps": 2
+    },
+    {
+      "index": 3,
+      "time": 1.5,
+      "relative_mass_error": -1.5901725074168573e-09,
+      "raw_mass_correction": 1.0005277685268097,
+      "heat_correction": 1.0,
+      "detail_energy": 0.015045656990577666,
+      "relative_shape_change": 0.06792385599834218,
+      "peak_density": 0.9212859272956848,
+      "substeps": 2
+    },
+    {
+      "index": 4,
+      "time": 2.0,
+      "relative_mass_error": 1.1572180233197003e-09,
+      "raw_mass_correction": 1.0005555800789747,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014432944098509842,
+      "relative_shape_change": 0.0866562191031848,
+      "peak_density": 0.9213115572929382,
+      "substeps": 2
+    },
+    {
+      "index": 5,
+      "time": 2.5,
+      "relative_mass_error": 4.2439942507695957e-10,
+      "raw_mass_correction": 1.0005411501282788,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014035091188655698,
+      "relative_shape_change": 0.10368203899024138,
+      "peak_density": 0.9212982654571533,
+      "substeps": 2
+    },
+    {
+      "index": 6,
+      "time": 3.0,
+      "relative_mass_error": -2.447310883855109e-09,
+      "raw_mass_correction": 1.000489909705601,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013760773455061857,
+      "relative_shape_change": 0.11943273944545413,
+      "peak_density": 0.9212510585784912,
+      "substeps": 2
+    },
+    {
+      "index": 7,
+      "time": 3.5,
+      "relative_mass_error": 3.498420258862688e-10,
+      "raw_mass_correction": 1.0004360922680862,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013633502121306875,
+      "relative_shape_change": 0.13405431633829273,
+      "peak_density": 0.9212015271186829,
+      "substeps": 2
+    },
+    {
+      "index": 8,
+      "time": 4.0,
+      "relative_mass_error": 2.745804606719372e-09,
+      "raw_mass_correction": 1.0003506266883502,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013570357605883333,
+      "relative_shape_change": 0.14753920236519427,
+      "peak_density": 0.9211228489875793,
+      "substeps": 2
+    },
+    {
+      "index": 9,
+      "time": 4.5,
+      "relative_mass_error": -2.8691519338980885e-09,
+      "raw_mass_correction": 1.0002834184730318,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013497046213884398,
+      "relative_shape_change": 0.1600272820670989,
+      "peak_density": 0.9210609197616577,
+      "substeps": 2
+    },
+    {
+      "index": 10,
+      "time": 5.0,
+      "relative_mass_error": -1.1142743295882535e-09,
+      "raw_mass_correction": 1.0002503912646161,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013480048630457297,
+      "relative_shape_change": 0.17161972147141763,
+      "peak_density": 0.9210305213928223,
+      "substeps": 2
+    },
+    {
+      "index": 11,
+      "time": 5.5,
+      "relative_mass_error": 1.1028646657075315e-09,
+      "raw_mass_correction": 1.0001743115848016,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013504281837534066,
+      "relative_shape_change": 0.1825839431579877,
+      "peak_density": 0.9209604859352112,
+      "substeps": 2
+    },
+    {
+      "index": 12,
+      "time": 6.0,
+      "relative_mass_error": -3.786639184526543e-09,
+      "raw_mass_correction": 1.000142893599576,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013529206799883448,
+      "relative_shape_change": 0.19277264548344647,
+      "peak_density": 0.9209315180778503,
+      "substeps": 2
+    },
+    {
+      "index": 13,
+      "time": 6.5,
+      "relative_mass_error": 2.115681155260413e-09,
+      "raw_mass_correction": 1.000076557639088,
+      "heat_correction": 1.0,
+      "detail_energy": 0.01355855939144605,
+      "relative_shape_change": 0.20219877343983092,
+      "peak_density": 0.9208704829216003,
+      "substeps": 2
+    },
+    {
+      "index": 14,
+      "time": 7.0,
+      "relative_mass_error": -6.183842866184653e-10,
+      "raw_mass_correction": 1.00006447922571,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013623494232703951,
+      "relative_shape_change": 0.21095181235918564,
+      "peak_density": 0.9208593368530273,
+      "substeps": 2
+    },
+    {
+      "index": 15,
+      "time": 7.5,
+      "relative_mass_error": -3.2096637417303646e-09,
+      "raw_mass_correction": 1.0001157670783092,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013699757305880805,
+      "relative_shape_change": 0.2190222421904427,
+      "peak_density": 0.9209065437316895,
+      "substeps": 2
+    },
+    {
+      "index": 16,
+      "time": 8.0,
+      "relative_mass_error": -1.947248961815822e-09,
+      "raw_mass_correction": 1.0001802287157926,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013762435877203398,
+      "relative_shape_change": 0.22659836297183583,
+      "peak_density": 0.9209659099578857,
+      "substeps": 2
+    },
+    {
+      "index": 17,
+      "time": 8.5,
+      "relative_mass_error": -9.385710801992116e-10,
+      "raw_mass_correction": 1.0001147103832668,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013832930722461062,
+      "relative_shape_change": 0.2336479841274738,
+      "peak_density": 0.920905590057373,
+      "substeps": 2
+    },
+    {
+      "index": 18,
+      "time": 9.0,
+      "relative_mass_error": 7.019740688503522e-10,
+      "raw_mass_correction": 0.9999849773979059,
+      "heat_correction": 1.0,
+      "detail_energy": 0.01390727842052825,
+      "relative_shape_change": 0.24003346009493903,
+      "peak_density": 0.9207861423492432,
+      "substeps": 2
+    },
+    {
+      "index": 19,
+      "time": 9.5,
+      "relative_mass_error": -1.0591369114548906e-09,
+      "raw_mass_correction": 0.999837921995169,
+      "heat_correction": 1.0,
+      "detail_energy": 0.013977316232499235,
+      "relative_shape_change": 0.24573046234023863,
+      "peak_density": 0.9206507205963135,
+      "substeps": 2
+    },
+    {
+      "index": 20,
+      "time": 10.0,
+      "relative_mass_error": 1.9121293836557245e-09,
+      "raw_mass_correction": 0.9996902424986931,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014057354179843797,
+      "relative_shape_change": 0.2506301323477035,
+      "peak_density": 0.9205147624015808,
+      "substeps": 2
+    },
+    {
+      "index": 21,
+      "time": 10.5,
+      "relative_mass_error": -2.729473149937323e-09,
+      "raw_mass_correction": 0.9996135772070801,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014147601566403548,
+      "relative_shape_change": 0.2548894394508314,
+      "peak_density": 0.920444130897522,
+      "substeps": 2
+    },
+    {
+      "index": 22,
+      "time": 11.0,
+      "relative_mass_error": 9.65385278764342e-11,
+      "raw_mass_correction": 0.9994701085198462,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014204909482587258,
+      "relative_shape_change": 0.2584328232751272,
+      "peak_density": 0.9203120470046997,
+      "substeps": 2
+    },
+    {
+      "index": 23,
+      "time": 11.5,
+      "relative_mass_error": -8.866256478913835e-10,
+      "raw_mass_correction": 0.9992990319895073,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014276506374677946,
+      "relative_shape_change": 0.2613071625796673,
+      "peak_density": 0.9201545119285583,
+      "substeps": 2
+    },
+    {
+      "index": 24,
+      "time": 12.0,
+      "relative_mass_error": -2.3512476370353523e-11,
+      "raw_mass_correction": 0.9991322765231947,
+      "heat_correction": 1.0,
+      "detail_energy": 0.014323008765541188,
+      "relative_shape_change": 0.26353404941068687,
+      "peak_density": 0.9200009703636169,
+      "substeps": 2
+    }
+  ],
+  "initial_mass": 168279.49158818697
+}

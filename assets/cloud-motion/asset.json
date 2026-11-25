@@ -1,0 +1,12 @@
+{
+  "schema": "vapor.animated-field-asset/1",
+  "source": "actual independent CPU inverse flow map, no Rust or GPU runtime",
+  "frames": 25,
+  "duration": 12,
+  "keyframe_fps": 2,
+  "index": "sequence.vpa",
+  "scene": "canonical cloud, preview grid",
+  "mass_normalization": "global bounded correction; see motion.json",
+  "renderer": "actual JS reference",
+  "hero_note": "coarse inverse displacement sampled at original hero field resolution; not high-res velocity solve"
+}

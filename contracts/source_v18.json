@@ -1,0 +1,298 @@
+{
+  "algorithm": {
+    "fixed_dt_seconds": 0.016666666666666666,
+    "gpu_backend": "Three.js / GLSL ES 3.0 / WebGL2 RGBA atlas",
+    "grid": "MAC/staggered-face",
+    "passes_per_step": [
+      "force",
+      "curl",
+      "vort",
+      "advVA",
+      "advVB",
+      "solid",
+      "div",
+      "sor",
+      "grad",
+      "advAs",
+      "advBs",
+      "srcS",
+      "advAm",
+      "srcM",
+      "advAf",
+      "advBf",
+      "srcF"
+    ],
+    "projection": "Red-Black SOR",
+    "projection_omega_initial": 1.72,
+    "projection_passes_per_iteration": 2,
+    "velocity_advection": "RK2+MacCormack"
+  },
+  "domain_m": {
+    "depth": 0.74,
+    "height": 0.84,
+    "width": 0.64
+  },
+  "grid_default_texture_limit_assumption": {
+    "high": {
+      "coarse": {
+        "height": 1080,
+        "nx": 91,
+        "ny": 120,
+        "nz": 106,
+        "tx": 12,
+        "ty": 9,
+        "voxels": 1157520,
+        "width": 1092
+      },
+      "effective_up": 2.0,
+      "fine": {
+        "height": 3120,
+        "nx": 182,
+        "ny": 240,
+        "nz": 212,
+        "tx": 17,
+        "ty": 13,
+        "voxels": 9260160,
+        "width": 3094
+      },
+      "fine_budget": 11000000,
+      "fine_cell": 0.0035,
+      "max_texture_assumed": 16384
+    },
+    "low": {
+      "coarse": {
+        "height": 469,
+        "nx": 51,
+        "ny": 67,
+        "nz": 59,
+        "tx": 9,
+        "ty": 7,
+        "voxels": 201603,
+        "width": 459
+      },
+      "effective_up": 2.0,
+      "fine": {
+        "height": 1340,
+        "nx": 102,
+        "ny": 134,
+        "nz": 118,
+        "tx": 13,
+        "ty": 10,
+        "voxels": 1612824,
+        "width": 1326
+      },
+      "fine_budget": 11000000,
+      "fine_cell": 0.00625,
+      "max_texture_assumed": 16384
+    },
+    "mid": {
+      "coarse": {
+        "height": 744,
+        "nx": 71,
+        "ny": 93,
+        "nz": 82,
+        "tx": 11,
+        "ty": 8,
+        "voxels": 541446,
+        "width": 781
+      },
+      "effective_up": 2.0,
+      "fine": {
+        "height": 2046,
+        "nx": 142,
+        "ny": 186,
+        "nz": 164,
+        "tx": 15,
+        "ty": 11,
+        "voxels": 4331568,
+        "width": 2130
+      },
+      "fine_budget": 11000000,
+      "fine_cell": 0.0045,
+      "max_texture_assumed": 16384
+    },
+    "ultra": {
+      "coarse": {
+        "height": 1530,
+        "nx": 116,
+        "ny": 153,
+        "nz": 135,
+        "tx": 14,
+        "ty": 10,
+        "voxels": 2395980,
+        "width": 1624
+      },
+      "effective_up": 1.5,
+      "fine": {
+        "height": 2760,
+        "nx": 174,
+        "ny": 230,
+        "nz": 203,
+        "tx": 17,
+        "ty": 12,
+        "voxels": 8124060,
+        "width": 2958
+      },
+      "fine_budget": 11000000,
+      "fine_cell": 0.0036666666666666666,
+      "max_texture_assumed": 16384
+    }
+  },
+  "health_limits": {
+    "speedCap": 4.0,
+    "speedCapMin": 1.5
+  },
+  "integrity_sha256": {
+    "assets/PUT_ASSETS_HERE.txt": "a5c94e944b6bf71afa09ecd81eb956c71151db551858d95375dea5e51af9170e",
+    "assets/cartridge.glb": "04824d417410e5023e1fd945ae97aa75e22895534f7397e117add0c3e1a052e8",
+    "assets/character.vrm": "e223c3cc6d18ebb538b1df4c86933096b48d681ceb79fa60116f275de10c36fc",
+    "index.html": "2a27a42736af5c600ee5c290d84c4b2e26dead1055cc9a371eea2c00651bdf01",
+    "launch_linux.sh": "c2ded1e60f4a9cbb13d8fd11441e5ebdb7308e2dc20a15618cc200ad2c07262e",
+    "launch_linux_cpu.sh": "d33e8b63cf66ae0338516994ba9f275e4aec880c48004ee563d0fde591e6d081",
+    "launch_mac.command": "8280696879479ce5eac95b18654426260e3dcfdcc5c58651aa6088eb27ff9760",
+    "launch_mac_cpu.command": "b7967157243d72624e999ca6af192f0b8da1a87c5fb981ba46bac97d6706f885",
+    "launch_win.bat": "333028aa3db29ebeb324ebbfa4e3b0259b3c5157fc8c20d2f27b56fc708ca711",
+    "launch_win_cpu.bat": "d9bcb23d45d5663fd53a1d45a31bd4da1dc01a2d818b09b02fe8390ab96660b0",
+    "reference/CALIBRATION_TARGETS_KO.md": "ad63f47b5266db3bc6e12c6017bb46e2c4caae919e40ed6232a8acaf345a0111",
+    "reference/SCIENCE_LIMITATIONS_KO.md": "cc824cb99eaea1e71c7cf5900bd879cb97279b879ad8ed73091d9c06eb67bfa5",
+    "reference/anatomy-export.json": "25c531323fdc9bfac904a3313489553838bdb2b8fcc7d2508c58f0bfa86ae433",
+    "reference/face_runtime.json": "fb1bf0c751098f825dbf8c3c8da820794fc271998b8ff5f71a196c87b229a205",
+    "reference/rig.json": "4046f7094341b811d272f102cce4777596537a42e664dd63bb326e65e5dfd91d",
+    "reference/settings.json": "af04784463e262bab22e635677c74e4f5e6b1e7e695548e99fad52ad092dea84",
+    "src/bench.js": "bbdb5cb1259829145809a0c578758cf9d309f62954bbc636a4678eb3b00ba67c",
+    "src/breath-editor.js": "f93013939ccf6c39b68ff573329c00e23fe2a67751b48e9c021fb0932c2d4537",
+    "src/breath.js": "05cdc49c819001ba7d8c923ec3dc43fafcf16e1424109a879809a47b5c021a28",
+    "src/diagnostics.js": "9ae8e6b5b1ca39797d4930889bc1642db6ed5f5f5d19ec6bc0b5c8eb07c30f35",
+    "src/flow-diagnostics.js": "ac3bebc7320797cc11bdf3b78bcc05693a15c963085877482b61a4b24c8b30dd",
+    "src/fluid.js": "9470fee8fb9ceda24f0d862d8ca6306922159069e73b0a200ce7ddbb070196ce",
+    "src/health.js": "3a143587dc829f88a7ab0a3e6b330bf6b3d4beb2e755f6331b9f478e31b39bd9",
+    "src/main.js": "9367882dadf3f37a63882b724f06b123966bf06d06612e68ba322db7223f8207",
+    "src/metrics.js": "49a7147b517dd2dfaad9878c77907325ef51fdde3d0f4b46eeb58b9cc38ca6e7",
+    "src/shaders.js": "96856c1942e514a05eaa5efac748c96061fccef2c62601cc41c6853d09cd2aa8",
+    "src/style.css": "61169a77e50fc3b0155a30490c671dc367325c31c05c72d1d218da19d8fde6d4",
+    "src/ui.js": "ca55676a23a925f5b845502f062c6d10f5bc78d033671a5e5db3af572590aa87",
+    "tests/baseline_low.json": "b48892737ed054c7265c8fef358824fd27e060bb27ab20cd3b4156c453b97110",
+    "tests/gpu_regression.js": "e088c5540f8ed03f37fb9ca137b42d276939b415638cd1c39ef8c84eaa6e0fd7",
+    "tests/health_test.js": "03cca80c0bd3f194c71a3b55ff64ddb5bbb6bb97a661f821e04df58c46cdaa13",
+    "tests/robustness_test.js": "eeae632b8bf5571fc2719c1bd9b2a78547f166952cda56ffc7648e22b59b8314",
+    "tests/ui_interaction_test.js": "a80c157083b78826c84d8f6a295d149b50e57f0f0dcc5064438b0f8e907cb444",
+    "tests/verify.py": "2b7e603dc83582f3b74eaf5d724b52069d06b3bae1698808b2bad403a58fca20",
+    "undefined_01_initial.png": "df6b02f00ab364ae5061a2b9ef7d88c1078bd9d783d56d183faa98f973011d6e",
+    "undefined_02_pulse.png": "edc3fa2ef8e52a9488af14d2b9332752d21978e478ee02e88303c2791a85bb68",
+    "undefined_03_search.png": "e8f5090cb621f074fc3ea27ab6bc7c6d07b7d4ec6ff5934ab3896d69af41ce04",
+    "undefined_04_scene.png": "9f73c5b7e875a6d98fba99a9e9505f5a95b36dd209a563e4914452bad2039c9a",
+    "undefined_05_playhead.png": "ffdafc3686aae96e95cf685ac4d3a1c1fc1f643b2fc55ad6ec434b50ec4e1626",
+    "undefined_06_collapsed.png": "81f22ceadaadaa9a70248cd5f7fabfc727b187b3365bf875818c2b2f4d1f4c09",
+    "vendor/three-addons/controls/OrbitControls.js": "80efaadea4f8a636a65fb0bd08bfef62f3d93a0bb94e2e7500f23176c5c07f4e",
+    "vendor/three-addons/environments/RoomEnvironment.js": "85869bdd22f7cf0b22e68dcefe6cb710480af0f5c901a76f7a7764fd07fc8014",
+    "vendor/three-addons/loaders/GLTFLoader.js": "45139faddd5aaf48ed2d62203d976e5cbd703db1a592de40527f9f6cf58abd44",
+    "vendor/three-addons/utils/BufferGeometryUtils.js": "c25b7930e570e9ec56173cd3b866ec8d2e10016630db3937efb439daf1cedbf6",
+    "vendor/three-vrm.module.min.js": "537b350b2d4404cdab78eb9f0a38171e6287ae0fbfdd078b77b015e1595d48c3",
+    "vendor/three.module.min.js": "08fd7545d13d2c7fb65ab691530a802dafefd638596501854f267d0fb13c39e7"
+  },
+  "known_document_discrepancy": [
+    "reference/settings.json reports legacy Jacobi and old defaults; not active runtime config",
+    "reference/SCIENCE_LIMITATIONS_KO.md section 3 still describes collocated + Jacobi, superseded by v7/v18 notes"
+  ],
+  "origin": "user-upload vapor_v18.zip; archived legacy/v18 untouched",
+  "quality": {
+    "high": {
+      "cell": 0.007,
+      "lightEvery": 2,
+      "scale": 0.85,
+      "sor": 14,
+      "stepScale": 0.62,
+      "steps": 150,
+      "up": 2.0
+    },
+    "low": {
+      "cell": 0.0125,
+      "lightEvery": 3,
+      "scale": 0.6,
+      "sor": 10,
+      "stepScale": 0.9,
+      "steps": 80,
+      "up": 2.0
+    },
+    "mid": {
+      "cell": 0.009,
+      "lightEvery": 2,
+      "scale": 0.75,
+      "sor": 12,
+      "stepScale": 0.75,
+      "steps": 110,
+      "up": 2.0
+    },
+    "ultra": {
+      "cell": 0.0055,
+      "lightEvery": 1,
+      "scale": 1.0,
+      "sor": 16,
+      "stepScale": 0.55,
+      "steps": 200,
+      "up": 1.5
+    }
+  },
+  "runtime_ui_defaults": {
+    "amb": 0,
+    "asym": 1.0,
+    "bloom": 0.15,
+    "body": 1.0,
+    "buoy": 0,
+    "decay": 1.5,
+    "detail": 1.15,
+    "energy": 0.15,
+    "erode": 0.41,
+    "inertia": 1.5,
+    "self": 1.6,
+    "settle": 0.04,
+    "sigma": 29,
+    "speedMul": 1.25,
+    "turbAmp": 0.15,
+    "vort": 8,
+    "windX": 0,
+    "windZ": 0.04,
+    "wref": 9
+  },
+  "schema": "vapor.source-contract/1",
+  "solver_constructor_defaults": {
+    "amb": 0.0,
+    "buoy": 0.0,
+    "cool": 1.0,
+    "decay": 0.1,
+    "dmax": 3.0,
+    "drag": 0.18,
+    "emitDensity": 1.35,
+    "emitTemp": 1.0,
+    "evap": 0.7,
+    "freshT": 1.8,
+    "inertia": 1.5,
+    "mac": 1.0,
+    "macS": 0.92,
+    "omega": 1.72,
+    "settle": 0.04,
+    "turbAmp": 0.15,
+    "turbBase": 0.05,
+    "turbGain": 1.4,
+    "vort": 3.0,
+    "warm": 0.97
+  },
+  "stored_low_baseline": {
+    "gpu": "ANGLE (Google, Vulkan 1.3.0 (SwiftShader Device (Subzero) (0x0000C0DE)), SwiftShader driver)",
+    "kind": "imported-not-remeasured",
+    "marks": [
+      0.5,
+      1,
+      2,
+      3
+    ],
+    "values_are": [
+      "front",
+      "centroidAlong",
+      "spreadSlope",
+      "backFrac",
+      "vmax",
+      "mass"
+    ]
+  }
+}

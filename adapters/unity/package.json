@@ -1,0 +1,7 @@
+{
+  "name": "dev.vapor-game.runtime",
+  "version": "0.22.0",
+  "displayName": "Vapor Game Runtime",
+  "description": "Rust C-ABI smoke runtime and atlas volume rendering examples. Native desktop source integration; not Unity WebGL.",
+  "unity": "6000.0"
+}

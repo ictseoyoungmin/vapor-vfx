@@ -1,0 +1,13 @@
+{
+  "schema": "vapor.fidelity-scene/1",
+  "preset": "cumulus_cloud",
+  "quality": "high",
+  "extent": [144,72,96],
+  "settings": {"seed":43,"coverage":0.53,"humidity":0.76,"erosion":0.23,"wind":[0.6,0,0.22]},
+  "time":0,
+  "material":{"colour":[0.96,0.97,1],"extinction":0.32,"anisotropy":0.58,"albedo":0.95,"emission":0,"thermalFade":0,"ambient":0.10},
+  "lighting":{"light":{"direction":[-0.8,0.56,0.16],"radiance":[2.6,2.45,2.2]},"sky":[0.07,0.105,0.18],"ground":[0.035,0.04,0.05],"multiScatter":0.29,"shadowSteps":40,"lightScale":0.8},
+  "camera":{"eye":[110,15,-150],"target":[72,32,48],"fov":40,"exposure":0.95,"jitter":0.5,"background":"sky"},
+  "profiles":{"preview":{"cells":[96,48,64],"width":480,"height":300,"steps":128},"hero":{"cells":[176,88,120],"width":960,"height":600,"steps":224}},
+  "tolerances":{"density_atol":0.000002,"density_rtol":0.000002,"alpha_atol":0.00002,"alpha_rtol":0.00002,"rgba_max_error":1}
+}

@@ -1,0 +1,81 @@
+{
+  "schema": "vapor.baked-field/1",
+  "source": "actual JS Fidelity reference, not Rust",
+  "preset": "ground_fog",
+  "file": "fog.vpf",
+  "sha256": "171991afee76624e59511d4c4828457e14aeb326e14f2ea5e9fc9f99ee6eb6c8",
+  "cells": [
+    96,
+    24,
+    96
+  ],
+  "extent": [
+    60,
+    15,
+    60
+  ],
+  "densityCap": 1,
+  "time": 0,
+  "material": {
+    "colour": [
+      0.89,
+      0.91,
+      0.96
+    ],
+    "extinction": 0.1,
+    "anisotropy": 0.25,
+    "albedo": 0.94,
+    "emission": 0,
+    "thermalFade": 0,
+    "ambient": 0.08
+  },
+  "lighting": {
+    "light": {
+      "direction": [
+        0.6,
+        0.34,
+        0.72
+      ],
+      "radiance": [
+        0.95,
+        0.8,
+        0.62
+      ]
+    },
+    "sky": [
+      0.07,
+      0.105,
+      0.16
+    ],
+    "ground": [
+      0.015,
+      0.02,
+      0.018
+    ],
+    "multiScatter": 0.13,
+    "shadowSteps": 32,
+    "lightScale": 0.5
+  },
+  "camera": {
+    "width": 800,
+    "height": 500,
+    "eye": [
+      29.8,
+      6.5,
+      -6
+    ],
+    "target": [
+      30,
+      3.9,
+      34
+    ],
+    "fov": 47,
+    "steps": 160,
+    "exposure": 1
+  },
+  "scene": "analytic valley depth and sun visibility supplied by demo",
+  "rgbaSha256": "6c2e34ba22f005adf8a906a47c12369105e125561e6d34156f26f0ee80167843",
+  "visiblePixels": 381603,
+  "losslessRoundtrip": true,
+  "bytes": 1769552
+}

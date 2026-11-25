@@ -1,0 +1,29 @@
+{
+  "scope": "Python procedural artistic fields, exact Python VPF roundtrip; not Rust physics",
+  "frames": [
+    {
+      "time": 2.5,
+      "frame": 40,
+      "file": "smoke-0040.vpf",
+      "sha256": "8c513c610203b0ca1fa099a9abca90c5698644de424349da29a3d41720209643",
+      "density_nonzero": 27386,
+      "density_peak": 0.9434875845909119
+    },
+    {
+      "time": 3.5,
+      "frame": 56,
+      "file": "smoke-0056.vpf",
+      "sha256": "ccb66e746e5b641ecf92b160dca710369451d3125f811d87a3b85cab7fbc967a",
+      "density_nonzero": 56151,
+      "density_peak": 0.9063261151313782
+    },
+    {
+      "time": 5.0,
+      "frame": 80,
+      "file": "smoke-0080.vpf",
+      "sha256": "6b7e3f9fb5ad76178a59787ca97f57b6025a47158bf08a6ba7134a65354d94f3",
+      "density_nonzero": 105754,
+      "density_peak": 0.8291349411010742
+    }
+  ]
+}

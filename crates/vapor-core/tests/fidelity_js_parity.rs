@@ -1,0 +1,19 @@
+//! Full field + directional optical image comparison against actual JS fixtures.
+//! Golden tolerances are proposed until this test runs on a Rust toolchain.
+use vapor_core::fidelity::*;
+fn floats(bytes:&[u8])->Vec<f32>{assert_eq!(bytes.len()%4,0);bytes.chunks_exact(4).map(|b|f32::from_le_bytes(b.try_into().unwrap())).collect()}
+fn close(a:&[f32],b:&[f32],atol:f32,rtol:f32,name:&str){assert_eq!(a.len(),b.len());for (i,(&a,&b)) in a.iter().zip(b).enumerate(){assert!(a.is_finite()&&b.is_finite()&&(a-b).abs()<=atol+rtol*b.abs(),"{name} at {i}: {a} vs {b}");}}
+fn compare(grid:FidelityGrid,kind:VolumeKind,s:DensitySettings,time:f64,terrain:Option<&[f32]>,expected:&[u8],temp:&[u8],alpha:&[u8],linear:&[u8],rgba:&[u8],scene:Option<Scene<'_>>){
+ let generator=FidelityGenerator::new(s.seed);let actual=generator.generate(grid,kind,s,time,terrain).unwrap();let want=floats(expected);let wt=floats(temp);
+ close(&actual.density,&want,2e-6,2e-6,"density");close(&actual.temperature,&wt,0.0,0.0,"temperature");assert!(actual.density.iter().any(|&x|x>0.0));
+ let e=grid.extent;let m=OpticalMaterial{colour:[0.91,0.96,1.0],extinction:0.32,anisotropy:0.55,albedo:0.9,emission:0.0,thermal_fade:0.0,ambient:0.10};let l=FidelityLighting{direction:[-0.80,0.56,0.16],radiance:[2.6,2.45,2.2],sky:[0.07,0.105,0.18],ground:[0.035,0.04,0.05],multi_scatter:0.29,shadow_steps:12,light_scale:0.5};let c=FidelityCamera{eye:[e[0]*0.65,e[1]*0.22,-e[2]*1.5],target:e.map(|x|x*0.5),width:64,height:40,steps:48,fov:40.0,exposure:0.95,jitter:0.5,dark:false};
+ // Feed exact reference fields to optics to isolate rendering from generation.
+ let image=FidelityRenderer::prepare(grid,FidelityFields{density:want,temperature:wt},m,l).unwrap().render(c,scene).unwrap();close(&image.alpha,&floats(alpha),2e-5,2e-5,"alpha");close(&image.linear,&floats(linear),2e-5,2e-5,"linear");assert_eq!(image.rgba.len(),rgba.len());for(i,(&x,&y))in image.rgba.iter().zip(rgba).enumerate(){assert!(x.abs_diff(y)<=1,"RGBA mismatch at {i}: {x} vs {y}");}
+}
+macro_rules! fixture {($name:literal,$ext:literal)=>{include_bytes!(concat!("../../../fixtures/fidelity-port/",$name,$ext))};}
+macro_rules! case {($name:literal,$kind:expr,$cells:expr,$extent:expr,$seed:expr,$coverage:expr,$humidity:expr,$erosion:expr,$wind:expr,$time:expr,$terrain:expr,$scene:expr)=>{compare(FidelityGrid{cells:$cells,extent:$extent,density_cap:1.0},$kind,DensitySettings{seed:$seed,coverage:$coverage,humidity:$humidity,erosion:$erosion,wind:$wind},$time,$terrain,fixture!($name,".density.f32"),fixture!($name,".temperature.f32"),fixture!($name,".alpha.f32"),fixture!($name,".linear.f32"),fixture!($name,".rgba"),$scene)}}
+#[test]fn cloud(){case!("cloud",VolumeKind::Cloud,[24,12,16],[144.0,72.0,96.0],43,0.53,0.76,0.23,[0.6,0.0,0.22],0.0,None,None);}
+#[test]fn advected_cloud(){case!("cloud-wind",VolumeKind::Cloud,[24,12,16],[144.0,72.0,96.0],4294967295,0.61,0.69,0.31,[-0.8,0.12,0.42],18.25,None,None);}
+#[test]fn fog_with_terrain_and_scene(){let terrain=floats(fixture!("fog-terrain",".terrain.f32"));let depth=floats(fixture!("fog-terrain",".depth.f32"));let radiance=floats(fixture!("fog-terrain",".scene.f32"));case!("fog-terrain",VolumeKind::Fog,[20,12,18],[60.0,15.0,54.0],18,0.72,0.88,0.13,[0.25,0.0,0.10],7.0,Some(&terrain),Some(Scene{depth:&depth,radiance:&radiance}));}
+#[test]fn dust(){case!("dust",VolumeKind::Dust,[20,12,16],[20.0,8.0,16.0],65,0.57,0.75,0.22,[0.25,0.0,0.15],4.0,None,None);}
+#[test]fn invalid_inputs(){let g=FidelityGrid{cells:[512;3],extent:[1.0;3],density_cap:1.0};assert!(g.count().is_err());let g=FidelityGrid{cells:[4;3],..g};let s=DensitySettings{seed:1,coverage:0.5,humidity:0.5,erosion:0.5,wind:[0.0;3]};let gen=FidelityGenerator::new(1);assert!(gen.generate(g,VolumeKind::Cloud,s,0.0,Some(&[0.0;16])).is_err());assert!(gen.generate(g,VolumeKind::Fog,s,0.0,Some(&[f32::NAN;16])).is_err());assert!(gen.generate(g,VolumeKind::Fog,DensitySettings{seed:2,..s},0.0,None).is_err());}

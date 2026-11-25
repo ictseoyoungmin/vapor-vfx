@@ -1,0 +1,17 @@
+[workspace]
+members = ["crates/vapor-core", "crates/vapor-ffi", "crates/vapor-backend"]
+default-members = ["crates/vapor-core", "crates/vapor-ffi"]
+resolver = "2"
+
+[workspace.package]
+edition = "2021"
+rust-version = "1.88"
+version = "0.22.0"
+
+[profile.release]
+lto = "thin"
+codegen-units = 1
+# Native FFI catches unwind; WASM uses the target's abort strategy.
+
+[profile.bench]
+inherits = "release"

@@ -1,0 +1,8 @@
+/** Actual Node execution of the browser CPU procedural generator and software renderer.
+ * No Rust fluid runtime, no screenshots of imaginary engine output. Raw RGBA is encoded by Python. */
+import {mkdir,writeFile} from 'node:fs/promises';
+import {createEffect} from '../bindings/web/effects.mjs';
+import {renderVolume} from '../bindings/web/preview.mjs';
+const out=new URL('../reports/local/lab/effects/',import.meta.url);await mkdir(out,{recursive:true});const reports=[];
+for(const key of ['cumulus_cloud','ground_fog','dust']){const e=await createEffect(key,{quality:'high'});const atlas=await e.atlasRGBA8();const ex=e.extent,center=ex.map(v=>v/2),span=Math.max(...ex),fog=e.definition.kind==='fog',dist=span*(fog?1.32:1.42),angle=.30;const eye=[center[0]+Math.sin(angle)*dist,fog?ex[1]+span*.22:center[1]+span*.12,center[2]-Math.cos(angle)*dist];const width=640,height=400,t=performance.now(),pixels=renderVolume({atlas,cells:[...e.renderCells],extent:ex,densityCap:e.config.densityCap,material:e.definition.material,width,height,steps:96,eye,target:[center[0],fog?ex[1]*.18:center[1],center[2]],background:fog?'ground':'sky'});let occupied=0,max=0;for(let i=0;i<atlas.length;i+=4){occupied+=atlas[i]>0;max=Math.max(max,atlas[i]);}if(!occupied||max<32)throw new Error('empty procedural output');await writeFile(new URL(key+'.rgba',out),pixels);reports.push({key,width,height,cells:e.renderCells,backend:e.backend,occupied,maxDensityByte:max,atlasBytes:atlas.length,previewMs:Math.round(performance.now()-t)});e.dispose();}
+await writeFile(new URL('preview-node.json',out),JSON.stringify({status:'PASS',evidence:'Actual Node CPU procedural volume + CPU preview renderer; NOT Rust or GPU solver or game engine screenshot',reports},null,2)+'\n');console.log(reports);

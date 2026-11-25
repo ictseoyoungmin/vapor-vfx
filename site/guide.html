@@ -1,0 +1,66 @@
+<div class="pagehead"><p class="eyebrow">Documentation / Getting started</p><h1>Use Vapor.</h1><p>Pick a reference-only workflow or build the actual Rust runtime. The commands below run from the SDK repository root, not from the generated Pages directory.</p></div>
+<div class="guide-layout"><nav class="toc" aria-label="Guide contents"><a href="#quickstart">Quick start</a><a href="#javascript">JavaScript / TS</a><a href="#python">Python</a><a href="#runtime">Rust / WASM / GPU</a><a href="#fields">Volume assets</a><a href="#engines">Game engines</a><a href="#verify">Verify</a></nav><article class="guide">
+<section id="quickstart"><h2>01 · Quick start</h2><p>Use the full SDK archive for all sample fields, or the source archive for reference generation and development. No Rust build is needed for the offline film or independent JS cloud/fog examples.</p><p>Open <a href="examples.html">the hosted example gallery</a>, or run a local static server from the repository root:</p><div class="code"><pre>python -m http.server 8000 --bind 127.0.0.1</pre></div><p>Navigate to <code>http://localhost:8000/examples/</code>. The standalone <code>examples/airborne-smoke/index.html</code> also opens directly. Other browser examples use ES modules and HTTP.</p></section>
+<section id="javascript"><h2>02 · JavaScript / TypeScript</h2><p>Independent CPU reference generation, with the actual public JS implementation. This is not Rust WASM.</p><div class="code"><pre>import { generateFidelityVolume, getFidelityPreset,
+         prepareFidelityVolume } from './bindings/web/fidelity.mjs';
+
+const field = generateFidelityVolume('cumulus_cloud', {
+  cells: [72, 36, 48], extent: [144, 72, 96]
+});
+const style = getFidelityPreset('cumulus_cloud', 'medium');
+const prepared = prepareFidelityVolume({
+  ...field, material: style.material, ...style.lighting
+});
+const frame = prepared.render({
+  eye: [110, 15, -150], target: [72, 32, 48],
+  width: 320, height: 200, steps: 96, background: 'sky'
+});
+// frame.rgba: display-ready RGBA8</pre></div><p>Run the above as an ES module. Type declarations are in <code>bindings/web/</code>. Use the <a href="examples/high-fidelity/index.html">CPU reference viewer</a> to explore settings.</p></section>
+<section id="python"><h2>03 · Python</h2><p>Python 3.11+ is recommended for project tools. The pure-data reader needs no compiled native library.</p><div class="code"><pre>python -m pip install -e bindings/python</pre></div><div class="code"><pre>from vapor_game.field_asset import read_field_asset
+
+field = read_field_asset('assets/field-assets/cloud.vpf')
+print(field.cells, field.extent, field.time)
+# field.density and field.temperature are Float32 arrays.</pre></div><h3>Actual Rust CPU via Python</h3><p>Install Rust 1.88+ and your platform linker first. The wrapper uses the actual compiled library; it cannot silently substitute the independent Lab.</p><div class="code"><pre>python tools/build.py --native --test
+python examples/python/offscreen.py</pre></div></section>
+<section id="runtime"><h2>04 · Rust, WASM and GPU</h2><p>Build Rust on a suitable machine. A successful build in your environment is required before relying on the native solver. CPU native and WASM can be built without a hardware GPU; the GPU path requires wgpu dependencies and a compatible device.</p><div class="code"><pre># Native CPU
+python tools/validate_runtime.py --build --modes cpu --capture
+
+# CPU WASM
+rustup target add wasm32-unknown-unknown
+python tools/build.py --web
+python tools/validate_wasm_fidelity.py
+
+# GPU / one-way Hybrid
+python tools/build.py --native --gpu --test --stage-adapters
+python tools/validate_runtime.py --modes gpu hybrid --capture</pre></div><p>Actual WASM cloud API (after building):</p><div class="code"><pre>import { loadVapor } from './bindings/web/vapor.mjs';
+import { NativeFidelityCPU } from './bindings/web/native-fidelity.mjs';
+const native = new NativeFidelityCPU(await loadVapor());
+const cloud = native.generate('cumulus_cloud', {
+  cells: [32, 16, 24], extent: [48, 24, 36]
+});
+const frame = native.render(cloud, {
+  width: 96, height: 60, steps: 64,
+  eye: [30, 8, -50], target: [24, 12, 18]
+});</pre></div><h3>Native Rust source example</h3><p>Build with the <code>vapor-core</code> crate from this workspace. This is a source snippet, not an executed native sample in this delivery.</p><div class="code"><pre>use vapor_core::{Config, Simulation};
+
+let mut sim = Simulation::new(Config::default())?;
+sim.step_fixed(1)?;
+let metrics = sim.metrics();</pre></div><p>The Rust core is a Cargo workspace under <code>crates/</code>. See <code>docs/API_CONTRACT_KO.md</code> for the source API and experimental M2 constructors. CPU / GPU / Hybrid are separate paths. Hybrid is one-way coarse CPU velocity → GPU fine scalar, not a coupled two-way solver.</p></section>
+<section id="fields"><h2>05 · Portable volume assets</h2><p>VPF1 stores x-fastest planar Float32 density and temperature, extent and time; VPA1 indexes time-ordered VPF1 snapshots. Scene lighting and material are stored separately. CRC detects accidental data corruption, not authenticity.</p><div class="code"><pre>from vapor_game.field_sequence import FieldSequence
+
+sequence = FieldSequence.open('assets/cloud-motion/sequence.vpa')
+field = sequence.sample(3.25)
+print(field.cells, field.time)</pre></div><p>Use the full SDK package for the referenced paths. The renderer controls optical appearance; data parity does not prove pixel parity between engines.</p>@@ASSET_LINKS@@</section>
+<section id="engines"><h2>06 · Game engine integration</h2><div class="table-wrap"><table><thead><tr><th>Host</th><th>Source integration</th><th>Required work</th></tr></thead><tbody><tr><td>Unity</td><td><code>adapters/unity/</code> local UPM, P/Invoke, atlas shaders and baked volume</td><td>Native build and editor/renderer verification</td></tr><tr><td>Godot</td><td><code>adapters/godot/</code> godot-cpp GDExtension, GDScript, atlas</td><td>Build against compatible Godot; editor tests</td></tr><tr><td>Unreal</td><td><code>adapters/unreal/VaporGame/</code> UE5 plugin source, Blueprint component, HLSL</td><td>Build plugin and configure material; no ready-made uasset</td></tr><tr><td>C# / .NET</td><td><code>bindings/dotnet/Vapor.Runtime/</code> P/Invoke, SafeHandle</td><td>Build native library and .NET sample</td></tr><tr><td>Web</td><td><code>bindings/web/</code>, <code>adapters/three/</code></td><td>Choose CPU WASM, WebGPU or explicit JS reference</td></tr></tbody></table></div><h3>C# / .NET</h3><p>After building the native library, use the supplied .NET sample with the matching platform library on the loader search path. Example source:</p><div class="code"><pre>using VaporGame;
+var cfg = Config.Default;
+cfg.Nx = 12; cfg.Ny = 16; cfg.Nz = 12;
+cfg.CellSize = .05f;
+using var sim = new Simulation(cfg);
+var emitter = Emitter.Default;
+emitter.Position = new Float3(.3f, .1f, .3f);
+sim.SetEmitter(0, emitter);
+sim.Step(60);</pre></div><p>See <code>examples/dotnet/Program.cs</code> and <code>adapters/unity/README.md</code>. C# compilation is pending.</p><p>No engine editor has been verified in the delivery environment. The full repository includes each adapter's README with detailed setup.</p></section>
+<section id="verify"><h2>07 · Verify results</h2><div class="code"><pre>python tools/check_sdk.py --source-only --lab
+python tools/validate_cloud_equivalence.py --profile hero --build
+python tools/release_gate.py --full-plume --channel msedge</pre></div><p>Source tests, independent reference renders, real native execution and visual acceptance are separate gates. Missing toolchains are reported as blocked, not passed. See <a href="status.html">implementation and validation status</a>.</p></section>
+</article></div>

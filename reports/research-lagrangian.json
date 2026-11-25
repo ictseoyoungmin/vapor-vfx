@@ -1,0 +1,1747 @@
+{
+  "status": "PASS_EXECUTION_ONLY",
+  "scope": "Reduced-order full-domain VFX experiment, NOT a Navier-Stokes solver.\nA prescribed axisymmetric entraining streamfunction plus convected, offset\nvortex rings advects Lagrangian scalar markers (RK2). A volume-preserving\ncenterline warp breaks symmetry. Conservative scalar deposition is independent\nof optical settings; no image-space smoke/noise. No automatic SDK fallback.\n",
+  "implementation_sha256": "b3957a72b761d3896289d47daef0798773e4ef66535b800ccc7db1ecea7cfbb5",
+  "rows": [
+    {
+      "key": "cigarette_smoke",
+      "model": "base",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 30.680667024982238,
+        "p50_ms": 6.537215499520244,
+        "p95_ms": 16.21817895020284,
+        "p99_ms": 33.05945203092045,
+        "max_ms": 5727.063688998896,
+        "total_ms": 7363.360085995737
+      },
+      "snapshots": [
+        {
+          "stem": "cigarette_smoke-base-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 3.174940980805219e-06,
+            "deposition_loss": -2.117582368135751e-21,
+            "saturation": 0.0,
+            "grid_mass": 3.174940980805222e-06,
+            "closure": 8.470329472543003e-22,
+            "injected": 4.01778284467599e-06,
+            "decayed": 8.428418638707679e-07,
+            "escaped": 0.0,
+            "particle_closure": -2.964615315390051e-21
+          },
+          "density_integral": 3.1749409820254865e-06,
+          "occupied_voxels": 5307,
+          "occupied_fraction": 0.00431884765625,
+          "max_density": 0.1163819432258606,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.19998430565553638,
+            0.12941612698050511,
+            0.20000427932010376
+          ],
+          "rms_spread_xyz": [
+            0.005091285843408428,
+            0.05931178966911878,
+            0.005090012678974478
+          ],
+          "bounds_min_world": [
+            0.17500000000000002,
+            0.015,
+            0.17500000000000002
+          ],
+          "bounds_max_world": [
+            0.225,
+            0.28500000000000003,
+            0.225
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.012499999999999997,
+              0.0875,
+              0.1975
+            ],
+            "forward_mass_fraction": 0.9985492330175182,
+            "backward_mass_fraction": 0.0014507669824820706,
+            "radial_rms": 0.007199283661340249,
+            "axial_mean": 0.09441612698050529
+          }
+        },
+        {
+          "stem": "cigarette_smoke-base-0120",
+          "time": 1.9999999999999978,
+          "particles": 60000,
+          "budget": {
+            "particle_mass": 5.100640028441686e-06,
+            "deposition_loss": -5.082197683525802e-21,
+            "saturation": 0.0,
+            "grid_mass": 5.100640028441689e-06,
+            "closure": -1.6940658945086007e-21,
+            "injected": 8.035565689351981e-06,
+            "decayed": 2.9349256609102914e-06,
+            "escaped": 0.0,
+            "particle_closure": -4.235164736271502e-21
+          },
+          "density_integral": 5.100640026592543e-06,
+          "occupied_voxels": 9786,
+          "occupied_fraction": 0.0079638671875,
+          "max_density": 0.11760402470827103,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.2000026288118548,
+            0.21150967522234387,
+            0.20000350787208712
+          ],
+          "rms_spread_xyz": [
+            0.005067999313816069,
+            0.12215957910467469,
+            0.005071044480663056
+          ],
+          "bounds_min_world": [
+            0.17500000000000002,
+            0.015,
+            0.17500000000000002
+          ],
+          "bounds_max_world": [
+            0.225,
+            0.51,
+            0.225
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.017499999999999995,
+              0.1575,
+              0.39749999999999996
+            ],
+            "forward_mass_fraction": 0.9991761722155765,
+            "backward_mass_fraction": 0.0008238277844234556,
+            "radial_rms": 0.007169388285308716,
+            "axial_mean": 0.1765096752223448
+          }
+        },
+        {
+          "stem": "cigarette_smoke-base-0180",
+          "time": 2.9999999999999942,
+          "particles": 90000,
+          "budget": {
+            "particle_mass": 6.268635542212621e-06,
+            "deposition_loss": -5.082197683525802e-21,
+            "saturation": 0.0,
+            "grid_mass": 6.268635542212627e-06,
+            "closure": 8.470329472543003e-22,
+            "injected": 1.2053348534027973e-05,
+            "decayed": 5.784712991815338e-06,
+            "escaped": 0.0,
+            "particle_closure": -1.3552527156068805e-20
+          },
+          "density_integral": 6.268635549124807e-06,
+          "occupied_voxels": 14286,
+          "occupied_fraction": 0.0116259765625,
+          "max_density": 0.11644233018159866,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.20000499031262073,
+            0.2785465713339032,
+            0.20000397290967334
+          ],
+          "rms_spread_xyz": [
+            0.00506276475920474,
+            0.18037470948059517,
+            0.005064258107126553
+          ],
+          "bounds_min_world": [
+            0.17500000000000002,
+            0.015,
+            0.17500000000000002
+          ],
+          "bounds_max_world": [
+            0.225,
+            0.735,
+            0.225
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.2075,
+              0.5875
+            ],
+            "forward_mass_fraction": 0.9992951920750773,
+            "backward_mass_fraction": 0.0007048079249226392,
+            "radial_rms": 0.0071608894608053905,
+            "axial_mean": 0.24354657133390292
+          }
+        },
+        {
+          "stem": "cigarette_smoke-base-0240",
+          "time": 3.9999999999999907,
+          "particles": 120000,
+          "budget": {
+            "particle_mass": 6.977060631721504e-06,
+            "deposition_loss": -5.082197683525802e-21,
+            "saturation": 0.0,
+            "grid_mass": 6.97706063172151e-06,
+            "closure": 8.470329472543003e-22,
+            "injected": 1.6071131378703963e-05,
+            "decayed": 9.094070746982435e-06,
+            "escaped": 0.0,
+            "particle_closure": -2.371692252312041e-20
+          },
+          "density_integral": 6.9770606342752575e-06,
+          "occupied_voxels": 18786,
+          "occupied_fraction": 0.0152880859375,
+          "max_density": 0.1162281185388565,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.20000271473540657,
+            0.3310288365741796,
+            0.20000987207832813
+          ],
+          "rms_spread_xyz": [
+            0.005059909310156119,
+            0.23255697348091828,
+            0.005062108288096505
+          ],
+          "bounds_min_world": [
+            0.17500000000000002,
+            0.015,
+            0.17500000000000002
+          ],
+          "bounds_max_world": [
+            0.225,
+            0.96,
+            0.225
+          ],
+          "outer_cell_mass_fraction": 1.7355587730270659e-09,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.23750000000000002,
+              0.7575
+            ],
+            "forward_mass_fraction": 0.9993015945592204,
+            "backward_mass_fraction": 0.0006984054407795212,
+            "radial_rms": 0.007157354774994654,
+            "axial_mean": 0.29602883657418005
+          }
+        }
+      ]
+    },
+    {
+      "key": "cigarette_smoke",
+      "model": "rings",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 11.824641558246185,
+        "p50_ms": 9.65023150001798,
+        "p95_ms": 28.288737850380066,
+        "p99_ms": 52.39765520011117,
+        "max_ms": 68.96028899973317,
+        "total_ms": 2837.9139739790844
+      },
+      "snapshots": [
+        {
+          "stem": "cigarette_smoke-rings-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 3.174940980805219e-06,
+            "deposition_loss": -2.541098841762901e-21,
+            "saturation": 0.0,
+            "grid_mass": 3.174940980805223e-06,
+            "closure": 1.2705494208814505e-21,
+            "injected": 4.01778284467599e-06,
+            "decayed": 8.428418638707679e-07,
+            "escaped": 0.0,
+            "particle_closure": -2.964615315390051e-21
+          },
+          "density_integral": 3.174940977470921e-06,
+          "occupied_voxels": 6369,
+          "occupied_fraction": 0.00518310546875,
+          "max_density": 0.13046592473983765,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.19689136717475003,
+            0.13629636307963186,
+            0.19900047897227896
+          ],
+          "rms_spread_xyz": [
+            0.00617267295881769,
+            0.06394873210900405,
+            0.007159861782428879
+          ],
+          "bounds_min_world": [
+            0.165,
+            0.015,
+            0.165
+          ],
+          "bounds_max_world": [
+            0.225,
+            0.295,
+            0.24
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.017499999999999995,
+              0.0975,
+              0.2175
+            ],
+            "forward_mass_fraction": 0.9986162382566437,
+            "backward_mass_fraction": 0.0013837617433562343,
+            "radial_rms": 0.010001407527297605,
+            "axial_mean": 0.10129636307963209
+          }
+        },
+        {
+          "stem": "cigarette_smoke-rings-0120",
+          "time": 1.9999999999999978,
+          "particles": 60000,
+          "budget": {
+            "particle_mass": 5.100640028441686e-06,
+            "deposition_loss": -4.235164736271502e-21,
+            "saturation": 0.0,
+            "grid_mass": 5.100640028441689e-06,
+            "closure": -8.470329472543003e-22,
+            "injected": 8.035565689351981e-06,
+            "decayed": 2.9349256609102914e-06,
+            "escaped": 0.0,
+            "particle_closure": -4.235164736271502e-21
+          },
+          "density_integral": 5.100640031105887e-06,
+          "occupied_voxels": 14069,
+          "occupied_fraction": 0.011449381510416667,
+          "max_density": 0.12802955508232117,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.1967627281719469,
+            0.22282802744231045,
+            0.20055626210698757
+          ],
+          "rms_spread_xyz": [
+            0.010853323448452893,
+            0.12876223032578205,
+            0.014660683726249357
+          ],
+          "bounds_min_world": [
+            0.145,
+            0.015,
+            0.14
+          ],
+          "bounds_max_world": [
+            0.23500000000000001,
+            0.52,
+            0.265
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.017499999999999995,
+              0.17250000000000001,
+              0.4075
+            ],
+            "forward_mass_fraction": 0.9991761775708854,
+            "backward_mass_fraction": 0.0008238224291145269,
+            "radial_rms": 0.018534282657233364,
+            "axial_mean": 0.18782802744231064
+          }
+        },
+        {
+          "stem": "cigarette_smoke-rings-0180",
+          "time": 2.9999999999999942,
+          "particles": 90000,
+          "budget": {
+            "particle_mass": 6.268635542212621e-06,
+            "deposition_loss": -4.235164736271502e-21,
+            "saturation": 0.0,
+            "grid_mass": 6.268635542212626e-06,
+            "closure": 8.470329472543003e-22,
+            "injected": 1.2053348534027973e-05,
+            "decayed": 5.784712991815338e-06,
+            "escaped": 0.0,
+            "particle_closure": -1.3552527156068805e-20
+          },
+          "density_integral": 6.268635541050888e-06,
+          "occupied_voxels": 21541,
+          "occupied_fraction": 0.017530110677083332,
+          "max_density": 0.12940509617328644,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.20047784532413193,
+            0.29272896838892476,
+            0.19941374495457714
+          ],
+          "rms_spread_xyz": [
+            0.013340099504840556,
+            0.18873936108813177,
+            0.017989804002393726
+          ],
+          "bounds_min_world": [
+            0.145,
+            0.015,
+            0.135
+          ],
+          "bounds_max_world": [
+            0.255,
+            0.745,
+            0.26
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.2275,
+              0.6124999999999999
+            ],
+            "forward_mass_fraction": 0.9993409213410059,
+            "backward_mass_fraction": 0.0006590786589940394,
+            "radial_rms": 0.022409001182017618,
+            "axial_mean": 0.2577289683889268
+          }
+        },
+        {
+          "stem": "cigarette_smoke-rings-0240",
+          "time": 3.9999999999999907,
+          "particles": 120000,
+          "budget": {
+            "particle_mass": 6.977060631721504e-06,
+            "deposition_loss": 2.1523013255471987e-11,
+            "saturation": 0.0,
+            "grid_mass": 6.977039108708247e-06,
+            "closure": -1.6940658945086007e-21,
+            "injected": 1.6071131378703963e-05,
+            "decayed": 9.094070746982435e-06,
+            "escaped": 0.0,
+            "particle_closure": -2.371692252312041e-20
+          },
+          "density_integral": 6.977039112616898e-06,
+          "occupied_voxels": 29488,
+          "occupied_fraction": 0.023997395833333334,
+          "max_density": 0.13371486961841583,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.1989679076007312,
+            0.34731567349046116,
+            0.2003892918790377
+          ],
+          "rms_spread_xyz": [
+            0.014127183028631701,
+            0.2417995291631163,
+            0.019159282260937376
+          ],
+          "bounds_min_world": [
+            0.145,
+            0.015,
+            0.135
+          ],
+          "bounds_max_world": [
+            0.255,
+            0.96,
+            0.27
+          ],
+          "outer_cell_mass_fraction": 4.500689563229685e-05,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.25749999999999995,
+              0.7925
+            ],
+            "forward_mass_fraction": 0.9993019456992237,
+            "backward_mass_fraction": 0.0006980543007763535,
+            "radial_rms": 0.02383006840037287,
+            "axial_mean": 0.3123156734904644
+          }
+        }
+      ]
+    },
+    {
+      "key": "cigarette_smoke",
+      "model": "packets",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 21.567411254272884,
+        "p50_ms": 20.023109999783628,
+        "p95_ms": 54.71173405057923,
+        "p99_ms": 66.81537633025071,
+        "max_ms": 77.59126000019023,
+        "total_ms": 5176.178701025492
+      },
+      "snapshots": [
+        {
+          "stem": "cigarette_smoke-packets-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 3.174940980805219e-06,
+            "deposition_loss": -2.541098841762901e-21,
+            "saturation": 0.0,
+            "grid_mass": 3.174940980805222e-06,
+            "closure": 4.235164736271502e-22,
+            "injected": 4.01778284467599e-06,
+            "decayed": 8.428418638707679e-07,
+            "escaped": 0.0,
+            "particle_closure": -2.964615315390051e-21
+          },
+          "density_integral": 3.1749409821507055e-06,
+          "occupied_voxels": 23807,
+          "occupied_fraction": 0.019374186197916667,
+          "max_density": 0.12036820501089096,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.19739972428741065,
+            0.11518060542994292,
+            0.19541322248273454
+          ],
+          "rms_spread_xyz": [
+            0.010604002406726515,
+            0.044517250673184565,
+            0.010635081308802922
+          ],
+          "bounds_min_world": [
+            0.115,
+            0.015,
+            0.11
+          ],
+          "bounds_max_world": [
+            0.27,
+            0.31,
+            0.265
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.017499999999999995,
+              0.0825,
+              0.1525
+            ],
+            "forward_mass_fraction": 0.9986162382586835,
+            "backward_mass_fraction": 0.0013837617413166037,
+            "radial_rms": 0.015916965265435828,
+            "axial_mean": 0.08018060542994375
+          }
+        },
+        {
+          "stem": "cigarette_smoke-packets-0120",
+          "time": 1.9999999999999978,
+          "particles": 60000,
+          "budget": {
+            "particle_mass": 5.100640028441686e-06,
+            "deposition_loss": -5.082197683525802e-21,
+            "saturation": 0.0,
+            "grid_mass": 5.100640028441689e-06,
+            "closure": -1.6940658945086007e-21,
+            "injected": 8.035565689351981e-06,
+            "decayed": 2.9349256609102914e-06,
+            "escaped": 0.0,
+            "particle_closure": -4.235164736271502e-21
+          },
+          "density_integral": 5.1006400279631395e-06,
+          "occupied_voxels": 91714,
+          "occupied_fraction": 0.07463704427083333,
+          "max_density": 0.12884248793125153,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.20102996575560528,
+            0.14635196507520704,
+            0.19713032926570445
+          ],
+          "rms_spread_xyz": [
+            0.0161286208266072,
+            0.06390031416335076,
+            0.01920018832243059
+          ],
+          "bounds_min_world": [
+            0.075,
+            0.015,
+            0.055
+          ],
+          "bounds_max_world": [
+            0.33,
+            0.49,
+            0.325
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.017499999999999995,
+              0.10250000000000001,
+              0.2275
+            ],
+            "forward_mass_fraction": 0.9991761781876949,
+            "backward_mass_fraction": 0.000823821812304912,
+            "radial_rms": 0.025260155996474704,
+            "axial_mean": 0.11135196507520671
+          }
+        },
+        {
+          "stem": "cigarette_smoke-packets-0180",
+          "time": 2.9999999999999942,
+          "particles": 90000,
+          "budget": {
+            "particle_mass": 6.268635542212621e-06,
+            "deposition_loss": -4.235164736271502e-21,
+            "saturation": 0.0,
+            "grid_mass": 6.268635542212627e-06,
+            "closure": 1.6940658945086007e-21,
+            "injected": 1.2053348534027973e-05,
+            "decayed": 5.784712991815338e-06,
+            "escaped": 0.0,
+            "particle_closure": -1.3552527156068805e-20
+          },
+          "density_integral": 6.268635539048317e-06,
+          "occupied_voxels": 190591,
+          "occupied_fraction": 0.15510335286458332,
+          "max_density": 0.1199321523308754,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.19773534919482294,
+            0.16940130033566692,
+            0.2012168081155683
+          ],
+          "rms_spread_xyz": [
+            0.021229038781368142,
+            0.07944682507334853,
+            0.022300617005251693
+          ],
+          "bounds_min_world": [
+            0.045,
+            0.015,
+            0.01
+          ],
+          "bounds_max_world": [
+            0.375,
+            0.625,
+            0.355
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.1275,
+              0.2825
+            ],
+            "forward_mass_fraction": 0.9993409213407953,
+            "backward_mass_fraction": 0.0006590786592045877,
+            "radial_rms": 0.03089658349486686,
+            "axial_mean": 0.13440130033566844
+          }
+        },
+        {
+          "stem": "cigarette_smoke-packets-0240",
+          "time": 3.9999999999999907,
+          "particles": 119994,
+          "budget": {
+            "particle_mass": 6.9769989028149345e-06,
+            "deposition_loss": 9.655521421863398e-12,
+            "saturation": 0.0,
+            "grid_mass": 6.976989247293513e-06,
+            "closure": 0.0,
+            "injected": 1.6071131378703963e-05,
+            "decayed": 9.094062852525767e-06,
+            "escaped": 6.962336324650385e-11,
+            "particle_closure": -1.4399560103323106e-20
+          },
+          "density_integral": 6.976989247959848e-06,
+          "occupied_voxels": 321667,
+          "occupied_fraction": 0.26177327473958334,
+          "max_density": 0.11605310440063477,
+          "cell_size_xyz": [
+            0.005,
+            0.005,
+            0.005
+          ],
+          "centroid_world": [
+            0.19369160012778025,
+            0.18774498230395034,
+            0.2011850434457048
+          ],
+          "rms_spread_xyz": [
+            0.025224298864316874,
+            0.09498217302507546,
+            0.02579599102730574
+          ],
+          "bounds_min_world": [
+            0.0,
+            0.015,
+            0.0
+          ],
+          "bounds_max_world": [
+            0.4,
+            0.765,
+            0.4
+          ],
+          "outer_cell_mass_fraction": 4.460577559697197e-06,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.2,
+              0.035,
+              0.2
+            ],
+            "direction": [
+              0.0,
+              1.0,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0225,
+              0.1375,
+              0.3325
+            ],
+            "forward_mass_fraction": 0.9993018689599666,
+            "backward_mass_fraction": 0.0006981310400333578,
+            "radial_rms": 0.03664558149618031,
+            "axial_mean": 0.15274498230395317
+          }
+        }
+      ]
+    },
+    {
+      "key": "exhaled_aerosol",
+      "model": "base",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 5.430483887478961,
+        "p50_ms": 5.201433499678387,
+        "p95_ms": 10.483662249316685,
+        "p99_ms": 16.825229869045856,
+        "max_ms": 24.14623699951335,
+        "total_ms": 1303.3161329949507
+      },
+      "snapshots": [
+        {
+          "stem": "exhaled_aerosol-base-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 0.0010863448611217554,
+            "deposition_loss": -2.168404344971009e-19,
+            "saturation": 0.0,
+            "grid_mass": 0.0010863448611217557,
+            "closure": 0.0,
+            "injected": 0.0014087755020914204,
+            "decayed": 0.00032243064096966484,
+            "escaped": 0.0,
+            "particle_closure": -2.168404344971009e-19
+          },
+          "density_integral": 0.0010863448610676655,
+          "occupied_voxels": 8980,
+          "occupied_fraction": 0.00876953125,
+          "max_density": 0.6954163908958435,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.4383147563295772,
+            0.5053396478996762,
+            0.5999938388826058
+          ],
+          "rms_spread_xyz": [
+            0.15258343506449448,
+            0.02568548306109241,
+            0.022675441756824562
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.39,
+            0.48
+          ],
+          "bounds_max_world": [
+            0.75,
+            0.63,
+            0.72
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.08163917131210863,
+              0.322071016495022,
+              0.5487468108341368
+            ],
+            "forward_mass_fraction": 0.9998886540673325,
+            "backward_mass_fraction": 0.00011134593266749315,
+            "radial_rms": 0.032097621074211075,
+            "axial_mean": 0.3193217283471565
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-base-0120",
+          "time": 1.9999999999999978,
+          "particles": 60000,
+          "budget": {
+            "particle_mass": 0.0012063686820623536,
+            "deposition_loss": 0.0,
+            "saturation": 0.0,
+            "grid_mass": 0.0012063686820623538,
+            "closure": 2.168404344971009e-19,
+            "injected": 0.0023538360335971474,
+            "decayed": 0.0011474673515347938,
+            "escaped": 0.0,
+            "particle_closure": 0.0
+          },
+          "density_integral": 0.0012063686824308252,
+          "occupied_voxels": 13750,
+          "occupied_fraction": 0.013427734375,
+          "max_density": 0.48679301142692566,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.6346648756771477,
+            0.5211839632321467,
+            0.5999932016304925
+          ],
+          "rms_spread_xyz": [
+            0.2394857542587942,
+            0.029442973869114777,
+            0.022462135552315632
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.39,
+            0.48
+          ],
+          "bounds_max_world": [
+            1.125,
+            0.6599999999999999,
+            0.72
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.12649585884623427,
+              0.5188423524780531,
+              0.8950404385975866
+            ],
+            "forward_mass_fraction": 0.9999137495222414,
+            "backward_mass_fraction": 8.625047775860723e-05,
+            "radial_rms": 0.03180139755446854,
+            "axial_mean": 0.5163100357033128
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-base-0180",
+          "time": 2.9999999999999942,
+          "particles": 66000,
+          "budget": {
+            "particle_mass": 0.0006352630057933322,
+            "deposition_loss": 0.0,
+            "saturation": 0.0,
+            "grid_mass": 0.0006352630057933322,
+            "closure": 0.0,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.0017286772327824978,
+            "escaped": 0.0,
+            "particle_closure": -6.505213034913027e-19
+          },
+          "density_integral": 0.00063526300618055,
+          "occupied_voxels": 15862,
+          "occupied_fraction": 0.015490234375,
+          "max_density": 0.22114816308021545,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.8216337992871002,
+            0.5361330869566658,
+            0.5999901146275445
+          ],
+          "rms_spread_xyz": [
+            0.3188946352717712,
+            0.033087153304737035,
+            0.021209535453491527
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.39,
+            0.48
+          ],
+          "bounds_max_world": [
+            1.41,
+            0.6749999999999999,
+            0.72
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.1587926738708047,
+              0.7419296118144378,
+              1.168965277139314
+            ],
+            "forward_mass_fraction": 0.9999622801057441,
+            "backward_mass_fraction": 3.7719894255885626e-05,
+            "radial_rms": 0.03001751709117277,
+            "axial_mean": 0.7038756365635186
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-base-0240",
+          "time": 3.9999999999999907,
+          "particles": 66000,
+          "budget": {
+            "particle_mass": 0.0003316363693069175,
+            "deposition_loss": -1.0842021724855044e-19,
+            "saturation": 0.0,
+            "grid_mass": 0.0003316363693069176,
+            "closure": -5.421010862427522e-20,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.002032303869268912,
+            "escaped": 0.0,
+            "particle_closure": -1.0299920638612292e-18
+          },
+          "density_integral": 0.00033163636889727867,
+          "occupied_voxels": 17182,
+          "occupied_fraction": 0.016779296875,
+          "max_density": 0.10151566565036774,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.9044441874088981,
+            0.5427529585524377,
+            0.599986462529001
+          ],
+          "rms_spread_xyz": [
+            0.402472344702391,
+            0.037882592159688526,
+            0.020147211719196027
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.39,
+            0.495
+          ],
+          "bounds_max_world": [
+            1.635,
+            0.69,
+            0.705
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.1587926738708047,
+              0.7742264268390083,
+              1.4046124089852536
+            ],
+            "forward_mass_fraction": 0.9999622801058561,
+            "backward_mass_fraction": 3.77198941442063e-05,
+            "radial_rms": 0.028513603376831988,
+            "axial_mean": 0.7869501997967236
+          }
+        }
+      ]
+    },
+    {
+      "key": "exhaled_aerosol",
+      "model": "rings",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 11.733093133276876,
+        "p50_ms": 11.965382000198588,
+        "p95_ms": 22.74379595055506,
+        "p99_ms": 27.435430020377673,
+        "max_ms": 29.869735000829678,
+        "total_ms": 2815.9423519864504
+      },
+      "snapshots": [
+        {
+          "stem": "exhaled_aerosol-rings-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 0.0010863448611217554,
+            "deposition_loss": 0.0,
+            "saturation": 0.0,
+            "grid_mass": 0.0010863448611217557,
+            "closure": 2.168404344971009e-19,
+            "injected": 0.0014087755020914204,
+            "decayed": 0.00032243064096966484,
+            "escaped": 0.0,
+            "particle_closure": -2.168404344971009e-19
+          },
+          "density_integral": 0.0010863448605925002,
+          "occupied_voxels": 11361,
+          "occupied_fraction": 0.0110947265625,
+          "max_density": 0.6488178372383118,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.47456187882831263,
+            0.49887561312675327,
+            0.6109906263218716
+          ],
+          "rms_spread_xyz": [
+            0.16183906578912746,
+            0.02685662832856249,
+            0.028552721543990328
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.345,
+            0.46499999999999997
+          ],
+          "bounds_max_world": [
+            0.765,
+            0.6599999999999999,
+            0.78
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.08283534964635199,
+              0.38187993320718944,
+              0.5636990400121787
+            ],
+            "forward_mass_fraction": 0.9998907169369751,
+            "backward_mass_fraction": 0.00010928306302505182,
+            "radial_rms": 0.04254849276825592,
+            "axial_mean": 0.3549379379670557
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-rings-0120",
+          "time": 1.9999999999999978,
+          "particles": 60000,
+          "budget": {
+            "particle_mass": 0.0012063686820623536,
+            "deposition_loss": -4.336808689942018e-19,
+            "saturation": 0.0,
+            "grid_mass": 0.0012063686820623538,
+            "closure": -2.168404344971009e-19,
+            "injected": 0.0023538360335971474,
+            "decayed": 0.0011474673515347938,
+            "escaped": 0.0,
+            "particle_closure": 0.0
+          },
+          "density_integral": 0.0012063686821631085,
+          "occupied_voxels": 21091,
+          "occupied_fraction": 0.0205966796875,
+          "max_density": 0.4714956283569336,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.7194119771399117,
+            0.5410989209491841,
+            0.6120205253694194
+          ],
+          "rms_spread_xyz": [
+            0.25189675289340174,
+            0.03941248105726671,
+            0.034731426982773574
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.36,
+            0.435
+          ],
+          "bounds_max_world": [
+            1.125,
+            0.765,
+            0.825
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.13128057218320768,
+              0.6695608225927152,
+              0.9135812027783585
+            ],
+            "forward_mass_fraction": 0.9999149498861375,
+            "backward_mass_fraction": 8.505011386249141e-05,
+            "radial_rms": 0.04918771793751561,
+            "axial_mean": 0.6023753639829498
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-rings-0180",
+          "time": 2.9999999999999942,
+          "particles": 66000,
+          "budget": {
+            "particle_mass": 0.0006352630057933322,
+            "deposition_loss": 0.0,
+            "saturation": 0.0,
+            "grid_mass": 0.0006352630057933322,
+            "closure": 0.0,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.0017286772327824978,
+            "escaped": 0.0,
+            "particle_closure": -6.505213034913027e-19
+          },
+          "density_integral": 0.000635263005639416,
+          "occupied_voxels": 28266,
+          "occupied_fraction": 0.027603515625,
+          "max_density": 0.27139589190483093,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.9869906931450502,
+            0.5505408074352097,
+            0.6197362678105385
+          ],
+          "rms_spread_xyz": [
+            0.303900468547501,
+            0.045441495394021994,
+            0.03766241931986344
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.3,
+            0.36
+          ],
+          "bounds_max_world": [
+            1.41,
+            0.75,
+            0.84
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.20125700473644367,
+              0.9721939411562827,
+              1.1964773788269107
+            ],
+            "forward_mass_fraction": 0.9999640533196102,
+            "backward_mass_fraction": 3.5946680389599036e-05,
+            "radial_rms": 0.05439587872002198,
+            "axial_mean": 0.8698548616445462
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-rings-0240",
+          "time": 3.9999999999999907,
+          "particles": 66000,
+          "budget": {
+            "particle_mass": 0.0003316363693069175,
+            "deposition_loss": -5.421010862427522e-20,
+            "saturation": 0.0,
+            "grid_mass": 0.0003316363693069175,
+            "closure": -5.421010862427522e-20,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.002032303869268912,
+            "escaped": 0.0,
+            "particle_closure": -1.0299920638612292e-18
+          },
+          "density_integral": 0.0003316363692244198,
+          "occupied_voxels": 31005,
+          "occupied_fraction": 0.0302783203125,
+          "max_density": 0.14100149273872375,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            1.1500450673440061,
+            0.5512923006319466,
+            0.6143253868264658
+          ],
+          "rms_spread_xyz": [
+            0.3842452244728211,
+            0.03828012196512968,
+            0.040226730611678405
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.36,
+            0.32999999999999996
+          ],
+          "bounds_max_world": [
+            1.65,
+            0.7949999999999999,
+            0.78
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.20125700473644367,
+              1.1803289713146254,
+              1.4219569948317823
+            ],
+            "forward_mass_fraction": 0.9999640533215653,
+            "backward_mass_fraction": 3.5946678434500755e-05,
+            "radial_rms": 0.05544229119418615,
+            "axial_mean": 1.0324498810702294
+          }
+        }
+      ]
+    },
+    {
+      "key": "exhaled_aerosol",
+      "model": "packets",
+      "steps": 240,
+      "dt": 0.016666666666666666,
+      "markers_per_step": 500,
+      "timing": {
+        "count": 240,
+        "mean_ms": 24.7741129749708,
+        "p50_ms": 27.550957999665115,
+        "p95_ms": 36.47978115041042,
+        "p99_ms": 69.17108275016287,
+        "max_ms": 193.50493499950971,
+        "total_ms": 5945.787113992992
+      },
+      "snapshots": [
+        {
+          "stem": "exhaled_aerosol-packets-0060",
+          "time": 1.0000000000000013,
+          "particles": 30000,
+          "budget": {
+            "particle_mass": 0.0010863448611217554,
+            "deposition_loss": -4.336808689942018e-19,
+            "saturation": 0.0,
+            "grid_mass": 0.0010863448611217557,
+            "closure": -2.168404344971009e-19,
+            "injected": 0.0014087755020914204,
+            "decayed": 0.00032243064096966484,
+            "escaped": 0.0,
+            "particle_closure": -2.168404344971009e-19
+          },
+          "density_integral": 0.001086344860885425,
+          "occupied_voxels": 61489,
+          "occupied_fraction": 0.0600478515625,
+          "max_density": 0.5446475744247437,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.4044733742926995,
+            0.49593333037516885,
+            0.600863358671373
+          ],
+          "rms_spread_xyz": [
+            0.13374309286935374,
+            0.06043583378109958,
+            0.06131720192844538
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.135,
+            0.24
+          ],
+          "bounds_max_world": [
+            0.87,
+            0.9149999999999999,
+            0.96
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.08163917131210863,
+              0.2736257939581663,
+              0.5158519066424447
+            ],
+            "forward_mass_fraction": 0.9998974267787802,
+            "backward_mass_fraction": 0.00010257322121983606,
+            "radial_rms": 0.08588829759179596,
+            "axial_mean": 0.28483801280416304
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-packets-0120",
+          "time": 1.9999999999999978,
+          "particles": 59999,
+          "budget": {
+            "particle_mass": 0.0012063660176217334,
+            "deposition_loss": 8.851746827708007e-09,
+            "saturation": 0.0,
+            "grid_mass": 0.0012063571658749057,
+            "closure": 0.0,
+            "injected": 0.0023538360335971474,
+            "decayed": 0.0011474671725935613,
+            "escaped": 2.8433818526258025e-09,
+            "particle_closure": 0.0
+          },
+          "density_integral": 0.0012063571653985101,
+          "occupied_voxels": 204773,
+          "occupied_fraction": 0.1999736328125,
+          "max_density": 0.23424898087978363,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.5033726075224952,
+            0.5014128671914033,
+            0.5871669369753629
+          ],
+          "rms_spread_xyz": [
+            0.20989511863006646,
+            0.11210198623453918,
+            0.10333323330175531
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.0,
+            0.0
+          ],
+          "bounds_max_world": [
+            1.23,
+            1.08,
+            1.2
+          ],
+          "outer_cell_mass_fraction": 2.066509069601715e-05,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.09898375715863722,
+              0.3513773856839841,
+              0.7796092293431034
+            ],
+            "forward_mass_fraction": 0.9999127072165659,
+            "backward_mass_fraction": 8.729278343417852e-05,
+            "radial_rms": 0.14963611210062194,
+            "axial_mean": 0.3838592464045607
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-packets-0180",
+          "time": 2.9999999999999942,
+          "particles": 65933,
+          "budget": {
+            "particle_mass": 0.0006345880636987964,
+            "deposition_loss": 8.515785604102208e-08,
+            "saturation": 0.0,
+            "grid_mass": 0.0006345029058427553,
+            "closure": -1.0842021724855044e-19,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.0017284637435067403,
+            "escaped": 8.884313702943081e-07,
+            "particle_closure": 3.2526065174565133e-19
+          },
+          "density_integral": 0.0006345029058121946,
+          "occupied_voxels": 359573,
+          "occupied_fraction": 0.3511455078125,
+          "max_density": 0.048390090465545654,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.5752199009687615,
+            0.48886788326483704,
+            0.584792020178187
+          ],
+          "rms_spread_xyz": [
+            0.28572601334949665,
+            0.14477137462397335,
+            0.1417263458401243
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.0,
+            0.0
+          ],
+          "bounds_max_world": [
+            1.5,
+            1.2,
+            1.2
+          ],
+          "outer_cell_mass_fraction": 0.0002648950272895801,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.07924681464362193,
+              0.40341114322356975,
+              0.9829595461644729
+            ],
+            "forward_mass_fraction": 0.9999624580603822,
+            "backward_mass_fraction": 3.7541939617595256e-05,
+            "radial_rms": 0.20345636096855296,
+            "axial_mean": 0.4544773237014997
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-packets-0240",
+          "time": 3.9999999999999907,
+          "particles": 65583,
+          "budget": {
+            "particle_mass": 0.00032941025808713926,
+            "deposition_loss": 1.360585859695656e-07,
+            "saturation": 0.0,
+            "grid_mass": 0.0003292741995011696,
+            "closure": -1.0842021724855044e-19,
+            "injected": 0.0023639402385758307,
+            "decayed": 0.0020311978688324216,
+            "escaped": 3.332111656269227e-06,
+            "particle_closure": -5.963111948670274e-19
+          },
+          "density_integral": 0.00032927419953761593,
+          "occupied_voxels": 504637,
+          "occupied_fraction": 0.4928095703125,
+          "max_density": 0.029136639088392258,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.6061756108186492,
+            0.4968032157889037,
+            0.5816063245114073
+          ],
+          "rms_spread_xyz": [
+            0.331826462770106,
+            0.17615095103130726,
+            0.173525653646569
+          ],
+          "bounds_min_world": [
+            0.06,
+            0.0,
+            0.0
+          ],
+          "bounds_max_world": [
+            1.8299999999999998,
+            1.2,
+            1.2
+          ],
+          "outer_cell_mass_fraction": 0.0009136404748070249,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.12,
+              0.48,
+              0.6
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.06309840713133671,
+              0.4249423532399501,
+              1.1282952137750397
+            ],
+            "forward_mass_fraction": 0.9999612182512636,
+            "backward_mass_fraction": 3.878174873642861e-05,
+            "radial_rms": 0.24638653660437057,
+            "axial_mean": 0.48596725309382227
+          }
+        }
+      ]
+    }
+  ]
+}

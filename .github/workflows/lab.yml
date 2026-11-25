@@ -1,0 +1,24 @@
+# Independent research correctness; never certifies Rust or WGSL.
+name: fidelity-lab
+on:
+  pull_request:
+    paths: ['lab/**','effects/**','tools/quality_metrics.py','tools/runtime_common.py','fixtures/**']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  independent-research:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - run: python -m pip install -r lab/requirements.txt
+      - run: python -m unittest discover -s lab/tests -v
+      - run: python lab/transport_audit.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: independent-transport-evidence
+          path: reports/local/lab/transport/

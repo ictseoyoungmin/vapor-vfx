@@ -1,0 +1,6 @@
+import {createEffect} from '../../bindings/web/effects.mjs';
+import {prepareVolume} from '../../bindings/web/preview.mjs';
+import {demoCamera,renderOpaqueScene} from './scene.mjs';
+const canvas=document.querySelector('canvas'),ctx=canvas.getContext('2d'),status=document.querySelector('#status'),buttons=[...document.querySelectorAll('button')];
+for(const b of buttons)b.disabled=true;
+try{const e=await createEffect('ground_fog',{quality:'medium'});try{const atlas=await e.atlasRGBA8(),opaque=renderOpaqueScene(demoCamera),p=prepareVolume({atlas,cells:[...e.renderCells],extent:e.extent,densityCap:e.config.densityCap,material:e.definition.material}),noDepth={colour:opaque.colour,depth:new Float32Array(opaque.depth.length)};function show(mode){const start=performance.now(),rgba=mode==='scene'?opaque.colour:p.render({...demoCamera,scene:mode==='legacy'?noDepth:opaque});ctx.putImageData(new ImageData(new Uint8ClampedArray(rgba),demoCamera.width,demoCamera.height),0,0);status.textContent=`${mode} · ${e.renderCells.join(' × ')} · ${(performance.now()-start).toFixed(0)} ms CPU reference (not game FPS)`;}for(const b of buttons){b.disabled=false;b.onclick=()=>show(b.dataset.mode);}show('depth');}finally{e.dispose();}}catch(e){status.textContent=String(e);}

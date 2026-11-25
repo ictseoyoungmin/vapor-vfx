@@ -1,0 +1,296 @@
+{
+  "status": "PASS_EXECUTION_ONLY",
+  "scope": "Larger uniform MAC domain audit. Uses the actual coupled reference solver,\noriginal source profile and scalar transport, not a particle animation or Rust.\nThe change is domain extent/resolution, not a new validated turbulence closure.\n",
+  "rows": [
+    {
+      "key": "exhaled_aerosol",
+      "model": "seeded",
+      "cells": [
+        112,
+        56,
+        56
+      ],
+      "extent": [
+        1.68,
+        0.84,
+        0.84
+      ],
+      "diameter_cells": 4.533333333333334,
+      "steps": 180,
+      "dt": 0.016666666666666666,
+      "source_integral": 6.863877293269124e-05,
+      "seed_amplitude": 0.05,
+      "seed_frequency_hz": 5.294117647058823,
+      "clamps": 0,
+      "max_divergence_after": 8.672343372771619e-08,
+      "timing": {
+        "count": 180,
+        "mean_ms": 433.1555558722458,
+        "p50_ms": 394.4058175002283,
+        "p95_ms": 507.3620155507342,
+        "p99_ms": 534.6367197701147,
+        "max_ms": 7652.384035000068,
+        "total_ms": 77968.00005700425
+      },
+      "mass_budget": {
+        "injected": 0.0023821834676957523,
+        "boundary_outflow": 5.479758451165044e-44,
+        "decayed": 0.0017393283426270394,
+        "saturated": 0.0,
+        "final": 0.0006428551170367499,
+        "relative_residual": -3.3716811135412502e-09,
+        "outflow_fraction": 2.3003091598421367e-41
+      },
+      "snapshots": [
+        {
+          "stem": "exhaled_aerosol-seeded-0022",
+          "time": 0.36666666666666664,
+          "density_integral": 0.0003122231321015779,
+          "occupied_voxels": 1962,
+          "occupied_fraction": 0.0055860513848396505,
+          "max_density": 1.0528525114059448,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.22084085155493502,
+            0.3691374257497523,
+            0.41999291660328975
+          ],
+          "rms_spread_xyz": [
+            0.04746190588542299,
+            0.019376059985701844,
+            0.01956794514057385
+          ],
+          "bounds_min_world": [
+            0.105,
+            0.21,
+            0.255
+          ],
+          "bounds_max_world": [
+            0.32999999999999996,
+            0.54,
+            0.585
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.105,
+              0.36,
+              0.42
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.024222611268427847,
+              0.12649585884623427,
+              0.18510859722415843
+            ],
+            "forward_mass_fraction": 1.0,
+            "backward_mass_fraction": 0.0,
+            "radial_rms": 0.02741689777007291,
+            "axial_mean": 0.11620059675610205
+          },
+          "flow": {
+            "max_speed": 1.6291558742523193,
+            "vorticity_rms_downstream": 7.135091304779053,
+            "crossflow_rms_downstream": 0.036337218544046354,
+            "kinetic_energy_integral": 0.0002554932062650431
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-seeded-0068",
+          "time": 1.1333333333333333,
+          "density_integral": 0.0011980927912290718,
+          "occupied_voxels": 5059,
+          "occupied_fraction": 0.014403585094752187,
+          "max_density": 1.4092907905578613,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.4299185983984894,
+            0.38710861989530515,
+            0.42005863636828106
+          ],
+          "rms_spread_xyz": [
+            0.1654518675101533,
+            0.02505753304480735,
+            0.020878662706262218
+          ],
+          "bounds_min_world": [
+            0.105,
+            0.21,
+            0.255
+          ],
+          "bounds_max_world": [
+            0.72,
+            0.54,
+            0.585
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.105,
+              0.36,
+              0.42
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.05293089129026825,
+              0.3370232456730639,
+              0.5636990400121787
+            ],
+            "forward_mass_fraction": 1.0,
+            "backward_mass_fraction": 0.0,
+            "radial_rms": 0.030169317039397035,
+            "axial_mean": 0.32604560608349153
+          },
+          "flow": {
+            "max_speed": 1.2725591659545898,
+            "vorticity_rms_downstream": 10.911430358886719,
+            "crossflow_rms_downstream": 0.04200383620628872,
+            "kinetic_energy_integral": 0.000570018283407634
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-seeded-0112",
+          "time": 1.8666666666666667,
+          "density_integral": 0.00130097253768324,
+          "occupied_voxels": 7445,
+          "occupied_fraction": 0.02119681577988338,
+          "max_density": 0.7594355344772339,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.5750668389397449,
+            0.4039381705762433,
+            0.42019983334141026
+          ],
+          "rms_spread_xyz": [
+            0.23609428903046,
+            0.034230774606882564,
+            0.023909217071719377
+          ],
+          "bounds_min_world": [
+            0.09,
+            0.21,
+            0.255
+          ],
+          "bounds_max_world": [
+            0.99,
+            0.54,
+            0.585
+          ],
+          "outer_cell_mass_fraction": 0.0,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.105,
+              0.36,
+              0.42
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.0852277063148387,
+              0.4727894866096842,
+              0.8238678277101074
+            ],
+            "forward_mass_fraction": 0.9999998240851805,
+            "backward_mass_fraction": 1.7591481930209147e-07,
+            "radial_rms": 0.03636181913001218,
+            "axial_mean": 0.47207366616762325
+          },
+          "flow": {
+            "max_speed": 0.9288593530654907,
+            "vorticity_rms_downstream": 9.505759239196777,
+            "crossflow_rms_downstream": 0.04842120078941071,
+            "kinetic_energy_integral": 0.00042347934310207826
+          }
+        },
+        {
+          "stem": "exhaled_aerosol-seeded-0180",
+          "time": 3.0,
+          "density_integral": 0.0006428551170367498,
+          "occupied_voxels": 12239,
+          "occupied_fraction": 0.03484591381195335,
+          "max_density": 0.1168195828795433,
+          "cell_size_xyz": [
+            0.015,
+            0.015,
+            0.015
+          ],
+          "centroid_world": [
+            0.7564294985512496,
+            0.4261995431489514,
+            0.4207843200890646
+          ],
+          "rms_spread_xyz": [
+            0.2640572693198287,
+            0.05315930052266576,
+            0.031227226864935557
+          ],
+          "bounds_min_world": [
+            0.0,
+            0.21,
+            0.255
+          ],
+          "bounds_max_world": [
+            1.2149999999999999,
+            0.6,
+            0.585
+          ],
+          "outer_cell_mass_fraction": 2.9388891008044203e-30,
+          "saturation_mass_fraction": 0.0,
+          "plume": {
+            "source_world": [
+              0.105,
+              0.36,
+              0.42
+            ],
+            "direction": [
+              0.9968152785361251,
+              0.07974522228289001,
+              0.0
+            ],
+            "axial_q05_q50_q95": [
+              0.20484553973917372,
+              0.6731493575954453,
+              1.0355913928711804
+            ],
+            "forward_mass_fraction": 0.999302071931782,
+            "backward_mass_fraction": 0.0006979280682179722,
+            "radial_rms": 0.05677849102472427,
+            "axial_mean": 0.6546339743284493
+          },
+          "flow": {
+            "max_speed": 0.4822186529636383,
+            "vorticity_rms_downstream": 5.165801525115967,
+            "crossflow_rms_downstream": 0.04651813424893773,
+            "kinetic_energy_integral": 0.0001489589445677551
+          }
+        }
+      ]
+    }
+  ]
+}

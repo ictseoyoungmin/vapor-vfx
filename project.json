@@ -1,0 +1,17 @@
+{
+  "schema": "vapor.project/1",
+  "distribution_version": "0.24",
+  "sdk_version": "0.22.0",
+  "lab_baseline_version": "0.16.0",
+  "runtime_status": "BLOCKED",
+  "production_release_ready": false,
+  "lab_version": "0.22.0",
+  "bindings": {
+    "web": "0.22.0",
+    "dotnet": "0.22.0",
+    "python": "0.22.0"
+  },
+  "unity_adapter_version": "0.22.0",
+  "example_revision": "airborne-smoke-v2-inspector",
+  "site_revision": "public-preview"
+}
